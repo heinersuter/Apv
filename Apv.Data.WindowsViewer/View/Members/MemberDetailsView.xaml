@@ -1,0 +1,53 @@
+﻿<UserControl x:Class="Apv.Data.WindowsViewer.View.Members.MemberDetailsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:members="clr-namespace:Apv.Data.WindowsViewer.View.Members"
+             xmlns:common="http://alsolos.ch/Commons/Wpf"
+             mc:Ignorable="d" d:DataContext="{d:DesignInstance members:MemberDetailsViewModel}">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../Styles/ItemsControlStyles.xaml"/>
+                <ResourceDictionary Source="../../Styles/ControlStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <StackPanel Visibility="{Binding SelectedMember, Converter={common:NullToVisibilityConverter}}" Grid.IsSharedSizeScope="True">
+
+        <ItemsControl Style="{StaticResource LableStyle}">
+            <TextBlock Text="Pfadiname"/>
+            <TextBox Text="{Binding SelectedMember.Nickname}"/>
+        </ItemsControl>
+
+        <ItemsControl Style="{StaticResource RowStyle}">
+            <ItemsControl Style="{StaticResource LableStyle}">
+                <TextBlock Text="Vorname"/>
+                <TextBox Text="{Binding SelectedMember.Firstname}"/>
+            </ItemsControl>
+
+            <ItemsControl Style="{StaticResource LableStyle}">
+                <TextBlock Text="Nachname"/>
+                <TextBox Text="{Binding SelectedMember.Lastname}"/>
+            </ItemsControl>
+        </ItemsControl>
+
+        <ItemsControl Style="{StaticResource RowStyle}">
+            <ItemsControl Style="{StaticResource LableStyle}">
+                <TextBlock Text="Geburi"/>
+                <DatePicker SelectedDate="{Binding SelectedMember.Birthdate}"/>
+            </ItemsControl>
+
+            <ItemsControl Style="{StaticResource LableStyle}">
+                <TextBlock Text="Status"/>
+                <ComboBox ItemsSource="{Binding Statuses}" SelectedItem="{Binding SelectedMember.Status}"/>
+            </ItemsControl>
+        </ItemsControl>
+        
+        <Button Content="Save" Command="{Binding SaveCommand}"/>
+
+    </StackPanel>
+</UserControl>

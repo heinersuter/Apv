@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="Apv.Data.WindowsViewer.View.Members.MemberListView" 
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:members="clr-namespace:Apv.Data.WindowsViewer.View.Members" 
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance members:MemberListViewModel}">
+
+    <ListBox ItemsSource="{Binding Members}" SelectedItem="{Binding SelectedMember}">
+        <ListBox.ItemTemplate>
+            <DataTemplate>
+                <TextBlock Text="{Binding Nickname}"/>
+            </DataTemplate>
+        </ListBox.ItemTemplate>
+    </ListBox>
+    
+</UserControl>
