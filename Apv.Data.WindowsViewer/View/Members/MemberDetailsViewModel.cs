@@ -18,10 +18,15 @@ namespace Apv.Data.WindowsViewer.View.Members
             _memberService = memberService;
         }
 
+        public AddressesViewModel AddressesViewModel
+        {
+            get { return BackingFields.GetValue(() => new AddressesViewModel()); }
+        }
+
         public Member SelectedMember
         {
             get { return BackingFields.GetValue<Member>(); }
-            set { BackingFields.SetValue(value); }
+            set { BackingFields.SetValue(value, member => AddressesViewModel.Member = member); }
         }
 
         public DelegateCommand SaveCommand => BackingFields.GetCommand(Save, CanSave);

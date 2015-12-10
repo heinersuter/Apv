@@ -70,6 +70,10 @@
     </ApplicationDefinition>
     <Compile Include="Service\MemberService.cs" />
     <Compile Include="View\MainWindowViewModel.cs" />
+    <Compile Include="View\Members\AddressesView.xaml.cs">
+      <DependentUpon>AddressesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Members\AddressesViewModel.cs" />
     <Compile Include="View\Members\MemberDetailsView.xaml.cs">
       <DependentUpon>MemberDetailsView.xaml</DependentUpon>
     </Compile>
@@ -102,6 +106,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\Members\AddressesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Members\MemberDetailsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

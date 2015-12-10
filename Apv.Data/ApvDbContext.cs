@@ -9,9 +9,20 @@ namespace Apv.Data
         public ApvDbContext()
             : base("ApvConnectionString")
         {
-            Database.SetInitializer<ApvDbContext>(new TestDataInitializer());
+            //Database.SetInitializer(new TestDataInitializer());
         }
 
         public DbSet<Member> Members { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Communication>().HasKey(t => t.MemberId);
+
+            modelBuilder.Entity<Member>()
+                .HasRequired(t => t.Communication)
+                .WithRequiredPrincipal(t => t.Member);
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

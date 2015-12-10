@@ -46,7 +46,9 @@
                 <ComboBox ItemsSource="{Binding Statuses}" SelectedItem="{Binding SelectedMember.Status}"/>
             </ItemsControl>
         </ItemsControl>
-        
+
+        <members:AddressesView DataContext="{Binding AddressesViewModel}"/>
+
         <Button Content="Save" Command="{Binding SaveCommand}"/>
 
     </StackPanel>

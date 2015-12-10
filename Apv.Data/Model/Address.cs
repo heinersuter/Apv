@@ -1,18 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace Apv.Data.Model
+﻿namespace Apv.Data.Model
 {
-    public class Address
+    public class Address : MemberDefaultedItem
     {
-        [Key]
-        public long Id { get; set; }
-
-        public long MemberId { get; set; }
-
-        [ForeignKey("MemberId")]
-        public Member Member { get; set; }
-
         public string Street { get; set; }
 
         public string StreetLine2 { get; set; }

@@ -32,7 +32,7 @@ namespace Apv.Data.WindowsViewer.View.Members
 
         public void Load()
         {
-            Members = _memberService.GetActiveMembers();
+            Members = _memberService.GetMembers();
         }
     }
 }

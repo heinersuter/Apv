@@ -19,7 +19,7 @@ namespace Apv.Data.WindowsViewer.View.Members
         {
             if (args.PropertyName == GetPropertyName(() => MemberList.SelectedMember))
             {
-                MemberDetails.SelectedMember = MemberList.SelectedMember;
+                MemberDetails.SelectedMember = MemberList.SelectedMember != null ? _memberService.GetMemberDetails(MemberList.SelectedMember) : null;
             }
         }
 

@@ -6,9 +6,14 @@ namespace Apv.Data.WindowsViewer.Service
 {
     public class MemberService
     {
-        public IEnumerable<Member> GetActiveMembers()
+        public IEnumerable<Member> GetMembers()
         {
-            return ApvDataAccess.GetActiveMembers();
+            return ApvDataAccess.GetMembers();
+        }
+
+        public Member GetMemberDetails(Member member)
+        {
+            return ApvDataAccess.GetMemberDetails(member.Id);
         }
 
         public void UpdateMember(Member member)
