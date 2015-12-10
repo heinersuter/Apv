@@ -8,48 +8,20 @@
              mc:Ignorable="d" d:DataContext="{d:DesignInstance members:MemberDetailsViewModel}">
 
     <UserControl.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../../Styles/ItemsControlStyles.xaml"/>
-                <ResourceDictionary Source="../../Styles/ControlStyles.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
+        <ResourceDictionary Source="../../Styles/Styles.xaml"/>
     </UserControl.Resources>
 
-    <StackPanel Visibility="{Binding SelectedMember, Converter={common:NullToVisibilityConverter}}" Grid.IsSharedSizeScope="True">
+    <DockPanel Visibility="{Binding SelectedMember, Converter={common:NullToVisibilityConverter}}" Grid.IsSharedSizeScope="True">
 
-        <ItemsControl Style="{StaticResource LableStyle}">
-            <TextBlock Text="Pfadiname"/>
-            <TextBox Text="{Binding SelectedMember.Nickname}"/>
-        </ItemsControl>
+        <Button DockPanel.Dock="Bottom" Style="{StaticResource DefaultButton}" Content="Save" Command="{Binding SaveCommand}" HorizontalAlignment="Right"/>
 
-        <ItemsControl Style="{StaticResource RowStyle}">
-            <ItemsControl Style="{StaticResource LableStyle}">
-                <TextBlock Text="Vorname"/>
-                <TextBox Text="{Binding SelectedMember.Firstname}"/>
-            </ItemsControl>
+        <ScrollViewer>
+            <StackPanel>
+                <members:BaseMemberDataView DataContext="{Binding BaseMemberDataViewModel}"/>
 
-            <ItemsControl Style="{StaticResource LableStyle}">
-                <TextBlock Text="Nachname"/>
-                <TextBox Text="{Binding SelectedMember.Lastname}"/>
-            </ItemsControl>
-        </ItemsControl>
-
-        <ItemsControl Style="{StaticResource RowStyle}">
-            <ItemsControl Style="{StaticResource LableStyle}">
-                <TextBlock Text="Geburi"/>
-                <DatePicker SelectedDate="{Binding SelectedMember.Birthdate}"/>
-            </ItemsControl>
-
-            <ItemsControl Style="{StaticResource LableStyle}">
-                <TextBlock Text="Status"/>
-                <ComboBox ItemsSource="{Binding Statuses}" SelectedItem="{Binding SelectedMember.Status}"/>
-            </ItemsControl>
-        </ItemsControl>
-
-        <members:AddressesView DataContext="{Binding AddressesViewModel}"/>
-
-        <Button Content="Save" Command="{Binding SaveCommand}"/>
-
-    </StackPanel>
+                <members:AddressesView DataContext="{Binding AddressesViewModel}"/>
+            </StackPanel>
+        </ScrollViewer>
+        
+    </DockPanel>
 </UserControl>

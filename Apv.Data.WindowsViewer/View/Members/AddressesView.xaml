@@ -6,34 +6,36 @@
              xmlns:members="clr-namespace:Apv.Data.WindowsViewer.View.Members"
              mc:Ignorable="d" d:DataContext="{d:DesignInstance members:AddressesViewModel}">
 
-    <StackPanel>
-        <ItemsControl ItemsSource="{Binding Member.Addresses}">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel>
+    <HeaderedContentControl Header="Adressen">
+        <StackPanel>
+            <ItemsControl ItemsSource="{Binding Member.Addresses}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
 
-                        <RadioButton Content="Default"/>
+                            <RadioButton Content="Default"/>
 
-                        <HeaderedContentControl Header="Strasse">
-                            <TextBox Text="{Binding Street}"/>
-                        </HeaderedContentControl>
+                            <HeaderedContentControl Header="Strasse">
+                                <TextBox Text="{Binding Street}"/>
+                            </HeaderedContentControl>
 
-                        <HeaderedContentControl Header="PLZ">
-                            <TextBox Text="{Binding ZipCode}"/>
-                        </HeaderedContentControl>
+                            <HeaderedContentControl Header="PLZ">
+                                <TextBox Text="{Binding ZipCode}"/>
+                            </HeaderedContentControl>
 
-                        <HeaderedContentControl Header="Ort">
-                            <TextBox Text="{Binding City}"/>
-                        </HeaderedContentControl>
+                            <HeaderedContentControl Header="Ort">
+                                <TextBox Text="{Binding City}"/>
+                            </HeaderedContentControl>
 
-                        <Button Content="Löschen"/>
+                            <Button Content="Löschen"/>
 
-                    </StackPanel>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
 
-        <Button Content="Hinzufügen"/>
+            <Button Content="Hinzufügen"/>
 
-    </StackPanel>
+        </StackPanel>
+    </HeaderedContentControl>
 </UserControl>

@@ -74,6 +74,10 @@
       <DependentUpon>AddressesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Members\AddressesViewModel.cs" />
+    <Compile Include="View\Members\BaseMemberDataView.xaml.cs">
+      <DependentUpon>BaseMemberDataView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Members\BaseMemberDataViewModel.cs" />
     <Compile Include="View\Members\MemberDetailsView.xaml.cs">
       <DependentUpon>MemberDetailsView.xaml</DependentUpon>
     </Compile>
@@ -94,6 +98,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Styles\Styles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -107,6 +115,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\Members\AddressesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Members\BaseMemberDataView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
