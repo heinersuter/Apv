@@ -1,6 +1,6 @@
 ﻿namespace Apv.Data.Model
 {
-    public class PhoneNumber : MemberDefaultedItem
+    internal class PhoneNumber : MemberDefaultedItem
     {
         public string Value { get; set; }
 

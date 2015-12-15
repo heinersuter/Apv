@@ -5,6 +5,16 @@
         <Setter Property="IsTabStop" Value="False" />
     </Style>
 
+    <Style x:Key="DoubleRowStyle" TargetType="ItemsControl" BasedOn="{StaticResource {x:Type ItemsControl}}">
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="2"/>
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style x:Key="TrippleRowStyle" TargetType="ItemsControl" BasedOn="{StaticResource {x:Type ItemsControl}}">
         <Setter Property="ItemsPanel">
             <Setter.Value>

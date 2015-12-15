@@ -4,15 +4,27 @@ using Apv.Data.Model;
 
 namespace Apv.Data
 {
-    public class ApvDbContext : DbContext
+    internal class ApvDbContext : DbContext
     {
         public ApvDbContext()
             : base("ApvConnectionString")
         {
-            //Database.SetInitializer(new TestDataInitializer());
+            Database.SetInitializer(new TestDataInitializer());
         }
 
         public DbSet<Member> Members { get; set; }
+
+        public DbSet<Address> Addresses { get; set; }
+
+        public DbSet<EmailAddress> EmailAddresses { get; set; }
+
+        public DbSet<PhoneNumber> PhoneNumbers { get; set; }
+
+        public DbSet<Note> Notes { get; set; }
+
+        public DbSet<Function> Functions { get; set; }
+
+        public DbSet<Communication> Communications { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

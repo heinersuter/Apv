@@ -13,7 +13,7 @@
 
     <DockPanel Visibility="{Binding SelectedMember, Converter={common:NullToVisibilityConverter}}" Grid.IsSharedSizeScope="True">
 
-        <Button DockPanel.Dock="Bottom" Style="{StaticResource DefaultButton}" Content="Save" Command="{Binding SaveCommand}" HorizontalAlignment="Right"/>
+        <Button DockPanel.Dock="Bottom" Content="Save" Command="{Binding SaveCommand}" Style="{StaticResource DefaultButtonStyle}" HorizontalAlignment="Right"/>
 
         <ScrollViewer>
             <StackPanel>

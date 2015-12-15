@@ -2,7 +2,7 @@
 
 using Alsolos.Commons.Wpf.Mvvm;
 
-using Apv.Data.Model;
+using Apv.Data.Dtos;
 using Apv.Data.WindowsViewer.Service;
 
 namespace Apv.Data.WindowsViewer.View.Members
@@ -18,15 +18,15 @@ namespace Apv.Data.WindowsViewer.View.Members
             Load();
         }
 
-        public IEnumerable<Member> Members
+        public IEnumerable<MemberDto> Members
         {
-            get { return BackingFields.GetValue<IEnumerable<Member>>(); }
+            get { return BackingFields.GetValue<IEnumerable<MemberDto>>(); }
             set { BackingFields.SetValue(value); }
         }
 
-        public Member SelectedMember
+        public MemberDto SelectedMember
         {
-            get { return BackingFields.GetValue<Member>(); }
+            get { return BackingFields.GetValue<MemberDto>(); }
             set { BackingFields.SetValue(value); }
         }
 

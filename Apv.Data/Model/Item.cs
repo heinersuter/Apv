@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Apv.Data.Model
 {
-    public class Item
+    internal class Item
     {
         public Item()
         {

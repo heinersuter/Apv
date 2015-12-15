@@ -4,12 +4,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Apv.Data.Model
 {
-    public class Member : Item
+    internal class Member : Item
     {
-        public const string GenderMale = "Male";
-
-        public const string GenderFemale = "Female";
-
         public Member()
         {
             Addresses = new List<Address>();

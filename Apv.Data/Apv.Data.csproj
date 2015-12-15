@@ -55,6 +55,16 @@
   <ItemGroup>
     <Compile Include="ApvDataAccess.cs" />
     <Compile Include="ApvDbContext.cs" />
+    <Compile Include="Dtos\AddressDto.cs" />
+    <Compile Include="Dtos\CommunicationDto.cs" />
+    <Compile Include="Dtos\Dto.cs" />
+    <Compile Include="Dtos\DtoHelper.cs" />
+    <Compile Include="Dtos\EmailAddressDto.cs" />
+    <Compile Include="Dtos\FunctionDto.cs" />
+    <Compile Include="Dtos\MemberDetailsDto.cs" />
+    <Compile Include="Dtos\MemberDto.cs" />
+    <Compile Include="Dtos\NoteDto.cs" />
+    <Compile Include="Dtos\PhoneNumberDto.cs" />
     <Compile Include="Model\Address.cs" />
     <Compile Include="Model\Communication.cs" />
     <Compile Include="Model\Function.cs" />

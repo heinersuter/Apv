@@ -4,19 +4,33 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:members="clr-namespace:Apv.Data.WindowsViewer.View.Members"
+             xmlns:converters="http://alsolos.ch/Commons/Wpf"
              mc:Ignorable="d" d:DataContext="{d:DesignInstance members:AddressesViewModel}">
 
-    <HeaderedContentControl Header="Adressen">
-        <StackPanel>
-            <ItemsControl ItemsSource="{Binding Member.Addresses}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel>
+    <UserControl.Resources>
+        <ResourceDictionary Source="../../Styles/Styles.xaml"/>
+    </UserControl.Resources>
 
-                            <RadioButton Content="Default"/>
+    <StackPanel>
+        <ItemsControl ItemsSource="{Binding Member.Addresses}" 
+                      Visibility="{Binding Member.Addresses, Converter={converters:ListEmptyToVisibilityConverter}}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
 
+                        <ItemsControl Style="{StaticResource DoubleRowStyle}">
                             <HeaderedContentControl Header="Strasse">
                                 <TextBox Text="{Binding Street}"/>
+                            </HeaderedContentControl>
+
+                            <HeaderedContentControl Header="Zusatz">
+                                <TextBox Text="{Binding StreetLine2}"/>
+                            </HeaderedContentControl>
+                        </ItemsControl>
+
+                        <ItemsControl Style="{StaticResource TrippleRowStyle}">
+                            <HeaderedContentControl Header="Ländercode">
+                                <TextBox Text="{Binding CountryCode}"/>
                             </HeaderedContentControl>
 
                             <HeaderedContentControl Header="PLZ">
@@ -26,16 +40,20 @@
                             <HeaderedContentControl Header="Ort">
                                 <TextBox Text="{Binding City}"/>
                             </HeaderedContentControl>
+                        </ItemsControl>
 
-                            <Button Content="Löschen"/>
+                        <Button Content="Adresse Löschen" 
+                                Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=members:AddressesView}}" CommandParameter="{Binding}"
+                                Style="{StaticResource DefaultButtonStyle}" HorizontalAlignment="Right"/>
 
-                        </StackPanel>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+                    </StackPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
 
-            <Button Content="Hinzufügen"/>
+        <Button Content="Adresse Hinzufügen" Command="{Binding AddCommand}" Style="{StaticResource DefaultButtonStyle}" HorizontalAlignment="Right" 
+                Visibility="{Binding Member.Addresses, Converter={converters:ListEmptyToVisibilityConverter}, ConverterParameter=True}"/>
 
-        </StackPanel>
-    </HeaderedContentControl>
+    </StackPanel>
+
 </UserControl>

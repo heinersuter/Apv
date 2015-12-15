@@ -2,7 +2,7 @@
 
 namespace Apv.Data.Model
 {
-    public class Communication
+    internal class Communication
     {
         public Communication()
         {

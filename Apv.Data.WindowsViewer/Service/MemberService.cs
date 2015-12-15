@@ -1,22 +1,22 @@
 ﻿using System.Collections.Generic;
 
-using Apv.Data.Model;
+using Apv.Data.Dtos;
 
 namespace Apv.Data.WindowsViewer.Service
 {
     public class MemberService
     {
-        public IEnumerable<Member> GetMembers()
+        public IEnumerable<MemberDto> GetMembers()
         {
             return ApvDataAccess.GetMembers();
         }
 
-        public Member GetMemberDetails(Member member)
+        public MemberDetailsDto GetMemberDetails(MemberDto member)
         {
             return ApvDataAccess.GetMemberDetails(member.Id);
         }
 
-        public void UpdateMember(Member member)
+        public void UpdateMember(MemberDetailsDto member)
         {
             ApvDataAccess.UpdateMember(member);
         }

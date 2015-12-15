@@ -1,6 +1,6 @@
 ﻿namespace Apv.Data.Model
 {
-    public class Function : MemberItem
+    internal class Function : MemberItem
     {
         public string Value { get; set; }
     }

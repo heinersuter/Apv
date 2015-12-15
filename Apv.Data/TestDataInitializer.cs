@@ -4,13 +4,14 @@ using System.Globalization;
 using System.IO;
 using System.Text;
 
+using Apv.Data.Dtos;
 using Apv.Data.Model;
 
 using Newtonsoft.Json;
 
 namespace Apv.Data
 {
-    public class TestDataInitializer : DropCreateDatabaseAlways<ApvDbContext>
+    internal class TestDataInitializer : DropCreateDatabaseAlways<ApvDbContext>
     {
         protected override void Seed(ApvDbContext context)
         {
@@ -60,7 +61,7 @@ namespace Apv.Data
                     member.Functions.Add(new Function { Value = m.funktion });
                 }
 
-                member.Gender = m.geschlecht == "m" ? Member.GenderMale : Member.GenderFemale;
+                member.Gender = m.geschlecht == "m" ? MemberDetailsDto.GenderMale : MemberDetailsDto.GenderFemale;
 
                 var dateString = (string)m.geburi;
                 member.Birthdate = dateString != "0000-00-00" && dateString != null
