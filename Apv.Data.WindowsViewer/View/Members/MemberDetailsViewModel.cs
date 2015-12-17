@@ -24,6 +24,21 @@ namespace Apv.Data.WindowsViewer.View.Members
             get { return BackingFields.GetValue(() => new AddressesViewModel()); }
         }
 
+        public PhoneNumbersViewModel PhoneNumbersViewModel
+        {
+            get { return BackingFields.GetValue(() => new PhoneNumbersViewModel()); }
+        }
+
+        public EmailAddressesViewModel EmailAddressesViewModel
+        {
+            get { return BackingFields.GetValue(() => new EmailAddressesViewModel()); }
+        }
+
+        public NotesViewModel NotesViewModel
+        {
+            get { return BackingFields.GetValue(() => new NotesViewModel()); }
+        }
+
         public MemberDetailsDto SelectedMember
         {
             get { return BackingFields.GetValue<MemberDetailsDto>(); }
@@ -34,6 +49,9 @@ namespace Apv.Data.WindowsViewer.View.Members
         {
             BaseMemberDataViewModel.Member = member;
             AddressesViewModel.Member = member;
+            PhoneNumbersViewModel.Member = member;
+            EmailAddressesViewModel.Member = member;
+            NotesViewModel.Member = member;
         }
 
         public DelegateCommand SaveCommand => BackingFields.GetCommand(Save, CanSave);

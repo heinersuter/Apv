@@ -8,29 +8,14 @@ namespace Apv.Data.WindowsViewer.View.Members
     {
         protected override bool CanAdd()
         {
-            return base.CanAdd() && Member?.Addresses?.Count <= 100;
+            return base.CanAdd() && Member?.Addresses?.Count < 1;
         }
 
-        protected override void Add()
-        {
-            Member.Addresses.Add(new AddressDto());
-            base.Add();
-        }
+        protected override ICollection<AddressDto> MemberItems => Member.Addresses;
 
-        protected override bool CanDelete(AddressDto address)
+        protected override AddressDto CreateItem()
         {
-            return base.CanDelete(address) && Member?.Addresses?.Count > 0;
-        }
-
-        protected override void Delete(AddressDto address)
-        {
-            Member.Addresses.Remove(address);
-            base.Delete(address);
-        }
-
-        protected override ICollection<AddressDto> GetItems()
-        {
-            return Member.Addresses;
+            return new AddressDto();
         }
     }
 }

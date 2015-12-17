@@ -7,12 +7,21 @@
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance members:MemberListViewModel}">
 
-    <ListBox ItemsSource="{Binding Members}" SelectedItem="{Binding SelectedMember}">
-        <ListBox.ItemTemplate>
-            <DataTemplate>
-                <TextBlock Text="{Binding Nickname}"/>
-            </DataTemplate>
-        </ListBox.ItemTemplate>
-    </ListBox>
-    
+    <Grid MinWidth="128">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBox Grid.Row="0" Text="{Binding Filter, UpdateSourceTrigger=PropertyChanged}" Margin="4"/>
+        
+        <ListBox Grid.Row="1" ItemsSource="{Binding Members}" SelectedItem="{Binding SelectedMember}" Margin="4 0 4 4">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Nickname}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+
 </UserControl>

@@ -68,6 +68,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Service\MemberService.cs" />
     <Compile Include="View\MainWindowViewModel.cs" />
     <Compile Include="View\Members\AddressesView.xaml.cs">
@@ -95,6 +96,10 @@
       <DependentUpon>MemberManagerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Members\MemberManagerViewModel.cs" />
+    <Compile Include="View\Members\NotesView.xaml.cs">
+      <DependentUpon>NotesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Members\NotesViewModel.cs" />
     <Compile Include="View\Members\PhoneNumbersView.xaml.cs">
       <DependentUpon>PhoneNumbersView.xaml</DependentUpon>
     </Compile>
@@ -144,6 +149,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Members\MemberManagerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Members\NotesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

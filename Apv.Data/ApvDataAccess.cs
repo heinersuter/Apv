@@ -82,7 +82,7 @@ namespace Apv.Data
             foreach (var newEntity in newEntities)
             {
                 var exisingEntity = existingEntities.SingleOrDefault(entity => entity.Id == newEntity.Id);
-                if (exisingEntity == null)
+                if (newEntity.Id == 0 || exisingEntity == null)
                 {
                     existingEntities.Add(newEntity);
                 }

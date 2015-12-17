@@ -17,9 +17,17 @@
 
         <ScrollViewer>
             <StackPanel>
+                
                 <members:BaseMemberDataView DataContext="{Binding BaseMemberDataViewModel}"/>
 
                 <members:AddressesView DataContext="{Binding AddressesViewModel}"/>
+                
+                <members:PhoneNumbersView DataContext="{Binding PhoneNumbersViewModel}"/>
+                
+                <members:EmailAddressesView DataContext="{Binding EmailAddressesViewModel}"/>
+                
+                <members:NotesView DataContext="{Binding NotesViewModel}"/>
+                
             </StackPanel>
         </ScrollViewer>
         

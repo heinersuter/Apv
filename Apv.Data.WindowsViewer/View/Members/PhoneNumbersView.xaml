@@ -5,7 +5,45 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:members="clr-namespace:Apv.Data.WindowsViewer.View.Members"
              mc:Ignorable="d" d:DataContext="{d:DesignInstance members:PhoneNumbersViewModel}">
-    <Grid>
+
+    <UserControl.Resources>
+        <ResourceDictionary Source="../../Styles/Styles.xaml"/>
+    </UserControl.Resources>
+
+    <HeaderedContentControl Header="Telefonnummer">
+        <StackPanel>
             
-    </Grid>
+            <ItemsControl ItemsSource="{Binding Items}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto" SharedSizeGroup="PhoneNumberType"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <RadioButton Grid.Column="0" Content="Default" IsChecked="{Binding IsDefault}" GroupName="PhoneNumber" 
+                                         VerticalAlignment="Center" Margin="4 2"/>
+
+                            <TextBox Grid.Column="1" Text="{Binding Value}" HorizontalContentAlignment="Right" Margin="4 2"/>
+
+                            <ComboBox Grid.Column="2" SelectedItem="{Binding Type}" ItemsSource="{Binding DataContext.Types, RelativeSource={RelativeSource FindAncestor, AncestorType=members:PhoneNumbersView}}"
+                                      Margin="4 2"/>
+
+                            <Button Grid.Column="3" Content="Löschen" 
+                                    Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=members:PhoneNumbersView}}" CommandParameter="{Binding}"
+                                    Style="{StaticResource DefaultButtonStyle}" MinWidth="16" Margin="4 2 0 2"/>
+
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <Button Content="Nummer Hinzufügen" Command="{Binding AddCommand}" Style="{StaticResource DefaultButtonStyle}" HorizontalAlignment="Right"/>
+
+        </StackPanel>
+    </HeaderedContentControl>
+
 </UserControl>

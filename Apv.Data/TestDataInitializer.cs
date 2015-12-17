@@ -2,7 +2,9 @@
 using System.Data.Entity;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 using Apv.Data.Dtos;
 using Apv.Data.Model;
@@ -30,11 +32,22 @@ namespace Apv.Data
 
             foreach (var m in oldMembers)
             {
-                var member =
-                    context.Members.Add(new Member { Nickname = m.pfadiname, Firstname = m.vorname, Lastname = m.nachname });
+                var member = context.Members.Add(new Member { Nickname = m.pfadiname, Firstname = m.vorname, Lastname = m.nachname });
 
-                member.PhoneNumbers.Add(new PhoneNumber { Type = PhoneNumberType.Fixnet, Value = m.telefon });
-                member.PhoneNumbers.Add(new PhoneNumber { Type = PhoneNumberType.Mobile, Value = m.mobile });
+                if (!string.IsNullOrWhiteSpace((string)m.mobile))
+                {
+                    member.PhoneNumbers.Add(new PhoneNumber { Type = PhoneNumberType.Mobile, Value = m.mobile });
+                }
+
+                if (!string.IsNullOrWhiteSpace((string)m.telefon))
+                {
+                    member.PhoneNumbers.Add(new PhoneNumber { Type = PhoneNumberType.Fixnet, Value = m.telefon });
+                }
+
+                if (member.PhoneNumbers.Any())
+                {
+                    member.PhoneNumbers.First().IsDefault = true;
+                }
 
                 if (!string.IsNullOrWhiteSpace((string)m.bemerkung))
                 {
@@ -53,7 +66,21 @@ namespace Apv.Data
                 if (!string.IsNullOrWhiteSpace((string)m.strasse) || !string.IsNullOrWhiteSpace((string)m.plz)
                     || !string.IsNullOrWhiteSpace((string)m.ort))
                 {
-                    member.Addresses.Add(new Address { Street = m.strasse, ZipCode = m.plz, City = m.ort });
+                    var address = new Address { Street = m.strasse, ZipCode = m.plz, City = m.ort };
+                    if (address.ZipCode?.Length == 4)
+                    {
+                        address.CountryCode = "CH";
+                    }
+                    else if (address.ZipCode != null)
+                    {
+                        var match = Regex.Match(address.ZipCode, @"(\D+)-(\d+)");
+                        if (match.Success)
+                        {
+                            address.CountryCode = match.Groups[1].Value;
+                            address.ZipCode = match.Groups[2].Value;
+                        }
+                    }
+                    member.Addresses.Add(address);
                 }
 
                 if (!string.IsNullOrWhiteSpace((string)m.funktion))

@@ -22,9 +22,7 @@ namespace Apv.Data.WindowsViewer.View.Members
 
         protected virtual void OnMemberChanged(MemberDetailsDto member)
         {
-            Items = new List<T>(GetItems());
-            AddCommand.RaiseCanExecuteChanged();
-            DeleteCommand.RaiseCanExecuteChanged();
+            UpdateItems();
         }
 
         public DelegateCommand AddCommand => BackingFields.GetCommand(Add, CanAdd);
@@ -36,21 +34,32 @@ namespace Apv.Data.WindowsViewer.View.Members
 
         protected virtual void Add()
         {
-            Items = new List<T>(GetItems());
+            MemberItems.Add(CreateItem());
+            UpdateItems();
         }
 
-        public DelegateCommand<AddressDto> DeleteCommand => BackingFields.GetCommand<AddressDto>(Delete, CanDelete);
+        public DelegateCommand<T> DeleteCommand => BackingFields.GetCommand<T>(Delete, CanDelete);
 
-        protected virtual bool CanDelete(AddressDto address)
+        protected virtual bool CanDelete(T item)
         {
-            return true;
+            return Items.Count > 0;
         }
 
-        protected virtual void Delete(AddressDto address)
+        protected virtual void Delete(T item)
         {
-            Items = new List<T>(GetItems());
+            MemberItems.Remove(item);
+            UpdateItems();
         }
 
-        protected abstract ICollection<T> GetItems();
+        protected abstract ICollection<T> MemberItems { get; }
+
+        protected abstract T CreateItem();
+
+        private void UpdateItems()
+        {
+            Items = new List<T>(MemberItems);
+            AddCommand.RaiseCanExecuteChanged();
+            DeleteCommand.RaiseCanExecuteChanged();
+        }
     }
 }

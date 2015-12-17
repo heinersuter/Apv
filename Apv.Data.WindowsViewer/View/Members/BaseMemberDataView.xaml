@@ -32,11 +32,11 @@
             </HeaderedContentControl>
 
             <HeaderedContentControl Header="Geschlecht">
-                <ComboBox ItemsSource="{Binding Genders}" SelectedItem="{Binding Member.Gender}"/>
+                <ComboBox SelectedItem="{Binding Member.Gender}" ItemsSource="{Binding Genders}"/>
             </HeaderedContentControl>
 
             <HeaderedContentControl Header="Status">
-                <ComboBox ItemsSource="{Binding Statuses}" SelectedItem="{Binding Member.Status}"/>
+                <ComboBox SelectedItem="{Binding Member.Status}" ItemsSource="{Binding Statuses}"/>
             </HeaderedContentControl>
         </ItemsControl>
 
