@@ -1,8 +1,8 @@
 ﻿namespace Apv.Data.WindowsViewer.View.Members
 {
-    public partial class BaseMemberDataView
+    public partial class EmailAddressesView
     {
-        public BaseMemberDataView()
+        public EmailAddressesView()
         {
             InitializeComponent();
         }

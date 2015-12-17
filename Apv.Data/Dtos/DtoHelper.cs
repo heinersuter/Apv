@@ -19,33 +19,33 @@ namespace Apv.Data.Dtos
 
             foreach (var dto in memberDetailsDto.Addresses)
             {
-                member.Addresses.Add(FromDto(dto));
+                member.Addresses.Add(FromDto(dto, member.Id));
             }
 
             foreach (var dto in memberDetailsDto.EmailAddresses)
             {
-                member.EmailAddresses.Add(FromDto(dto));
+                member.EmailAddresses.Add(FromDto(dto, member.Id));
             }
 
             foreach (var dto in memberDetailsDto.PhoneNumbers)
             {
-                member.PhoneNumbers.Add(FromDto(dto));
+                member.PhoneNumbers.Add(FromDto(dto, member.Id));
             }
 
             foreach (var dto in memberDetailsDto.Notes)
             {
-                member.Notes.Add(FromDto(dto));
+                member.Notes.Add(FromDto(dto, member.Id));
             }
 
             foreach (var dto in memberDetailsDto.Functions)
             {
-                member.Functions.Add(FromDto(dto));
+                member.Functions.Add(FromDto(dto, member.Id));
             }
 
             return member;
         }
 
-        private static Address FromDto(AddressDto dto)
+        private static Address FromDto(AddressDto dto, long memberId)
         {
             return new Address
             {
@@ -55,47 +55,52 @@ namespace Apv.Data.Dtos
                 CountryCode = dto.CountryCode,
                 ZipCode = dto.ZipCode,
                 City = dto.City,
-                IsDefault = dto.IsDefault
+                IsDefault = dto.IsDefault,
+                MemberId = memberId
             };
         }
 
-        private static EmailAddress FromDto(EmailAddressDto dto)
+        private static EmailAddress FromDto(EmailAddressDto dto, long memberId)
         {
             return new EmailAddress
             {
                 Id = dto.Id,
                 Value = dto.Value,
                 Description = dto.Description,
-                IsDefault = dto.IsDefault
+                IsDefault = dto.IsDefault,
+                MemberId = memberId
             };
         }
 
-        private static PhoneNumber FromDto(PhoneNumberDto dto)
+        private static PhoneNumber FromDto(PhoneNumberDto dto, long memberId)
         {
             return new PhoneNumber
             {
                 Id = dto.Id,
                 Value = dto.Value,
                 Type = dto.Type,
-                IsDefault = dto.IsDefault
+                IsDefault = dto.IsDefault,
+                MemberId = memberId
             };
         }
 
-        private static Note FromDto(NoteDto dto)
+        private static Note FromDto(NoteDto dto, long memberId)
         {
             return new Note
             {
                 Id = dto.Id,
-                Value = dto.Value
+                Value = dto.Value,
+                MemberId = memberId
             };
         }
 
-        private static Function FromDto(FunctionDto dto)
+        private static Function FromDto(FunctionDto dto, long memberId)
         {
             return new Function
             {
                 Id = dto.Id,
-                Value = dto.Value
+                Value = dto.Value,
+                MemberId = memberId
             };
         }
 

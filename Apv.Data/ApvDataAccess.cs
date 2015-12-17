@@ -73,7 +73,7 @@ namespace Apv.Data
         {
             foreach (var existingEntity in existingEntities.ToArray())
             {
-                if (newEntities.Any(entity => entity.Id == existingEntity.Id))
+                if (newEntities.All(entity => entity.Id != existingEntity.Id))
                 {
                     entities.Remove(existingEntity);
                 }

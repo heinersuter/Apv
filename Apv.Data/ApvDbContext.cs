@@ -9,7 +9,7 @@ namespace Apv.Data
         public ApvDbContext()
             : base("ApvConnectionString")
         {
-            Database.SetInitializer(new TestDataInitializer());
+            //Database.SetInitializer(new TestDataInitializer());
         }
 
         public DbSet<Member> Members { get; set; }

@@ -12,8 +12,7 @@
     </UserControl.Resources>
 
     <StackPanel>
-        <ItemsControl ItemsSource="{Binding Member.Addresses}" 
-                      Visibility="{Binding Member.Addresses, Converter={converters:ListEmptyToVisibilityConverter}}">
+        <ItemsControl ItemsSource="{Binding Items}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
@@ -51,8 +50,8 @@
             </ItemsControl.ItemTemplate>
         </ItemsControl>
 
-        <Button Content="Adresse Hinzufügen" Command="{Binding AddCommand}" Style="{StaticResource DefaultButtonStyle}" HorizontalAlignment="Right" 
-                Visibility="{Binding Member.Addresses, Converter={converters:ListEmptyToVisibilityConverter}, ConverterParameter=True}"/>
+        <Button Content="Adresse Hinzufügen" Command="{Binding AddCommand}" Style="{StaticResource DefaultButtonStyle}" HorizontalAlignment="Right"
+                Visibility="{Binding Items, Converter={converters:ListEmptyToVisibilityConverter}, ConverterParameter=True}"/>
 
     </StackPanel>
 
