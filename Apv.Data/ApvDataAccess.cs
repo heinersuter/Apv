@@ -63,6 +63,8 @@ namespace Apv.Data
                     UpdateChildren(newEntity.PhoneNumbers, exisingEntity.PhoneNumbers, context.PhoneNumbers, context);
                     UpdateChildren(newEntity.Notes, exisingEntity.Notes, context.Notes, context);
                     UpdateChildren(newEntity.Functions, exisingEntity.Functions, context.Functions, context);
+
+                    context.Entry(exisingEntity.Communication).CurrentValues.SetValues(newEntity.Communication);
                 }
 
                 context.SaveChanges();

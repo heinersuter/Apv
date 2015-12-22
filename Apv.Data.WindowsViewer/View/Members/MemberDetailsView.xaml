@@ -26,7 +26,11 @@
                 
                 <members:EmailAddressesView DataContext="{Binding EmailAddressesViewModel}"/>
                 
+                <members:FunctionsView DataContext="{Binding FunctionsViewModel}"/>
+                
                 <members:NotesView DataContext="{Binding NotesViewModel}"/>
+                
+                <members:CommunicationView DataContext="{Binding CommunicationViewModel}"/>
                 
             </StackPanel>
         </ScrollViewer>

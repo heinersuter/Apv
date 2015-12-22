@@ -14,11 +14,18 @@
         </Grid.RowDefinitions>
 
         <TextBox Grid.Row="0" Text="{Binding Filter, UpdateSourceTrigger=PropertyChanged}" Margin="4"/>
-        
+
         <ListBox Grid.Row="1" ItemsSource="{Binding Members}" SelectedItem="{Binding SelectedMember}" Margin="4 0 4 4">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Nickname}"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Nickname}"/>
+                        <TextBlock Text=" ("/>
+                        <TextBlock Text="{Binding Firstname}"/>
+                        <TextBlock Text=" "/>
+                        <TextBlock Text="{Binding Lastname}"/>
+                        <TextBlock Text=")"/>
+                    </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

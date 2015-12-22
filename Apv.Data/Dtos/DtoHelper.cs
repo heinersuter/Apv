@@ -42,6 +42,8 @@ namespace Apv.Data.Dtos
                 member.Functions.Add(FromDto(dto, member.Id));
             }
 
+            member.Communication = FromDto(memberDetailsDto.Communication, member.Id);
+
             return member;
         }
 
@@ -100,7 +102,20 @@ namespace Apv.Data.Dtos
             {
                 Id = dto.Id,
                 Value = dto.Value,
+                Status = dto.Status,
                 MemberId = memberId
+            };
+        }
+
+        private static Communication FromDto(CommunicationDto dto, long memberId)
+        {
+            return new Communication
+            {
+                MemberId = memberId,
+                RequiresMailing = dto.RequiresMailing,
+                RequiresDepositSlip = dto.RequiresDepositSlip,
+                WantsWhatsApp = dto.WantsWhatsApp,
+                WhatsAppPhoneNumberId = dto.WhatsAppPhoneNumberId
             };
         }
 
@@ -156,6 +171,8 @@ namespace Apv.Data.Dtos
                 memberDetailsDto.Functions.Add(ToDto(dto));
             }
 
+            memberDetailsDto.Communication = ToDto(member.Communication);
+
             return memberDetailsDto;
         }
 
@@ -209,9 +226,26 @@ namespace Apv.Data.Dtos
             return new FunctionDto
             {
                 Id = function.Id,
-                Value = function.Value
+                Value = function.Value,
+                Status = function.Status
             };
         }
 
+        private static CommunicationDto ToDto(Communication communication)
+        {
+            if (communication == null)
+            {
+                return null;
+            }
+
+            return new CommunicationDto
+            {
+                Id = communication.MemberId,
+                RequiresMailing = communication.RequiresMailing,
+                RequiresDepositSlip = communication.RequiresDepositSlip,
+                WantsWhatsApp = communication.WantsWhatsApp,
+                WhatsAppPhoneNumberId = communication.WhatsAppPhoneNumberId
+            };
+        }
     }
 }

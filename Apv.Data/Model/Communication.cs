@@ -17,6 +17,10 @@ namespace Apv.Data.Model
 
         public bool RequiresDepositSlip { get; set; }
 
+        public bool WantsWhatsApp { get; set; }
+
+        public long? WhatsAppPhoneNumberId { get; set; }
+
         public DateTime LastModified { get; set; }
     }
 }

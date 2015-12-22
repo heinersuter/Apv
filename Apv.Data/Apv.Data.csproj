@@ -68,6 +68,7 @@
     <Compile Include="Model\Address.cs" />
     <Compile Include="Model\Communication.cs" />
     <Compile Include="Model\Function.cs" />
+    <Compile Include="Model\FunctionStatus.cs" />
     <Compile Include="Model\MemberDefaultedItem.cs" />
     <Compile Include="Model\Note.cs" />
     <Compile Include="Model\EmailAddress.cs" />

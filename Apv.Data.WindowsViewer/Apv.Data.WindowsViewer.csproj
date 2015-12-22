@@ -79,10 +79,18 @@
       <DependentUpon>BaseMemberDataView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Members\BaseMemberDataViewModel.cs" />
+    <Compile Include="View\Members\CommunicationView.xaml.cs">
+      <DependentUpon>CommunicationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Members\CommunicationViewModel.cs" />
     <Compile Include="View\Members\EmailAddressesView.xaml.cs">
       <DependentUpon>EmailAddressesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Members\EmailAddressesViewModel.cs" />
+    <Compile Include="View\Members\FunctionsView.xaml.cs">
+      <DependentUpon>FunctionsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Members\FunctionsViewModel.cs" />
     <Compile Include="View\Members\MemberDetailsView.xaml.cs">
       <DependentUpon>MemberDetailsView.xaml</DependentUpon>
     </Compile>
@@ -136,7 +144,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Members\CommunicationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Members\EmailAddressesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Members\FunctionsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

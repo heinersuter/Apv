@@ -39,6 +39,16 @@ namespace Apv.Data.WindowsViewer.View.Members
             get { return BackingFields.GetValue(() => new NotesViewModel()); }
         }
 
+        public FunctionsViewModel FunctionsViewModel
+        {
+            get { return BackingFields.GetValue(() => new FunctionsViewModel()); }
+        }
+
+        public CommunicationViewModel CommunicationViewModel
+        {
+            get { return BackingFields.GetValue(() => new CommunicationViewModel()); }
+        }
+
         public MemberDetailsDto SelectedMember
         {
             get { return BackingFields.GetValue<MemberDetailsDto>(); }
@@ -52,6 +62,8 @@ namespace Apv.Data.WindowsViewer.View.Members
             PhoneNumbersViewModel.Member = member;
             EmailAddressesViewModel.Member = member;
             NotesViewModel.Member = member;
+            FunctionsViewModel.Member = member;
+            CommunicationViewModel.Member = member;
         }
 
         public DelegateCommand SaveCommand => BackingFields.GetCommand(Save, CanSave);
