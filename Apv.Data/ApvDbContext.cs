@@ -7,9 +7,9 @@ namespace Apv.Data
     internal class ApvDbContext : DbContext
     {
         public ApvDbContext()
-            : base("ApvConnectionString")
+            : base("Data Source=.;Initial Catalog=apv;Integrated Security=True")
         {
-            //Database.SetInitializer(new TestDataInitializer());
+            Database.SetInitializer(new TestDataInitializer());
         }
 
         public DbSet<Member> Members { get; set; }
