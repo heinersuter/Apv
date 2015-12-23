@@ -12,9 +12,9 @@ namespace Apv.WebApi.Services
             return ApvDataAccess.GetMembers();
         }
 
-        public MemberDetailsDto GetMemberDetails(MemberDto member)
+        public MemberDetailsDto GetMemberDetails(long memberId)
         {
-            return ApvDataAccess.GetMemberDetails(member.Id);
+            return ApvDataAccess.GetMemberDetails(memberId);
         }
 
         public void UpdateMember(MemberDetailsDto member)
