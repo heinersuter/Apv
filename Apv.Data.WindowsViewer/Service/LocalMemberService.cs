@@ -4,7 +4,7 @@ using Apv.Data.Dtos;
 
 namespace Apv.Data.WindowsViewer.Service
 {
-    public class MemberService
+    public class LocalMemberService : IMemberService
     {
         public IEnumerable<MemberDto> GetMembers()
         {

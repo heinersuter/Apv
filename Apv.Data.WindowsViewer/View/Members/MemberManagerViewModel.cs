@@ -8,7 +8,7 @@ namespace Apv.Data.WindowsViewer.View.Members
 {
     public class MemberManagerViewModel : ViewModel
     {
-        private readonly MemberService _memberService = new MemberService();
+        private readonly IMemberService _memberService = new WebMemberService();
 
         public MemberManagerViewModel()
         {

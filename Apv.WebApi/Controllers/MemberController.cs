@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Net;
 
 using Apv.Data.Dtos;
 using Apv.WebApi.Services;
@@ -17,24 +18,33 @@ namespace Apv.WebApi.Controllers
             _memberService = memberService;
         }
 
-        // GET: api/member
+        // GET: api/members
         [HttpGet]
         public IEnumerable<MemberDto> Get()
         {
             return _memberService.GetMembers();
         }
 
-        // GET api/member/5
+        // GET api/members/5
         [HttpGet("{id}")]
         public MemberDetailsDto Get(long id)
         {
-            return _memberService.GetMemberDetails(id);
+            var memberDetailsDto = _memberService.GetMemberDetails(id);
+            if (memberDetailsDto == null)
+            {
+                throw new WebException("The provided ID is unkonwn.", WebExceptionStatus.UnknownError);
+            }
+            return memberDetailsDto;
         }
 
-        // PUT api/member
+        // PUT api/members
         [HttpPut]
         public void Put([FromBody]MemberDetailsDto detailsDto)
         {
+            if (detailsDto == null)
+            {
+                throw new WebException("A MemberDetailsDto must be provided as body.", WebExceptionStatus.UnknownError);
+            }
             _memberService.UpdateMember(detailsDto);
         }
     }

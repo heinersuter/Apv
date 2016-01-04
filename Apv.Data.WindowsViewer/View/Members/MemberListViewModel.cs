@@ -11,9 +11,9 @@ namespace Apv.Data.WindowsViewer.View.Members
 {
     public class MemberListViewModel : ViewModel
     {
-        private readonly MemberService _memberService;
+        private readonly IMemberService _memberService;
 
-        public MemberListViewModel(MemberService memberService)
+        public MemberListViewModel(IMemberService memberService)
         {
             _memberService = memberService;
 
