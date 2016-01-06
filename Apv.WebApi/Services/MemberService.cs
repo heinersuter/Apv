@@ -7,19 +7,26 @@ namespace Apv.WebApi.Services
 {
     public class MemberService
     {
+        private readonly ApvDataAccess _apvDataAccess;
+
+        public MemberService()
+        {
+            _apvDataAccess = new ApvDataAccess("Data Source=.;Initial Catalog=apv;Integrated Security=True");
+        }
+
         public IEnumerable<MemberDto> GetMembers()
         {
-            return ApvDataAccess.GetMembers();
+            return _apvDataAccess.GetMembers();
         }
 
         public MemberDetailsDto GetMemberDetails(long memberId)
         {
-            return ApvDataAccess.GetMemberDetails(memberId);
+            return _apvDataAccess.GetMemberDetails(memberId);
         }
 
         public void UpdateMember(MemberDetailsDto member)
         {
-            ApvDataAccess.UpdateMember(member);
+            _apvDataAccess.UpdateMember(member);
         }
     }
 }

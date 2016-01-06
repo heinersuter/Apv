@@ -2,6 +2,7 @@
 using System.Net;
 
 using Apv.Data.Dtos;
+using Apv.Data.WindowsViewer.Properties;
 
 using Newtonsoft.Json;
 
@@ -9,13 +10,13 @@ namespace Apv.Data.WindowsViewer.Service
 {
     public class WebMemberService : IMemberService
     {
-        private const string BaseUrl = "http://localhost:55897/api";
+        private readonly string _baseUrl = Settings.Default.WebServiceBaseUrl;
 
         public IEnumerable<MemberDto> GetMembers()
         {
             using (var client = new WebClient())
             {
-                var json = client.DownloadString($"{BaseUrl}/members");
+                var json = client.DownloadString($"{_baseUrl}/members");
                 return JsonConvert.DeserializeObject<IEnumerable<MemberDto>>(json);
             }
         }
@@ -24,7 +25,7 @@ namespace Apv.Data.WindowsViewer.Service
         {
             using (var client = new WebClient())
             {
-                var json = client.DownloadString($"{BaseUrl}/members/{member.Id}");
+                var json = client.DownloadString($"{_baseUrl}/members/{member.Id}");
                 return JsonConvert.DeserializeObject<MemberDetailsDto>(json);
             }
         }
@@ -36,7 +37,7 @@ namespace Apv.Data.WindowsViewer.Service
                 client.Headers[HttpRequestHeader.ContentType] = "application/json";
 
                 var json = JsonConvert.SerializeObject(member);
-                client.UploadString($"{BaseUrl}/members", "PUT", json);
+                client.UploadString($"{_baseUrl}/members", "PUT", json);
             }
         }
     }

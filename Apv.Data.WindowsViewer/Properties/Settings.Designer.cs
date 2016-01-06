@@ -22,5 +22,14 @@ namespace Apv.Data.WindowsViewer.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:55897/api")]
+        public string WebServiceBaseUrl {
+            get {
+                return ((string)(this["WebServiceBaseUrl"]));
+            }
+        }
     }
 }

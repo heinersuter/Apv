@@ -6,10 +6,10 @@ namespace Apv.Data
 {
     internal class ApvDbContext : DbContext
     {
-        public ApvDbContext()
-            : base("Data Source=.;Initial Catalog=apv;Integrated Security=True")
+        public ApvDbContext(string connectionString)
+            : base(connectionString)
         {
-            //Database.SetInitializer(new TestDataInitializer());
+            Database.SetInitializer(new TestDataInitializer());
         }
 
         public DbSet<Member> Members { get; set; }

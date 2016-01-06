@@ -7,11 +7,18 @@ using Apv.Data.Model;
 
 namespace Apv.Data
 {
-    public static class ApvDataAccess
+    public class ApvDataAccess
     {
-        public static IEnumerable<MemberDto> GetMembers()
+        private readonly string _connectionString;
+
+        public ApvDataAccess(string connectionString)
         {
-            using (var context = new ApvDbContext())
+            _connectionString = connectionString;
+        }
+
+        public IEnumerable<MemberDto> GetMembers()
+        {
+            using (var context = new ApvDbContext(_connectionString))
             {
                 var members = context.Members
                     .OrderBy(member => member.Nickname)
@@ -22,16 +29,16 @@ namespace Apv.Data
             }
         }
 
-        public static MemberDetailsDto GetMemberDetails(long memberId)
+        public MemberDetailsDto GetMemberDetails(long memberId)
         {
-            using (var context = new ApvDbContext())
+            using (var context = new ApvDbContext(_connectionString))
             {
                 var member = GetMemberWithDetailsById(memberId, context);
                 return DtoHelper.ToDetailsDto(member);
             }
         }
 
-        private static Member GetMemberWithDetailsById(long memberId, ApvDbContext context)
+        private Member GetMemberWithDetailsById(long memberId, ApvDbContext context)
         {
             return context.Members.Where(m => m.Id == memberId)
                                   .Include(m => m.Addresses)
@@ -43,11 +50,11 @@ namespace Apv.Data
                                   .SingleOrDefault();
         }
 
-        public static void UpdateMember(MemberDetailsDto memberDto)
+        public void UpdateMember(MemberDetailsDto memberDto)
         {
             var newEntity = DtoHelper.FromDto(memberDto);
 
-            using (var context = new ApvDbContext())
+            using (var context = new ApvDbContext(_connectionString))
             {
                 var exisingEntity = GetMemberWithDetailsById(memberDto.Id, context);
                 if (exisingEntity == null)
