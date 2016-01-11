@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Net;
-
-using Apv.Data.Dtos;
 using Apv.Data.Dtos.Members;
 using Apv.Data.WindowsViewer.Properties;
 
@@ -17,6 +15,7 @@ namespace Apv.Data.WindowsViewer.Service
         {
             using (var client = new WebClient())
             {
+                client.Encoding = System.Text.Encoding.UTF8;
                 var json = client.DownloadString($"{_baseUrl}/members");
                 return JsonConvert.DeserializeObject<IEnumerable<MemberDto>>(json);
             }
@@ -26,6 +25,7 @@ namespace Apv.Data.WindowsViewer.Service
         {
             using (var client = new WebClient())
             {
+                client.Encoding = System.Text.Encoding.UTF8;
                 var json = client.DownloadString($"{_baseUrl}/members/{member.Id}");
                 return JsonConvert.DeserializeObject<MemberDetailsDto>(json);
             }
@@ -35,6 +35,7 @@ namespace Apv.Data.WindowsViewer.Service
         {
             using (var client = new WebClient())
             {
+                client.Encoding = System.Text.Encoding.UTF8;
                 client.Headers[HttpRequestHeader.ContentType] = "application/json";
 
                 var json = JsonConvert.SerializeObject(member);

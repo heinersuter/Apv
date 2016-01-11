@@ -9,7 +9,7 @@
       },
       "dependencies": {
         "EntityFramework": "6.1.3",
-        "Newtonsoft.Json": "8.0.1"
+        "Newtonsoft.Json": "8.0.2"
       }
     }
   }
