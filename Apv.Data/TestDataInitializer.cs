@@ -5,10 +5,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-
-using Apv.Data.Dtos;
-using Apv.Data.Model;
-
+using Apv.Data.Dtos.Members;
+using Apv.Data.Model.Members;
 using Newtonsoft.Json;
 
 namespace Apv.Data

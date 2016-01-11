@@ -3,9 +3,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Apv.Data.Model
 {
-    internal class Item
+    public abstract class Item
     {
-        public Item()
+        protected Item()
         {
             LastModified = DateTime.UtcNow;
         }

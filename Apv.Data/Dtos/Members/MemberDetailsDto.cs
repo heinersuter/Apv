@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Apv.Data.Dtos
+namespace Apv.Data.Dtos.Members
 {
     public class MemberDetailsDto : MemberDto
     {

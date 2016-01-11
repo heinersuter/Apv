@@ -1,4 +1,4 @@
-﻿namespace Apv.Data.Model
+﻿namespace Apv.Data.Model.Members
 {
     public enum MemberStatus
     {

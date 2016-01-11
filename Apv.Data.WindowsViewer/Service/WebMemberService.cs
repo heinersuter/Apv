@@ -2,6 +2,7 @@
 using System.Net;
 
 using Apv.Data.Dtos;
+using Apv.Data.Dtos.Members;
 using Apv.Data.WindowsViewer.Properties;
 
 using Newtonsoft.Json;

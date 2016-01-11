@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Apv.Data.Model
+namespace Apv.Data.Model.Members
 {
-    internal class Communication
+    public class Communication
     {
         public Communication()
         {

@@ -5,7 +5,9 @@ using System.Linq;
 using Alsolos.Commons.Wpf.Mvvm;
 
 using Apv.Data.Dtos;
+using Apv.Data.Dtos.Members;
 using Apv.Data.Model;
+using Apv.Data.Model.Members;
 
 namespace Apv.Data.WindowsViewer.View.Members
 {

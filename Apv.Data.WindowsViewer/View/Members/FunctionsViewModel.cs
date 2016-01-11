@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Apv.Data.Dtos;
+using Apv.Data.Dtos.Members;
 using Apv.Data.Model;
+using Apv.Data.Model.Members;
 
 namespace Apv.Data.WindowsViewer.View.Members
 {

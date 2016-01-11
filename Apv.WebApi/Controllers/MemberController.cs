@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Net;
 
-using Apv.Data.Dtos;
+using Apv.Data.Dtos.Members;
 using Apv.WebApi.Services;
 
 using Microsoft.AspNet.Mvc;

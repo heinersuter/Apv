@@ -1,6 +1,8 @@
-﻿namespace Apv.Data.Model
+﻿using Apv.Data.Model.Members;
+
+namespace Apv.Data.Dtos.Members
 {
-    internal class Function : MemberItem
+    public class FunctionDto : Dto
     {
         public string Value { get; set; }
 

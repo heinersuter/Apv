@@ -1,6 +1,7 @@
 ﻿using Alsolos.Commons.Wpf.Mvvm;
 
 using Apv.Data.Dtos;
+using Apv.Data.Dtos.Members;
 using Apv.Data.WindowsViewer.Service;
 
 namespace Apv.Data.WindowsViewer.View.Members

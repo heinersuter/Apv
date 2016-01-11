@@ -1,8 +1,8 @@
 ﻿using System;
 
-using Apv.Data.Model;
+using Apv.Data.Model.Members;
 
-namespace Apv.Data.Dtos
+namespace Apv.Data.Dtos.Members
 {
     public class MemberDto : Dto
     {

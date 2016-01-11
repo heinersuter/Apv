@@ -1,6 +1,6 @@
-﻿namespace Apv.Data.Model
+﻿namespace Apv.Data.Model.Members
 {
-    internal class EmailAddress : MemberDefaultedItem
+    public class EmailAddress : MemberDefaultedItem
     {
         public string Value { get; set; }
 

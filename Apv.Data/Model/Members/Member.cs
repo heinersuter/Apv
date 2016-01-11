@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Apv.Data.Model
+namespace Apv.Data.Model.Members
 {
-    internal class Member : Item
+    public class Member : Item
     {
         public Member()
         {

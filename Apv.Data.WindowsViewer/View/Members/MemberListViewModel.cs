@@ -4,6 +4,7 @@ using System.Windows.Data;
 using Alsolos.Commons.Wpf.Mvvm;
 
 using Apv.Data.Dtos;
+using Apv.Data.Dtos.Members;
 using Apv.Data.WindowsViewer.Extensions;
 using Apv.Data.WindowsViewer.Service;
 

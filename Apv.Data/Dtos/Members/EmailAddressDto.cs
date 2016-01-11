@@ -1,4 +1,4 @@
-﻿namespace Apv.Data.Dtos
+﻿namespace Apv.Data.Dtos.Members
 {
     public class EmailAddressDto : Dto
     {

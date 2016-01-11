@@ -1,10 +1,9 @@
 ﻿using System.Data.Entity;
-
-using Apv.Data.Model;
+using Apv.Data.Model.Members;
 
 namespace Apv.Data
 {
-    internal class ApvDbContext : DbContext
+    public class ApvDbContext : DbContext
     {
         public ApvDbContext(string connectionString)
             : base(connectionString)
