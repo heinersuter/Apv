@@ -6,12 +6,18 @@ namespace Apv.MemberExcel.Views
 {
     public class MainViewModel : ViewModel
     {
-        private readonly ExcelService _excelService = new ExcelService();
-        private readonly PdfService _pdfService = new PdfService();
+        public DelegateCommand ReadExcelCommand => BackingFields.GetCommand(ReadExcel, CanReadExcel);
 
-        public DelegateCommand ReadExcelCommand
+        public string ExcelFilePath
         {
-            get { return BackingFields.GetCommand(ReadExcel, CanReadExcel); }
+            get { return BackingFields.GetValue<string>(); }
+            set { BackingFields.SetValue(value); }
+        }
+
+        public string PdfFilePath
+        {
+            get { return BackingFields.GetValue<string>(); }
+            set { BackingFields.SetValue(value); }
         }
 
         private bool CanReadExcel()
@@ -21,9 +27,9 @@ namespace Apv.MemberExcel.Views
 
         private void ReadExcel()
         {
-            var addresses = _excelService.ReadAddresses(@"C:\Users\hsu\Desktop\Addresses.xlsx");
-            _pdfService.WritePdf(addresses, "addresses.pdf");
-            System.Diagnostics.Process.Start("addresses.pdf");
+            var addresses = ExcelService.ReadAddresses(@"C:\Users\hsu\Desktop\Addresses.xlsx");
+            PdfService.WritePdf(addresses, @"C:\Users\hsu\Desktop\Addresses.pdf");
+            System.Diagnostics.Process.Start(@"C:\Users\hsu\Desktop\Addresses.pdf");
         }
     }
 }

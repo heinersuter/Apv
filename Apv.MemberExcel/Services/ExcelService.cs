@@ -8,7 +8,7 @@ namespace Apv.MemberExcel.Services
 {
     public class ExcelService
     {
-        public IEnumerable<AddressDto> ReadAddresses(string filePath)
+        public static IEnumerable<AddressDto> ReadAddresses(string filePath)
         {
             var addresses = new List<AddressDto>();
             using (var package = new ExcelPackage(new FileInfo(filePath)))
@@ -25,13 +25,13 @@ namespace Apv.MemberExcel.Services
                         addresses.Add(dto);
                         rowIndex++;
                     }
-                    
+
                 }
             }
             return addresses;
         }
 
-        private AddressDto ReadLine(int rowIndex, ExcelWorksheet worksheet)
+        private static AddressDto ReadLine(int rowIndex, ExcelWorksheet worksheet)
         {
             var hasAnyValue = false;
             var dto = new AddressDto();
