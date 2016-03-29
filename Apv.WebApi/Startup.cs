@@ -37,7 +37,6 @@ namespace Apv.WebApi
 
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddMvc();
 
             services.AddInstance(typeof(MemberService), new MemberService());

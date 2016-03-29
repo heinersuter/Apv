@@ -21,5 +21,7 @@ namespace Apv.Data.Dtos.Members
         public string Gender { get; set; }
 
         public MemberStatus Status { get; set; }
+
+        public DateTime? ResignDate { get; set; }
     }
 }
