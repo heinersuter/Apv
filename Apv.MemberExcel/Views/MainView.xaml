@@ -7,6 +7,20 @@
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance views:MainViewModel}">
     
-    <Button Content="Load" Command="{Binding ReadExcelCommand}" Height="25" MinWidth="80" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    <StackPanel>
+        <HeaderedContentControl Header="Excel" Margin="12">
+            <TextBox Text="{Binding ExcelFilePath}" Height="24" Padding="0 2 0 0"/>
+        </HeaderedContentControl>
+        <HeaderedContentControl Header="PDF" Margin="12">
+            <TextBox Text="{Binding PdfFilePath}" Height="24" Padding="0 2 0 0"/>
+        </HeaderedContentControl>
+        <HeaderedContentControl Margin="12">
+            <CheckBox Content="Einzahlungsschein" IsChecked="{Binding RequiresDepositSlip}"/>
+        </HeaderedContentControl>
+        <HeaderedContentControl Margin="12">
+            <CheckBox Content="Post" IsChecked="{Binding RequiresMailing}"/>
+        </HeaderedContentControl>
+        <Button Content="Load" Command="{Binding ReadExcelCommand}" Margin="12" Height="24" MinWidth="128" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    </StackPanel>
     
 </UserControl>

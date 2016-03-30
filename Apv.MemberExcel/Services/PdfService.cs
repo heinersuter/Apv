@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-
+using System.Linq;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 
@@ -11,6 +11,11 @@ namespace Apv.MemberExcel.Services
     {
         public static void WritePdf(IEnumerable<AddressDto> addresses, string filePath)
         {
+            if (!addresses.Any())
+            {
+                return;
+            }
+
             using (var document = new Document())
             {
                 PdfWriter.GetInstance(document, new FileStream(filePath, FileMode.Create));
@@ -24,15 +29,13 @@ namespace Apv.MemberExcel.Services
                     AddAddressParagraph(dto, document);
                     document.NewPage();
                 }
-
-                document.Close();
             }
         }
 
         private static void AddSenderParagraph(Document document)
         {
             var sender = new Paragraph { Font = FontFactory.GetFont(FontFactory.HELVETICA, 8f) };
-            sender.SetLeading(0f, 1.2f);
+            sender.SetLeading(0f, 1.4f);
 
             sender.Add("Heiner Suter / Hirsch");
             sender.Add(Environment.NewLine);
@@ -45,9 +48,9 @@ namespace Apv.MemberExcel.Services
         private static void AddAddressParagraph(AddressDto dto, Document document)
         {
             var address = new Paragraph { Font = FontFactory.GetFont(FontFactory.HELVETICA, 12f) };
-            address.SetLeading(0f, 1.2f);
-            address.IndentationLeft = Mm(80);
-            address.SpacingBefore = Mm(60);
+            address.SetLeading(0f, 1.4f);
+            address.IndentationLeft = Mm(90);
+            address.SpacingBefore = Mm(70);
 
             address.Add($"{dto.Lastname} {dto.Firstname} / {dto.Nickname}");
             address.Add(Environment.NewLine);
