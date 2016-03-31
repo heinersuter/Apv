@@ -1,0 +1,15 @@
+<template>
+    <p>${message}</p>
+    <div class="row">
+        <div class="col-sm-4 col-md-2" repeat.for="file of files">
+            <a href="#">
+                <div class="thumbnail">
+                    <img src="src/archive/200.png" alt="Platzhalter">
+                    <caption>
+                        ${file.name}
+                    </caption>
+                </div>
+            </a>
+        </div>
+    </div>
+</template>
