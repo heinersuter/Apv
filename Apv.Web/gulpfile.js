@@ -1,24 +1,7 @@
 var gulp = require('gulp');
 var browserSync = require('browser-sync');
-var typescript = require('gulp-typescript');
 var less = require('gulp-less');
-var sourcemaps = require('gulp-sourcemaps');
-
-gulp.task('ts', function() {
-    return gulp.src('src/**/*.ts', { base: '.' })
-        .pipe(sourcemaps.init())
-        .pipe(typescript({
-            target: 'ES5',
-            module: 'commonjs',
-            noEmitOnError: true,
-            noImplicitAny: true,
-            emitDecoratorMetadata: true,
-            experimentalDecorators: true
-        }))
-        .on('error', function() { process.exit(1); })
-        //.pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest('.'));
-});
+//var sourcemaps = require('gulp-sourcemaps');
 
 gulp.task('less', function() {
     return gulp.src('src/**/*.less', { base: '.' })
@@ -49,8 +32,4 @@ gulp.task('watch-less', function() {
     gulp.watch('src/**/*.less', ["less"]);
 });
 
-gulp.task('watch-typescript', function() {
-    gulp.watch('src/**/*.ts', ["ts"]);
-});
-
-gulp.task('watch', ['watch-less', 'watch-typescript']);
+gulp.task('watch', ['watch-less']);
