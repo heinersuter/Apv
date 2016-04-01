@@ -1,24 +1,12 @@
 System.config({
     baseURL: "/",
     defaultJSExtensions: true,
-    transpiler: "typescript",
-    typescriptOptions: {
-        "target": "ES5",
-        "module": "system",
-        "emitDecoratorMetadata": true,
-        "experimentalDecorators": true
-    },
+    transpiler: "none",
     paths: {
         "*": "src/*",
         "src": "src",
         "npm:*": "jspm_packages/npm/*",
         "github:*": "jspm_packages/github/*"
-    },
-
-    packages: {
-        "/src": {
-            "defaultExtension": "ts"
-        }
     },
 
     map: {
