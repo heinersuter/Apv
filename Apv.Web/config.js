@@ -11,8 +11,8 @@ System.config({
     paths: {
         "*": "src/*",
         "src": "src",
-        "npm:*": "../jspm_packages/npm/*",
-        "github:*": "../jspm_packages/github/*"
+        "npm:*": "jspm_packages/npm/*",
+        "github:*": "jspm_packages/github/*"
     },
 
     packages: {

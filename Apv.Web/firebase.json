@@ -1,0 +1,11 @@
+{
+    "firebase": "apvg",
+    "public": ".",
+    "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**",
+        "**/*.less"
+        //"**/*.ts"
+    ]
+}

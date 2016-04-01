@@ -1,16 +1,15 @@
 <template>
     <p>${message}</p>
     <div class="row">
-        <div class="col-sm-4 col-md-2" repeat.for="group of groups">
+        <div class="col-xs-6 col-sm-4 col-md-2" repeat.for="group of groups">
             <a href="#/archive/group?id=${group.id}">
                 <div class="thumbnail">
                     <img src="src/archive/200.png" alt="Platzhalter">
                     <div class="caption">
                         <h4>${group.name}</h4>
-                        <p>${group.venue}</p>
-                        <p>${group.unit}</p>
-                        <p>${group.date}</p>
-                        <p class="btn btn-primary" role="button">Ansehen</p>
+                        <div>${group.venue}</div>
+                        <div>${group.unit}</div>
+                        <div>${group.date}</div>
                     </div>
                 </div>
             </a>
