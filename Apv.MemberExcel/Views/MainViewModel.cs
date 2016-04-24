@@ -7,7 +7,7 @@ namespace Apv.MemberExcel.Views
 {
     public class MainViewModel : ViewModel
     {
-        public DelegateCommand ReadExcelCommand => BackingFields.GetCommand(ReadExcel, CanReadExcel);
+        public DelegateCommand CreatePdfsCommand => BackingFields.GetCommand(CreatePdfs, CanCreatePdfs);
 
         public string ExcelFilePath
         {
@@ -15,9 +15,9 @@ namespace Apv.MemberExcel.Views
             set { BackingFields.SetValue(value); }
         }
 
-        public string PdfFilePath
+        public string PdfFolderPath
         {
-            get { return BackingFields.GetValue<string>(() => @"C:\Users\heine\OneDrive\APV\Adressen.pdf"); }
+            get { return BackingFields.GetValue<string>(() => @"C:\Users\heine\OneDrive\APV"); }
             set { BackingFields.SetValue(value); }
         }
 
@@ -33,16 +33,21 @@ namespace Apv.MemberExcel.Views
             set { BackingFields.SetValue(value); }
         }
 
-        private bool CanReadExcel()
+        private bool CanCreatePdfs()
         {
             return true;
         }
 
-        private void ReadExcel()
+        private void CreatePdfs()
         {
-            var addresses = ExcelService.ReadAddresses(ExcelFilePath);
-            PdfService.WritePdf(addresses.Where(dto => !dto.RequiresMailing != RequiresMailing && !dto.RequiresDepositSlip != RequiresDepositSlip), PdfFilePath);
-            System.Diagnostics.Process.Start(PdfFilePath);
+            var pdfService = new PdfService(PdfFolderPath);
+            var addresses = ExcelService.ReadAddresses(ExcelFilePath).ToArray();
+
+            var fullMailingAddresses = addresses.Where(dto => dto.Email1 == null).ToArray();
+            pdfService.WriteEnvelopes(fullMailingAddresses, "FullMailing_Envelopes.pdf");
+            pdfService.WriteFullMailingLetter(fullMailingAddresses, "FullMailing_Letters.pdf");
+
+            System.Diagnostics.Process.Start(PdfFolderPath);
         }
     }
 }

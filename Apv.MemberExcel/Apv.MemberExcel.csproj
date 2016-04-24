@@ -67,9 +67,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Pdfs\FullMailingLetter.cs" />
+    <Compile Include="Pdfs\Pdf.cs" />
+    <Compile Include="Pdfs\Envelope.cs" />
     <Compile Include="Services\AddressDto.cs" />
     <Compile Include="Services\Date.cs" />
     <Compile Include="Services\ExcelService.cs" />
+    <Compile Include="Services\Gender.cs" />
     <Compile Include="Services\PdfService.cs" />
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>

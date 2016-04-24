@@ -28,7 +28,7 @@
 
         public string Functions { get; set; }
 
-        public string Gender { get; set; }
+        public Gender Gender { get; set; }
 
         public Date? Birthdate { get; set; }
 
@@ -82,7 +82,7 @@
                     Functions = value;
                     break;
                 case 14:
-                    Gender = value;
+                    Gender = value == "m" ? Gender.Male : value == "f" ? Gender.Female : Gender.Family;
                     break;
                 case 15:
                     Birthdate = Date.Parse(value);
