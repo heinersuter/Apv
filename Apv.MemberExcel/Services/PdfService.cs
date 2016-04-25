@@ -24,5 +24,11 @@ namespace Apv.MemberExcel.Services
             var filePath = Path.Combine(OutputFolderPath, fileName);
             FullMailingLetter.Write(addresses, filePath);
         }
+
+        public void WriteDepositSlipLetter(IEnumerable<AddressDto> addresses, string fileName, bool requiresDepositSlipUnknown)
+        {
+            var filePath = Path.Combine(OutputFolderPath, fileName);
+            DepositSlipLetter.Write(addresses, filePath, requiresDepositSlipUnknown);
+        }
     }
 }

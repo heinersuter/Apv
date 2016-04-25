@@ -2,7 +2,7 @@
 {
     public class AddressDto
     {
-        public string Status { get; set; }
+        public Status Status { get; set; }
 
         public string Nickname { get; set; }
 
@@ -34,8 +34,6 @@
 
         public bool? RequiresDepositSlip { get; set; }
 
-        public bool? RequiresMailing { get; set; }
-
         public Date? ResignDate { get; set; }
 
         public void SetValue(int columnIndex, string value)
@@ -43,7 +41,7 @@
             switch (columnIndex)
             {
                 case 1:
-                    Status = value;
+                    Status = value == "Aktiv" ? Status.Active : Status.Inactive;
                     break;
                 case 2:
                     Nickname = value;
@@ -91,33 +89,9 @@
                     RequiresDepositSlip = value == "1";
                     break;
                 case 17:
-                    RequiresMailing = value == "1";
-                    break;
-                case 18:
                     ResignDate = Date.Parse(value);
                     break;
             }
         }
-
-        //Status
-        //Pfadiname   
-        //Nachname 
-        //Vorname 
-        //Telefon 
-        //Mobile  
-        //Bemerkung 
-        //E-Mail 1	
-        //E-Mail 2	
-        //Strasse 
-        //PLZ 
-        //Ort 
-        //Funktionen  
-        //Geschlecht 
-        //Geburtsdatum    
-        //EZ 
-        //Post    
-        //Austritt 
-        //Adresse bekannt 
-        //E-Mail bekannt
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Alsolos.Commons.Wpf.Mvvm;
 
 using Apv.MemberExcel.Services;
@@ -41,11 +42,19 @@ namespace Apv.MemberExcel.Views
         private void CreatePdfs()
         {
             var pdfService = new PdfService(PdfFolderPath);
-            var addresses = ExcelService.ReadAddresses(ExcelFilePath).ToArray();
+            var addresses = ExcelService.ReadAddresses(ExcelFilePath).Where(dto => dto.Status == Status.Active).ToArray();
+            var mailingAddresses = addresses.Where(dto => dto.AddressLine1 != null).ToArray();
 
-            var fullMailingAddresses = addresses.Where(dto => dto.Email1 == null).ToArray();
-            pdfService.WriteEnvelopes(fullMailingAddresses, "FullMailing_Envelopes.pdf");
-            pdfService.WriteFullMailingLetter(fullMailingAddresses, "FullMailing_Letters.pdf");
+            var fullMailingAddresses = mailingAddresses.Where(dto => dto.Email1 == null).ToArray();
+            pdfService.WriteFullMailingLetter(fullMailingAddresses, "Brief_Alles.pdf");
+
+            var requiresDepositSlipAddresses = mailingAddresses.Where(dto => dto.Email1 != null && dto.RequiresDepositSlip == true).ToArray();
+            pdfService.WriteDepositSlipLetter(requiresDepositSlipAddresses, "Brief_Nur_EZ.pdf", false);
+
+            var requiresDepositSlipUnknownAddresses = mailingAddresses.Where(dto => dto.Email1 != null && dto.RequiresDepositSlip == null).ToArray();
+            pdfService.WriteDepositSlipLetter(requiresDepositSlipUnknownAddresses, "Brief_EZ_Unbekannt.pdf", true);
+
+            Console.WriteLine(string.Join(", ", addresses.Where(dto => dto.AddressLine1 == null).Select(dto => $"{dto.Nickname}: {dto.Email1}")));
 
             System.Diagnostics.Process.Start(PdfFolderPath);
         }
