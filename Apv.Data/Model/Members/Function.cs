@@ -8,8 +8,8 @@ namespace Apv.Data.Model.Members
 
         public FunctionStatus Status { get; set; }
 
-        public DateTime FromDate { get; set; }
+        public DateTime? FromDate { get; set; }
 
-        public DateTime ToDate { get; set; }
+        public DateTime? ToDate { get; set; }
     }
 }
