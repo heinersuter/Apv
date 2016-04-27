@@ -17,11 +17,6 @@ namespace Apv.WebApi
         {
             var builder = new ConfigurationBuilder().AddJsonFile("appsettings.json");
 
-            if (env.IsEnvironment("Development"))
-            {
-                builder.AddApplicationInsightsSettings(developerMode: true);
-            }
-
             builder.AddEnvironmentVariables();
             Configuration = builder.Build().ReloadOnChanged("appsettings.json");
         }
@@ -29,16 +24,17 @@ namespace Apv.WebApi
         public void Configure(IApplicationBuilder app)
         {
             app.UseIISPlatformHandler();
-
             app.UseStaticFiles();
-
+            app.UseCookieAuthentication(options => {
+                options.AutomaticAuthenticate = true;
+                options.AutomaticChallenge = true;
+            });
             app.UseMvc();
         }
 
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-
             services.AddInstance(typeof(MemberService), new MemberService());
         }
     }

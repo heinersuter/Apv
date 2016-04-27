@@ -4,11 +4,13 @@ using System.Net;
 using Apv.Data.Dtos.Members;
 using Apv.WebApi.Services;
 
+using Microsoft.AspNet.Authorization;
 using Microsoft.AspNet.Mvc;
 
 namespace Apv.WebApi.Controllers
 {
     [Route("api/members")]
+    [Authorize]
     public class MemberController : Controller
     {
         private readonly MemberService _memberService;

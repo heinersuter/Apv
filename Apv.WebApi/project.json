@@ -6,6 +6,7 @@
 
   "dependencies": {
     "Microsoft.ApplicationInsights.AspNet": "1.0.0-rc1",
+    "Microsoft.AspNet.Authentication.Cookies": "1.0.0-rc1-final",
     "Microsoft.AspNet.Identity": "3.0.0-rc1-final",
     "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-rc1-final",
     "Microsoft.AspNet.IISPlatformHandler": "1.0.0-rc1-final",
@@ -36,6 +37,7 @@
     "wwwroot",
     "node_modules"
   ],
+
   "publishExclude": [
     "**.user",
     "**.vspscc"
