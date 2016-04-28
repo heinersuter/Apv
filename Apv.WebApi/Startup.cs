@@ -1,7 +1,10 @@
 ﻿using Apv.WebApi.Services;
+using Apv.WebApi.Users;
 
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Data.Entity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -25,10 +28,12 @@ namespace Apv.WebApi
         {
             app.UseIISPlatformHandler();
             app.UseStaticFiles();
-            app.UseCookieAuthentication(options => {
+            app.UseCookieAuthentication(options =>
+            {
                 options.AutomaticAuthenticate = true;
                 options.AutomaticChallenge = true;
             });
+            app.UseIdentity();
             app.UseMvc();
         }
 
@@ -36,6 +41,14 @@ namespace Apv.WebApi
         {
             services.AddMvc();
             services.AddInstance(typeof(MemberService), new MemberService());
+
+            services.AddEntityFramework()
+                .AddSqlServer()
+                .AddDbContext<UserContext>(options => options.UseSqlServer("Data Source=.;Initial Catalog=apv-user;Integrated Security=True"));
+
+            services.AddIdentity<User, IdentityRole>()
+                .AddEntityFrameworkStores<UserContext>()
+                .AddDefaultTokenProviders();
         }
     }
 }

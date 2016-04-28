@@ -5,6 +5,7 @@
   },
 
   "dependencies": {
+    "EntityFramework.MicrosoftSqlServer": "7.0.0-rc1-final",
     "Microsoft.ApplicationInsights.AspNet": "1.0.0-rc1",
     "Microsoft.AspNet.Authentication.Cookies": "1.0.0-rc1-final",
     "Microsoft.AspNet.Identity": "3.0.0-rc1-final",
