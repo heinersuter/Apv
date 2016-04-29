@@ -21,13 +21,12 @@ namespace Apv.MemberExcel.Pdfs
             {
                 var writer = PdfWriter.GetInstance(document, new FileStream(filePath, FileMode.Create));
                 document.SetPageSize(PageSize.A4);
-                document.SetMargins(Mm(20), Mm(20), Mm(20), Mm(20));
+                document.SetMargins(Mm(20), Mm(20), Mm(17), Mm(20));
                 document.Open();
-                writer.PageEvent = new PdfPageEventHelper();
 
                 foreach (var dto in addresses)
                 {
-                    AddLogo(document);
+                    AddLogo(document, writer);
                     AddAddress(dto, document);
                     AddDate(document);
                     AddSalutation(dto.Gender, dto.Nickname ?? dto.Firstname, document);
@@ -42,7 +41,7 @@ namespace Apv.MemberExcel.Pdfs
 
         private static void AddContent(Gender gender, Document document, bool requiresDepositSlipUnknown)
         {
-            var paragraph = new Paragraph { Font = Font12 };
+            var paragraph = new Paragraph { Font = Font11 };
             SetLeading(paragraph);
 
             var plural = gender == Gender.Family;
@@ -57,6 +56,7 @@ namespace Apv.MemberExcel.Pdfs
                 paragraph.Add(Environment.NewLine);
             }
             paragraph.Add($"Der Rest des Jahresversandes und die Details zu den Anlässen werden {(requiresDepositSlipUnknown ? "sowieso " : String.Empty)}nur noch per E-Mail verschickt. Ich hoffe {(plural ? "ihr versteht" : "du verstehst")} das. ");
+            paragraph.Add($"Bitte {(plural ? "meldet euch" : "melde dich")} bei mir, wenn {(plural ? "ihr" : "du")} das E-Mail vom 21.03.2016 nicht bekommen {(plural ? "habt" : "hast")}. ");
 
             document.Add(paragraph);
             document.Add(Chunk.NEWLINE);

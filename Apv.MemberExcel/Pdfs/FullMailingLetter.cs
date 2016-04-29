@@ -21,13 +21,12 @@ namespace Apv.MemberExcel.Pdfs
             {
                 var writer = PdfWriter.GetInstance(document, new FileStream(filePath, FileMode.Create));
                 document.SetPageSize(PageSize.A4);
-                document.SetMargins(Mm(20), Mm(20), Mm(20), Mm(20));
+                document.SetMargins(Mm(20), Mm(20), Mm(17), Mm(20));
                 document.Open();
-                writer.PageEvent = new PdfPageEventHelper();
 
                 foreach (var dto in addresses)
                 {
-                    AddLogo(document);
+                    AddLogo(document, writer);
                     AddAddress(dto, document);
                     AddDate(document);
                     AddSalutation(dto.Gender, dto.Nickname ?? dto.Firstname, document);
@@ -42,7 +41,7 @@ namespace Apv.MemberExcel.Pdfs
 
         private static void AddContent(Gender gender, Document document)
         {
-            var paragraph = new Paragraph { Font = Font12 };
+            var paragraph = new Paragraph { Font = Font11 };
             SetLeading(paragraph);
 
             var plural = gender == Gender.Family;

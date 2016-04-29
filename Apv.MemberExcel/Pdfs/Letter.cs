@@ -7,11 +7,9 @@ namespace Apv.MemberExcel.Pdfs
 {
     public abstract class Letter : Pdf
     {
-        protected static void AddLogo(Document document)
+        protected static void AddLogo(Document document, PdfWriter writer)
         {
             var paragraph = new Paragraph { Font = Font24 };
-            SetLeading(paragraph);
-            SetIndentation(paragraph);
 
             paragraph.Add("APV Gränichen");
 
@@ -21,10 +19,10 @@ namespace Apv.MemberExcel.Pdfs
 
         protected static void AddAddress(AddressDto dto, Document document)
         {
-            var paragraph = new Paragraph { Font = Font12 };
+            var paragraph = new Paragraph { Font = Font11 };
             SetLeading(paragraph);
             SetIndentation(paragraph);
-            paragraph.SpacingBefore = Mm(20);
+            paragraph.SpacingBefore = Mm(16);
 
             paragraph.Add($"{dto.Lastname} {dto.Firstname} / {dto.Nickname}");
             paragraph.Add(Environment.NewLine);
@@ -38,10 +36,10 @@ namespace Apv.MemberExcel.Pdfs
 
         protected static void AddDate(Document document)
         {
-            var paragraph = new Paragraph { Font = Font12 };
+            var paragraph = new Paragraph { Font = Font11 };
             SetLeading(paragraph);
             SetIndentation(paragraph);
-            paragraph.SpacingBefore = Mm(20);
+            paragraph.SpacingBefore = Mm(16);
 
             paragraph.Add($"Zürich, {DateTime.Now:d}");
 
@@ -51,9 +49,9 @@ namespace Apv.MemberExcel.Pdfs
 
         protected static void AddSalutation(Gender gender, string name, Document document)
         {
-            var paragraph = new Paragraph { Font = Font12 };
+            var paragraph = new Paragraph { Font = Font11 };
             SetLeading(paragraph);
-            paragraph.SpacingBefore = Mm(20);
+            paragraph.SpacingBefore = Mm(16);
 
             switch (gender)
             {
@@ -77,7 +75,7 @@ namespace Apv.MemberExcel.Pdfs
 
         protected static void AddGreetings(Document document)
         {
-            var paragraph = new Paragraph { Font = Font12 };
+            var paragraph = new Paragraph { Font = Font11 };
             SetLeading(paragraph);
 
             paragraph.Add("Herzliche Grüsse");
