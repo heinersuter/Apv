@@ -32,6 +32,7 @@ namespace Apv.MemberExcel.Pdfs
                     AddSalutation(dto.Gender, dto.Nickname ?? dto.Firstname, document);
                     AddContent(dto.Gender, document, requiresDepositSlipUnknown);
                     AddGreetings(document);
+                    AddPostscriptum(document);
                     AddSender(document, writer);
 
                     document.NewPage();

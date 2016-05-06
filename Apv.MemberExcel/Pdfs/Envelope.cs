@@ -53,7 +53,7 @@ namespace Apv.MemberExcel.Pdfs
             paragraph.IndentationLeft = Mm(90);
             paragraph.SpacingBefore = Mm(70);
 
-            paragraph.Add($"{dto.Lastname} {dto.Firstname} / {dto.Nickname}");
+            paragraph.Add($"{dto.Firstname} {dto.Lastname} / {dto.Nickname}");
             paragraph.Add(Environment.NewLine);
             paragraph.Add(dto.AddressLine1);
             paragraph.Add(Environment.NewLine);

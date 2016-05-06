@@ -47,10 +47,10 @@
                     Nickname = value;
                     break;
                 case 3:
-                    Firstname = value;
+                    Lastname = value;
                     break;
                 case 4:
-                    Lastname = value;
+                    Firstname = value;
                     break;
                 case 5:
                     Phone = value;

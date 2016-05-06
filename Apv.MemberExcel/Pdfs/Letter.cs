@@ -22,9 +22,13 @@ namespace Apv.MemberExcel.Pdfs
             var paragraph = new Paragraph { Font = Font11 };
             SetLeading(paragraph);
             SetIndentation(paragraph);
-            paragraph.SpacingBefore = Mm(16);
+            paragraph.SpacingBefore = Mm(20);
 
-            paragraph.Add($"{dto.Lastname} {dto.Firstname} / {dto.Nickname}");
+            paragraph.Add($"{dto.Firstname} {dto.Lastname}");
+            if (dto.Nickname != null)
+            {
+                paragraph.Add($" / {dto.Nickname}");
+            }
             paragraph.Add(Environment.NewLine);
             paragraph.Add(dto.AddressLine1);
             paragraph.Add(Environment.NewLine);
@@ -39,7 +43,7 @@ namespace Apv.MemberExcel.Pdfs
             var paragraph = new Paragraph { Font = Font11 };
             SetLeading(paragraph);
             SetIndentation(paragraph);
-            paragraph.SpacingBefore = Mm(16);
+            paragraph.SpacingBefore = Mm(20);
 
             paragraph.Add($"Zürich, {DateTime.Now:d}");
 
@@ -51,7 +55,7 @@ namespace Apv.MemberExcel.Pdfs
         {
             var paragraph = new Paragraph { Font = Font11 };
             SetLeading(paragraph);
-            paragraph.SpacingBefore = Mm(16);
+            paragraph.SpacingBefore = Mm(20);
 
             switch (gender)
             {
@@ -81,6 +85,17 @@ namespace Apv.MemberExcel.Pdfs
             paragraph.Add("Herzliche Grüsse");
             paragraph.Add(Environment.NewLine);
             paragraph.Add("Hirsch");
+
+            document.Add(paragraph);
+        }
+
+        protected static void AddPostscriptum(Document document)
+        {
+            var paragraph = new Paragraph { Font = Font11 };
+            SetLeading(paragraph);
+            paragraph.SpacingBefore = Mm(20);
+
+            paragraph.Add("PS: Am 20. Mai ist schon der Gamblerabend.");
 
             document.Add(paragraph);
         }
