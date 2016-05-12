@@ -17,22 +17,20 @@ namespace Apv.MemberExcel.Pdfs
             document.Add(Chunk.NEWLINE);
         }
 
-        protected static void AddAddress(AddressDto dto, Document document)
+        protected static void AddAddress(LetterAddress address, Document document)
         {
             var paragraph = new Paragraph { Font = Font11 };
             SetLeading(paragraph);
             SetIndentation(paragraph);
             paragraph.SpacingBefore = Mm(20);
 
-            paragraph.Add($"{dto.Firstname} {dto.Lastname}");
-            if (dto.Nickname != null)
-            {
-                paragraph.Add($" / {dto.Nickname}");
-            }
+            paragraph.Add(GetTitle(address.Gender));
             paragraph.Add(Environment.NewLine);
-            paragraph.Add(dto.AddressLine1);
+            paragraph.Add(address.AddressName);
             paragraph.Add(Environment.NewLine);
-            paragraph.Add($"{dto.ZipCode} {dto.City}");
+            paragraph.Add(address.AddressLine1);
+            paragraph.Add(Environment.NewLine);
+            paragraph.Add($"{address.ZipCode} {address.City}");
 
             document.Add(paragraph);
             document.Add(Chunk.NEWLINE);
@@ -111,6 +109,21 @@ namespace Apv.MemberExcel.Pdfs
                 document.LeftMargin,
                 document.Bottom - 8f,
                 0);
+        }
+
+        private static string GetTitle(Gender gender)
+        {
+            switch (gender)
+            {
+                case Gender.Male:
+                    return "Herr";
+                case Gender.Female:
+                    return "Frau";
+                case Gender.Family:
+                    return "Familie";
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(gender), gender, null);
+            }
         }
     }
 }

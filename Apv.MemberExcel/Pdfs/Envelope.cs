@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Apv.MemberExcel.Services;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 
@@ -10,7 +9,7 @@ namespace Apv.MemberExcel.Pdfs
 {
     public class Envelope : Pdf
     {
-        public static void Write(IEnumerable<AddressDto> addresses, string filePath)
+        public static void Write(IEnumerable<LetterAddress> addresses, string filePath)
         {
             if (!addresses.Any())
             {
@@ -24,10 +23,10 @@ namespace Apv.MemberExcel.Pdfs
                 document.SetMargins(Mm(10), Mm(10), Mm(10), Mm(10));
                 document.Open();
 
-                foreach (var dto in addresses)
+                foreach (var address in addresses)
                 {
                     AddSenderParagraph(document);
-                    AddAddressParagraph(dto, document);
+                    AddAddressParagraph(address, document);
                     document.NewPage();
                 }
             }
@@ -46,18 +45,18 @@ namespace Apv.MemberExcel.Pdfs
             document.Add(paragraph);
         }
 
-        private static void AddAddressParagraph(AddressDto dto, Document document)
+        private static void AddAddressParagraph(LetterAddress address, Document document)
         {
             var paragraph = new Paragraph { Font = FontFactory.GetFont(FontFactory.HELVETICA, 12f) };
             paragraph.SetLeading(0f, 1.4f);
             paragraph.IndentationLeft = Mm(90);
             paragraph.SpacingBefore = Mm(70);
 
-            paragraph.Add($"{dto.Firstname} {dto.Lastname} / {dto.Nickname}");
+            paragraph.Add(address.AddressName);
             paragraph.Add(Environment.NewLine);
-            paragraph.Add(dto.AddressLine1);
+            paragraph.Add(address.AddressLine1);
             paragraph.Add(Environment.NewLine);
-            paragraph.Add($"{dto.ZipCode} {dto.City}");
+            paragraph.Add($"{address.ZipCode} {address.City}");
             document.Add(paragraph);
         }
     }

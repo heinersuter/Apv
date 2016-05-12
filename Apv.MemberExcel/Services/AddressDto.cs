@@ -36,6 +36,8 @@
 
         public Date? ResignDate { get; set; }
 
+        public int? FamilyId { get; set; }
+
         public void SetValue(int columnIndex, string value)
         {
             switch (columnIndex)
@@ -90,6 +92,9 @@
                     break;
                 case 17:
                     ResignDate = Date.Parse(value);
+                    break;
+                case 18:
+                    FamilyId = int.Parse(value);
                     break;
             }
         }

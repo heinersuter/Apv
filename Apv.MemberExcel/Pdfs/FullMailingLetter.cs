@@ -10,7 +10,7 @@ namespace Apv.MemberExcel.Pdfs
 {
     public class FullMailingLetter : Letter
     {
-        public static void Write(IEnumerable<AddressDto> addresses, string filePath)
+        public static void Write(IEnumerable<LetterAddress> addresses, string filePath)
         {
             if (!addresses.Any())
             {
@@ -24,13 +24,13 @@ namespace Apv.MemberExcel.Pdfs
                 document.SetMargins(Mm(20), Mm(20), Mm(17), Mm(20));
                 document.Open();
 
-                foreach (var dto in addresses)
+                foreach (var address in addresses)
                 {
                     AddLogo(document, writer);
-                    AddAddress(dto, document);
+                    AddAddress(address, document);
                     AddDate(document);
-                    AddSalutation(dto.Gender, dto.Nickname ?? dto.Firstname, document);
-                    AddContent(dto.Gender, document);
+                    AddSalutation(address.Gender, address.CallingName, document);
+                    AddContent(address.Gender, document);
                     AddGreetings(document);
                     AddPostscriptum(document);
                     AddSender(document, writer);

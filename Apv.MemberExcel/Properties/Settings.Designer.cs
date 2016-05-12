@@ -22,5 +22,29 @@ namespace Apv.MemberExcel.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string AddressesExcelFile {
+            get {
+                return ((string)(this["AddressesExcelFile"]));
+            }
+            set {
+                this["AddressesExcelFile"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string PdfOutputDirectory {
+            get {
+                return ((string)(this["PdfOutputDirectory"]));
+            }
+            set {
+                this["PdfOutputDirectory"] = value;
+            }
+        }
     }
 }

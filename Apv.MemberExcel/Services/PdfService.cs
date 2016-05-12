@@ -13,19 +13,19 @@ namespace Apv.MemberExcel.Services
 
         public string OutputFolderPath { get; }
 
-        public void WriteEnvelopes(IEnumerable<AddressDto> addresses, string fileName)
+        public void WriteEnvelopes(IEnumerable<LetterAddress> addresses, string fileName)
         {
             var filePath = Path.Combine(OutputFolderPath, fileName);
             Envelope.Write(addresses, filePath);
         }
 
-        public void WriteFullMailingLetter(IEnumerable<AddressDto> addresses, string fileName)
+        public void WriteFullMailingLetter(IEnumerable<LetterAddress> addresses, string fileName)
         {
             var filePath = Path.Combine(OutputFolderPath, fileName);
             FullMailingLetter.Write(addresses, filePath);
         }
 
-        public void WriteDepositSlipLetter(IEnumerable<AddressDto> addresses, string fileName, bool requiresDepositSlipUnknown)
+        public void WriteDepositSlipLetter(IEnumerable<LetterAddress> addresses, string fileName, bool requiresDepositSlipUnknown)
         {
             var filePath = Path.Combine(OutputFolderPath, fileName);
             DepositSlipLetter.Write(addresses, filePath, requiresDepositSlipUnknown);
