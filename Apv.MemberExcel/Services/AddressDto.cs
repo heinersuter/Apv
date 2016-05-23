@@ -28,11 +28,13 @@
 
         public string Functions { get; set; }
 
+        public string FunctionsScouts { get; set; }
+
         public Gender Gender { get; set; }
 
         public Date? Birthdate { get; set; }
 
-        public bool? RequiresDepositSlip { get; set; }
+        public PaymentType? Payment { get; set; }
 
         public Date? ResignDate { get; set; }
 
@@ -82,18 +84,21 @@
                     Functions = value;
                     break;
                 case 14:
-                    Gender = value == "m" ? Gender.Male : value == "f" ? Gender.Female : Gender.Family;
+                    FunctionsScouts = value;
                     break;
                 case 15:
-                    Birthdate = Date.Parse(value);
+                    Gender = value == "m" ? Gender.Male : value == "f" ? Gender.Female : Gender.Family;
                     break;
                 case 16:
-                    RequiresDepositSlip = value == "1";
+                    Birthdate = Date.Parse(value);
                     break;
                 case 17:
-                    ResignDate = Date.Parse(value);
+                    Payment = value == "Papier" ? PaymentType.DepositSlip : value == "E-Mail" ? PaymentType.Email : (PaymentType?)null;
                     break;
                 case 18:
+                    ResignDate = Date.Parse(value);
+                    break;
+                case 19:
                     FamilyId = int.Parse(value);
                     break;
             }

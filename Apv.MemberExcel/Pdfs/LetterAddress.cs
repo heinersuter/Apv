@@ -50,7 +50,7 @@ namespace Apv.MemberExcel.Pdfs
                 ZipCode = dto.ZipCode,
                 City = dto.City,
                 Gender = dto.Gender,
-                RequiresDepositSlip = dto.RequiresDepositSlip,
+                RequiresDepositSlip = dto.Payment != null ? dto.Payment == PaymentType.DepositSlip : (bool?)null,
                 HasEmail = dto.Email1 != null
             };
         }
@@ -67,9 +67,9 @@ namespace Apv.MemberExcel.Pdfs
                 ZipCode = first.ZipCode,
                 City = first.City,
                 Gender = Gender.Family,
-                RequiresDepositSlip = first.RequiresDepositSlip == null && second.RequiresDepositSlip == null
+                RequiresDepositSlip = first.Payment == null && second.Payment == null
                     ? (bool?)null
-                    : first.RequiresDepositSlip == true || second.RequiresDepositSlip == true,
+                    : first.Payment == PaymentType.DepositSlip || second.Payment == PaymentType.DepositSlip,
                 HasEmail = first.Email1 != null || second.Email1 != null
             };
             if (first.Nickname != null && second.Nickname != null)

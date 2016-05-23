@@ -46,5 +46,29 @@ namespace Apv.MemberExcel.Properties {
                 this["PdfOutputDirectory"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string SmtpUserName {
+            get {
+                return ((string)(this["SmtpUserName"]));
+            }
+            set {
+                this["SmtpUserName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string SmtpPassword {
+            get {
+                return ((string)(this["SmtpPassword"]));
+            }
+            set {
+                this["SmtpPassword"] = value;
+            }
+        }
     }
 }

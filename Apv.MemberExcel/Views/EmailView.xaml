@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="Apv.MemberExcel.Views.EmailView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:views="clr-namespace:Apv.MemberExcel.Views"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance views:EmailViewModel}">
+    <UniformGrid Columns="2">
+
+        <StackPanel>
+            <HeaderedContentControl Header="SMTP Benutzername" Margin="12">
+                <TextBox Text="{Binding SmtpUserName}" Height="24" Padding="0 2 0 0"/>
+            </HeaderedContentControl>
+            <HeaderedContentControl Header="SMTP Passwort" Margin="12">
+                <PasswordBox Name="PasswordBox" Height="24" Padding="0 2 0 0"/>
+            </HeaderedContentControl>
+            <Button Content="Send" Command="{Binding SendEmailsCommand}" CommandParameter="{Binding ElementName=PasswordBox}" Margin="12" Height="24" MinWidth="128" HorizontalAlignment="Center"/>
+        </StackPanel>
+
+        <views:EmailPreviewView DataContext="{Binding EmailPreviewViewModel}"/>
+        
+    </UniformGrid>
+</UserControl>

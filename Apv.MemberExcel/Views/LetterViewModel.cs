@@ -6,7 +6,7 @@ using Apv.MemberExcel.Services;
 
 namespace Apv.MemberExcel.Views
 {
-    public class MainViewModel : ViewModel
+    public class LetterViewModel : ViewModel
     {
         public DelegateCommand CreatePdfsCommand => BackingFields.GetCommand(CreatePdfs, CanCreatePdfs);
 
@@ -29,7 +29,6 @@ namespace Apv.MemberExcel.Views
 
         private void CreatePdfs()
         {
-            var pdfService = new PdfService(PdfFolderPath);
             var addressDtos = ExcelService.ReadAddresses(ExcelFilePath).Where(dto => dto.Status == Status.Active).ToArray();
 
             var families = addressDtos
@@ -41,6 +40,7 @@ namespace Apv.MemberExcel.Views
 
             var mailingAddresses = addresses.Where(dto => dto.AddressLine1 != null).ToArray();
 
+            var pdfService = new PdfService(PdfFolderPath);
             var fullMailingAddresses = mailingAddresses.Where(dto => !dto.HasEmail).ToArray();
             pdfService.WriteFullMailingLetter(fullMailingAddresses, "Brief_Alles.pdf");
 

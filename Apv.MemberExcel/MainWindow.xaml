@@ -4,11 +4,22 @@
         xmlns:views="clr-namespace:Apv.MemberExcel.Views"
         Title="A³ — APV Adress Acrobat" Height="350" Width="525">
 
-    <views:MainView>
-        <views:MainView.DataContext>
-            <views:MainViewModel/>
-        </views:MainView.DataContext>
-    </views:MainView>
+    <TabControl>
+        <TabItem Header="Brief">
+            <views:LetterView>
+                <views:LetterView.DataContext>
+                    <views:LetterViewModel/>
+                </views:LetterView.DataContext>
+            </views:LetterView>
+        </TabItem>
+        <TabItem Header="E-Mail">
+            <views:EmailView>
+                <views:EmailView.DataContext>
+                    <views:EmailViewModel/>
+                </views:EmailView.DataContext>
+            </views:EmailView>
+        </TabItem>
+    </TabControl>
     
 </Window>
 
