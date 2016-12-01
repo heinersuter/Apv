@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Linq;
 
 namespace Apv.MemberExcel.Services
 {
@@ -35,17 +36,22 @@ namespace Apv.MemberExcel.Services
             Day = dateTime.Day;
         }
 
-        public int? Year { get; private set; }
+        public int? Year { get; }
 
-        public int? Month { get; private set; }
+        public int? Month { get; }
 
-        public int? Day { get; private set; }
+        public int? Day { get; }
 
         public static Date Parse(string value)
         {
             if (string.IsNullOrWhiteSpace(value))
             {
                 throw new ArgumentException("The value must not be null", nameof(value));
+            }
+            if (value.Count(c => c == '.') == 2)
+            {
+                var numbers = value.Split('.');
+                return new Date(int.Parse(numbers[1]), int.Parse(numbers[0]));
             }
             if (value.Length == 4)
             {

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apv.Data", "Apv.Data\Apv.Data.csproj", "{70A40598-8235-4801-9FAD-8E7F2E0F8768}"
 EndProject
@@ -14,6 +14,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apv.MemberExcel", "Apv.MemberExcel\Apv.MemberExcel.csproj", "{906E1E6B-4679-44F1-88FE-CEB56E8CEFA4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apv.GenerateCalendarImage", "Apv.GenerateCalendarImage\Apv.GenerateCalendarImage.csproj", "{42E0EA1A-6EFE-44AF-867B-76F416475441}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApvLocationBuilder", "ApvLocationBuilder\ApvLocationBuilder.csproj", "{5D6356B3-96DD-43AC-934F-FB31413C4C19}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{42E0EA1A-6EFE-44AF-867B-76F416475441}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{42E0EA1A-6EFE-44AF-867B-76F416475441}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{42E0EA1A-6EFE-44AF-867B-76F416475441}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D6356B3-96DD-43AC-934F-FB31413C4C19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D6356B3-96DD-43AC-934F-FB31413C4C19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D6356B3-96DD-43AC-934F-FB31413C4C19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D6356B3-96DD-43AC-934F-FB31413C4C19}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
