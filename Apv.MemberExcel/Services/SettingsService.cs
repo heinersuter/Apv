@@ -6,7 +6,11 @@ namespace Apv.MemberExcel.Services
     {
         static SettingsService()
         {
-            Settings.Default.Upgrade();
+            if (Settings.Default.UpgradeRequired)
+            {
+                Settings.Default.Upgrade();
+                Settings.Default.UpgradeRequired = false;
+            }
             Settings = Settings.Default;
         }
 

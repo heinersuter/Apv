@@ -2,6 +2,7 @@
 using Apv.MemberExcel.Services;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
+using System.Globalization;
 
 namespace Apv.MemberExcel.Pdfs
 {
@@ -43,7 +44,7 @@ namespace Apv.MemberExcel.Pdfs
             SetIndentation(paragraph);
             paragraph.SpacingBefore = Mm(20);
 
-            paragraph.Add($"Zürich, {DateTime.Now:d}");
+            paragraph.Add(string.Format(CultureInfo.GetCultureInfo("de-CH"), "Zürich, {0:d}", DateTime.Now));
 
             document.Add(paragraph);
             document.Add(Chunk.NEWLINE);

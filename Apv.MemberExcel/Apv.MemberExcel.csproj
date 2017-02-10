@@ -94,7 +94,8 @@
       <DependentUpon>LetterView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LetterViewModel.cs" />
-    <Page Include="MainWindow.xaml">
+    <Compile Include="Views\MainWindowViewModel.cs" />
+    <Page Include="Views\MainWindowView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -102,8 +103,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="Views\MainWindowView.xaml.cs">
+      <DependentUpon>MainWindowView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\EmailPreviewView.xaml">

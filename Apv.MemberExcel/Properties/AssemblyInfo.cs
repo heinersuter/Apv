@@ -9,4 +9,4 @@ using System.Windows;
 [assembly: AssemblyCopyright("Copyright © APV Gränichen 2016")]
 [assembly: ComVisible(false)]
 [assembly: ThemeInfo(ResourceDictionaryLocation.None, ResourceDictionaryLocation.SourceAssembly)]
-[assembly: AssemblyVersion("1.0.*")]
+[assembly: AssemblyVersion("1.1.0.0")]

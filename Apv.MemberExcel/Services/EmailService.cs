@@ -26,7 +26,6 @@ namespace Apv.MemberExcel.Services
                 Credentials = new NetworkCredential(_smtpUserName, _smtpPassword)
             })
             {
-
                 using (var mailMessage = new MailMessage("heiner.suter@gmx.ch", to)
                 {
                     Subject = subject,

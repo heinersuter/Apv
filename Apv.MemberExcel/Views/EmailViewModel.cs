@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Linq;
+using System.Windows.Controls;
 using Alsolos.Commons.Wpf.Mvvm;
 using Apv.MemberExcel.Services;
 
@@ -6,6 +7,12 @@ namespace Apv.MemberExcel.Views
 {
     public class EmailViewModel : ViewModel
     {
+        public EmailViewModel(LetterViewModel letterViewModel)
+        {
+            var addressDtos = ExcelService.ReadAddresses(letterViewModel.ExcelFilePath).Where(dto => dto.Status == Status.Active).ToArray();
+
+        }
+
         public DelegateCommand<PasswordBox> SendEmailsCommand => BackingFields.GetCommand<PasswordBox>(SendEmails, CanSendEmails);
 
         public EmailPreviewViewModel EmailPreviewViewModel
