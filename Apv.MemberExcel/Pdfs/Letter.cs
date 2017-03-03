@@ -1,5 +1,4 @@
 ﻿using System;
-using Apv.MemberExcel.Services;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System.Globalization;
@@ -50,7 +49,7 @@ namespace Apv.MemberExcel.Pdfs
             document.Add(Chunk.NEWLINE);
         }
 
-        protected static void AddSalutation(Gender gender, string name, Document document)
+        protected static void AddSalutation(LetterGender gender, string name, Document document)
         {
             var paragraph = new Paragraph { Font = Font11 };
             SetLeading(paragraph);
@@ -58,13 +57,13 @@ namespace Apv.MemberExcel.Pdfs
 
             switch (gender)
             {
-                case Gender.Male:
+                case LetterGender.Male:
                     paragraph.Add("Lieber ");
                     break;
-                case Gender.Female:
+                case LetterGender.Female:
                     paragraph.Add("Liebe ");
                     break;
-                case Gender.Family:
+                case LetterGender.Family:
                     paragraph.Add("Liebe ");
                     break;
                 default:
@@ -112,15 +111,15 @@ namespace Apv.MemberExcel.Pdfs
                 0);
         }
 
-        private static string GetTitle(Gender gender)
+        private static string GetTitle(LetterGender gender)
         {
             switch (gender)
             {
-                case Gender.Male:
+                case LetterGender.Male:
                     return "Herr";
-                case Gender.Female:
+                case LetterGender.Female:
                     return "Frau";
-                case Gender.Family:
+                case LetterGender.Family:
                     return "Familie";
                 default:
                     throw new ArgumentOutOfRangeException(nameof(gender), gender, null);

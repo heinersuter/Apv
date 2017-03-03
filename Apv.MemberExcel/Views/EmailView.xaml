@@ -9,13 +9,16 @@
     <UniformGrid Columns="2">
 
         <StackPanel>
-            <HeaderedContentControl Header="SMTP Benutzername" Margin="12">
-                <TextBox Text="{Binding SmtpUserName}" Height="24" Padding="0 2 0 0"/>
+            <HeaderedContentControl Header="SMTP Host" Margin="8">
+                <TextBox Text="{Binding SmtpHost}" Height="24" Padding="0 2 0 0"/>
             </HeaderedContentControl>
-            <HeaderedContentControl Header="SMTP Passwort" Margin="12">
+            <HeaderedContentControl Header="SMTP Benutzername" Margin="8">
+                <TextBox Text="{Binding SmtpUsername}" Height="24" Padding="0 2 0 0"/>
+            </HeaderedContentControl>
+            <HeaderedContentControl Header="SMTP Passwort" Margin="8">
                 <PasswordBox Name="PasswordBox" Height="24" Padding="0 2 0 0"/>
             </HeaderedContentControl>
-            <Button Content="Send" Command="{Binding SendEmailsCommand}" CommandParameter="{Binding ElementName=PasswordBox}" Margin="12" Height="24" MinWidth="128" HorizontalAlignment="Center"/>
+            <Button Content="Send" Command="{Binding SendEmailsCommand}" CommandParameter="{Binding ElementName=PasswordBox}" Margin="8" Height="24" MinWidth="128" HorizontalAlignment="Center"/>
         </StackPanel>
 
         <views:EmailPreviewView DataContext="{Binding EmailPreviewViewModel}"/>

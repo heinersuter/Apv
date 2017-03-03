@@ -50,12 +50,12 @@ namespace Apv.MemberExcel.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string SmtpUserName {
+        public string SmtpUsername {
             get {
-                return ((string)(this["SmtpUserName"]));
+                return ((string)(this["SmtpUsername"]));
             }
             set {
-                this["SmtpUserName"] = value;
+                this["SmtpUsername"] = value;
             }
         }
         
@@ -80,6 +80,18 @@ namespace Apv.MemberExcel.Properties {
             }
             set {
                 this["UpgradeRequired"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string SmtpHost {
+            get {
+                return ((string)(this["SmtpHost"]));
+            }
+            set {
+                this["SmtpHost"] = value;
             }
         }
     }

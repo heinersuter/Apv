@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Apv.MemberExcel.Services;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 
@@ -40,12 +39,12 @@ namespace Apv.MemberExcel.Pdfs
             }
         }
 
-        private static void AddContent(Gender gender, Document document)
+        private static void AddContent(LetterGender gender, Document document)
         {
             var paragraph = new Paragraph { Font = Font11 };
             SetLeading(paragraph);
 
-            var plural = gender == Gender.Family;
+            var plural = gender == LetterGender.Family;
             paragraph.Add($"In diesem Covert {(plural ? "findet ihr" : "findest du")} den Jahresversand vom APV für 2016.");
             paragraph.Add(Environment.NewLine);
             paragraph.Add($"Da ich {(plural ? "eure" : "deine")} E-Mail-Adresse nicht habe, schicke ich alles per Post. ");

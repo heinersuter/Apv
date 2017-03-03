@@ -95,7 +95,7 @@ namespace Apv.MemberExcel.Services
                     dto.FunctionsScouts = value;
                     break;
                 case 15:
-                    dto.Gender = value == "m" ? Gender.Male : value == "f" ? Gender.Female : Gender.Family;
+                    dto.Gender = value == "m" ? Gender.Male : Gender.Female;
                     break;
                 case 16:
                     dto.Birthdate = Date.Parse(value);

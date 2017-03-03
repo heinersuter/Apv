@@ -8,8 +8,8 @@
     <DockPanel Background="BurlyWood">
 
         <UniformGrid DockPanel.Dock="Top" Columns="2" Margin="12">
-            <Button Content="&lt;" Height="24"/>
-            <Button Content="&gt;" Height="24"/>
+            <Button Content="&lt;" Command="{Binding ShowPreviousCommand}" Height="24"/>
+            <Button Content="&gt;" Command="{Binding ShowNextCommand}" Height="24"/>
         </UniformGrid>
         
         <HeaderedContentControl DockPanel.Dock="Top" Header="An" Margin="12">
@@ -17,7 +17,12 @@
         </HeaderedContentControl>
         
         <HeaderedContentControl DockPanel.Dock="Top" Header="Betreff" Margin="12">
-            <TextBox Text="{Binding To}" IsReadOnly="True" Height="24" Padding="0 2 0 0"/>
+            <TextBox Text="{Binding Subject}" IsReadOnly="True" Height="24" Padding="0 2 0 0"/>
+        </HeaderedContentControl>
+        
+        
+        <HeaderedContentControl DockPanel.Dock="Top" Header="Anhänge" Margin="12">
+            <TextBox Text="{Binding Attachements}" IsReadOnly="True" MinLines="4" MaxLines="4" Padding="0 2 0 0"/>
         </HeaderedContentControl>
         
         <HeaderedContentControl Header="Text" Margin="12" VerticalAlignment="Stretch">
@@ -33,7 +38,7 @@
                     </Grid>
                 </ControlTemplate>
             </HeaderedContentControl.Template>
-            <TextBox Text="{Binding To}" IsReadOnly="True" AcceptsReturn="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Padding="0 2 0 0"/>
+            <TextBox Text="{Binding Body}" IsReadOnly="True" AcceptsReturn="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Padding="0 2 0 0"/>
         </HeaderedContentControl>
     
     </DockPanel>

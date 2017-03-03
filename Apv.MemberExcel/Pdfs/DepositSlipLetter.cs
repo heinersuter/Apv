@@ -40,12 +40,12 @@ namespace Apv.MemberExcel.Pdfs
             }
         }
 
-        private static void AddContent(Gender gender, Document document, bool requiresDepositSlipUnknown)
+        private static void AddContent(LetterGender gender, Document document, bool requiresDepositSlipUnknown)
         {
             var paragraph = new Paragraph { Font = Font11 };
             SetLeading(paragraph);
 
-            var plural = gender == Gender.Family;
+            var plural = gender == LetterGender.Family;
             paragraph.Add($"In diesem Covert {(plural ? "findet ihr" : "findest du")} den Einzahlungsschein für den Mitgliederbeitrag 2016.");
             paragraph.Add(Environment.NewLine);
             if (requiresDepositSlipUnknown)

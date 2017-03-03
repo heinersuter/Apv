@@ -15,9 +15,9 @@ namespace Apv.GenerateCalendarImage
         private const float ImageWidth = 7 * DayRectSize + 6 * DayRectOffset + 2 * OuterBorder;
 
         private static readonly Color BackgroundColor = Color.White;
-        private static readonly Brush DefaultDayBrush = Brushes.Bisque;
-        private static readonly Brush EventDayBrush = Brushes.SaddleBrown;
-        private static readonly Brush HoliDayBrush = new SolidBrush(Color.FromArgb(255, 214, 164));
+        private static readonly Brush DefaultDayBrush = new SolidBrush(Color.FromArgb(255, 228, 196));
+        private static readonly Brush EventDayBrush = new SolidBrush(Color.FromArgb(139,69,19));
+        private static readonly Brush HoliDayBrush = new SolidBrush(Color.FromArgb(255, 204, 104));
         private static readonly Brush MonthBrush = new SolidBrush(Color.FromArgb(40, 128, 128, 128));
 
         private static readonly Font DayFont = new Font("Helvetica", 0.6f * DayRectSize);

@@ -67,10 +67,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Email\EmailDto.cs" />
     <Compile Include="Pdfs\DepositSlipLetter.cs" />
     <Compile Include="Pdfs\FullMailingLetter.cs" />
     <Compile Include="Pdfs\Letter.cs" />
     <Compile Include="Pdfs\LetterAddress.cs" />
+    <Compile Include="Pdfs\LetterGender.cs" />
     <Compile Include="Pdfs\Pdf.cs" />
     <Compile Include="Pdfs\Envelope.cs" />
     <Compile Include="Services\AddressDto.cs" />
@@ -90,6 +92,7 @@
       <DependentUpon>EmailView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\EmailViewModel.cs" />
+    <Compile Include="Email\EmailWriter.cs" />
     <Compile Include="Views\LetterView.xaml.cs">
       <DependentUpon>LetterView.xaml</DependentUpon>
     </Compile>

@@ -16,7 +16,7 @@ namespace Apv.MemberExcel.Pdfs
 
         public string City { get; set; }
 
-        public Gender Gender { get; set; }
+        public LetterGender Gender { get; set; }
 
         public bool? RequiresDepositSlip { get; set; }
 
@@ -28,8 +28,8 @@ namespace Apv.MemberExcel.Pdfs
             AddressDto second;
             if (grouping.First().Gender != grouping.Last().Gender)
             {
-                first = grouping.Single(dto => dto.Gender == Gender.Female);
-                second = grouping.Single(dto => dto.Gender == Gender.Male);
+                first = grouping.Single(dto => dto.Gender == Services.Gender.Female);
+                second = grouping.Single(dto => dto.Gender == Services.Gender.Male);
             }
             else
             {
@@ -49,7 +49,7 @@ namespace Apv.MemberExcel.Pdfs
                 AddressLine1 = dto.AddressLine1,
                 ZipCode = dto.ZipCode,
                 City = dto.City,
-                Gender = dto.Gender,
+                Gender = dto.Gender == Services.Gender.Male ? LetterGender.Male : LetterGender.Female,
                 RequiresDepositSlip = dto.Payment != null ? dto.Payment == PaymentType.DepositSlip : (bool?)null,
                 HasEmail = dto.Email1 != null
             };
@@ -66,7 +66,7 @@ namespace Apv.MemberExcel.Pdfs
                 AddressLine1 = first.AddressLine1,
                 ZipCode = first.ZipCode,
                 City = first.City,
-                Gender = Gender.Family,
+                Gender = LetterGender.Family,
                 RequiresDepositSlip = first.Payment == null && second.Payment == null
                     ? (bool?)null
                     : first.Payment == PaymentType.DepositSlip || second.Payment == PaymentType.DepositSlip,
