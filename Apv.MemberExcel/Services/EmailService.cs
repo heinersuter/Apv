@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using System.Net.Mail;
+using System.Text;
 using Apv.MemberExcel.Email;
 
 namespace Apv.MemberExcel.Services
@@ -26,13 +27,15 @@ namespace Apv.MemberExcel.Services
                 Host = _smtpHost,
                 EnableSsl = true,
                 UseDefaultCredentials = false,
-                Credentials = new NetworkCredential(_smtpUsername, _smtpPassword)
+                Credentials = new NetworkCredential(_smtpUsername, _smtpPassword),
+                DeliveryFormat = SmtpDeliveryFormat.International
             })
             {
                 using (var mailMessage = new MailMessage("heiner.suter@gmx.ch", email.To)
                 {
                     Subject = email.Subject,
-                    Body = email.Body
+                    Body = email.Body,
+                    BodyEncoding = Encoding.UTF8,
                 })
                 {
                     foreach (var attachement in email.Attachements)
