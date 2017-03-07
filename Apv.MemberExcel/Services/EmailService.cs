@@ -31,7 +31,7 @@ namespace Apv.MemberExcel.Services
                 DeliveryFormat = SmtpDeliveryFormat.International
             })
             {
-                using (var mailMessage = new MailMessage("heiner.suter@gmx.ch", email.To)
+                using (var mailMessage = new MailMessage(_smtpUsername, email.To)
                 {
                     Subject = email.Subject,
                     Body = email.Body,

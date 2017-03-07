@@ -1,4 +1,37 @@
 ﻿<Application x:Class="Apv.MemberExcel.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <Style TargetType="{x:Type TextBox}">
+                <Setter Property="Padding" Value="0 2 0 0"/>
+                <Setter Property="Height" Value="24"/>
+            </Style>
+            <Style TargetType="{x:Type PasswordBox}">
+                <Setter Property="Padding" Value="0 2 0 0"/>
+                <Setter Property="Height" Value="24"/>
+            </Style>
+            <Style TargetType="{x:Type Button}">
+                <Setter Property="MinWidth" Value="128"/>
+                <Setter Property="Height" Value="24"/>
+            </Style>
+            <Style TargetType="{x:Type HeaderedContentControl}">
+                <Setter Property="IsTabStop" Value="False"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="HeaderedContentControl">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <ContentPresenter ContentSource="Header"/>
+                                <ContentPresenter Grid.Row="1"/>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
 </Application>

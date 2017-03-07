@@ -9,7 +9,18 @@ namespace Apv.MemberExcel.Views
     public class EmailPreviewViewModel : ViewModel
     {
         private EmailDto[] _emailDtos;
-        private int _index;
+
+        public int Index
+        {
+            get { return BackingFields.GetValue<int>(); }
+            set { BackingFields.SetValue(value); }
+        }
+
+        public int Count
+        {
+            get { return BackingFields.GetValue<int>(); }
+            set { BackingFields.SetValue(value); }
+        }
 
         public string To
         {
@@ -42,24 +53,25 @@ namespace Apv.MemberExcel.Views
         public void SetEmails(IEnumerable<EmailDto> emailDtos)
         {
             _emailDtos = emailDtos.ToArray();
-            UpdateView(0);
+            Count = _emailDtos.Length;
+            UpdateView(1);
         }
 
-        public void UpdateView(int index)
+        public void UpdateView(int newIndex)
         {
-            if (_emailDtos != null)
+            if (_emailDtos != null && _emailDtos.Any())
             {
-                if (index < 0 || index >= _emailDtos.Length)
+                if (newIndex < 1 || newIndex > _emailDtos.Length)
                 {
-                    UpdateView(0);
+                    UpdateView(1);
                 }
                 else
                 {
-                    To = _emailDtos[index].To;
-                    Subject = _emailDtos[index].Subject;
-                    Body = _emailDtos[index].Body;
-                    Attachements = string.Join(Environment.NewLine, _emailDtos[index].Attachements);
-                    _index = index;
+                    To = _emailDtos[newIndex-1].To;
+                    Subject = _emailDtos[newIndex-1].Subject;
+                    Body = _emailDtos[newIndex-1].Body;
+                    Attachements = string.Join(Environment.NewLine, _emailDtos[newIndex].Attachements);
+                    Index = newIndex;
                 }
             }
             else
@@ -68,27 +80,28 @@ namespace Apv.MemberExcel.Views
                 Subject = null;
                 Body = null;
                 Attachements = null;
+                Index = 0;
             }
         }
 
         private bool CanShowPrevious()
         {
-            return _emailDtos != null && _index > 0;
+            return _emailDtos != null && Index > 1;
         }
 
         private void ShowPrevious()
         {
-            UpdateView(_index - 1);
+            UpdateView(Index - 1);
         }
 
         private bool CanShowNext()
         {
-            return _emailDtos != null && _index < _emailDtos.Length - 1;
+            return _emailDtos != null && Index < _emailDtos.Length;
         }
 
         private void ShowNext()
         {
-            UpdateView(_index + 1);
+            UpdateView(Index + 1);
         }
     }
 }

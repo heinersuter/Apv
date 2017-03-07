@@ -41,11 +41,11 @@ namespace Apv.MemberExcel.Pdfs
 
         private static void AddContent(LetterGender gender, Document document, bool requiresDepositSlipUnknown)
         {
-            var paragraph = new Paragraph { Font = Font11 };
+            var paragraph = new Paragraph { Font = FontNormal };
             SetLeading(paragraph);
 
             var plural = gender == LetterGender.Family;
-            paragraph.Add($"In diesem Covert {(plural ? "findet ihr" : "findest du")} den Einzahlungsschein für den Mitgliederbeitrag 2016.");
+            paragraph.Add($"In diesem Covert {(plural ? "findet ihr" : "findest du")} den Einzahlungsschein für den Mitgliederbeitrag.");
             paragraph.Add(Environment.NewLine);
             if (requiresDepositSlipUnknown)
             {
@@ -56,7 +56,6 @@ namespace Apv.MemberExcel.Pdfs
                 paragraph.Add(Environment.NewLine);
             }
             paragraph.Add($"Der Rest des Jahresversandes und die Details zu den Anlässen werden {(requiresDepositSlipUnknown ? "sowieso " : String.Empty)}nur noch per E-Mail verschickt. Ich hoffe {(plural ? "ihr versteht" : "du verstehst")} das. ");
-            paragraph.Add($"Bitte {(plural ? "meldet euch" : "melde dich")} bei mir, wenn {(plural ? "ihr" : "du")} das E-Mail vom 21.03.2016 nicht bekommen {(plural ? "habt" : "hast")}. ");
 
             document.Add(paragraph);
             document.Add(Chunk.NEWLINE);

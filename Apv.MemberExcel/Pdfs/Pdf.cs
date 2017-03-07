@@ -4,9 +4,9 @@ namespace Apv.MemberExcel.Pdfs
 {
     public abstract class Pdf
     {
-        protected static readonly Font Font24 = FontFactory.GetFont(FontFactory.HELVETICA, 24f, Font.BOLD);
-        protected static readonly Font Font11 = FontFactory.GetFont(FontFactory.HELVETICA, 11f);
-        protected static readonly Font Font8 = FontFactory.GetFont(FontFactory.HELVETICA, 8f);
+        protected static readonly Font FontBig = FontFactory.GetFont(FontFactory.HELVETICA, 20f);
+        protected static readonly Font FontNormal = FontFactory.GetFont(FontFactory.HELVETICA, 10f);
+        protected static readonly Font FontSmall = FontFactory.GetFont(FontFactory.HELVETICA, 7.5f);
 
         protected static float Mm(float mm)
         {
@@ -15,7 +15,7 @@ namespace Apv.MemberExcel.Pdfs
 
         protected static void SetLeading(Paragraph paragraph)
         {
-            paragraph.SetLeading(0f, 1.5f);
+            paragraph.SetLeading(0f, 1.25f);
         }
 
         protected static void SetIndentation(Paragraph paragraph)

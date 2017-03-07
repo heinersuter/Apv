@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Apv.MemberExcel.Services;
 
@@ -21,6 +22,8 @@ namespace Apv.MemberExcel.Pdfs
         public bool? RequiresDepositSlip { get; set; }
 
         public bool HasEmail { get; set; }
+
+        public IEnumerable<string> Mobiles { get; set; }
 
         public static LetterAddress Combine(IGrouping<int?, AddressDto> grouping)
         {
@@ -51,7 +54,8 @@ namespace Apv.MemberExcel.Pdfs
                 City = dto.City,
                 Gender = dto.Gender == Services.Gender.Male ? LetterGender.Male : LetterGender.Female,
                 RequiresDepositSlip = dto.Payment != null ? dto.Payment == PaymentType.DepositSlip : (bool?)null,
-                HasEmail = dto.Email1 != null
+                HasEmail = dto.Email1 != null,
+                Mobiles = dto.Mobile != null ? new[] { dto.Mobile } : Enumerable.Empty<string>()
             };
         }
 
@@ -72,6 +76,7 @@ namespace Apv.MemberExcel.Pdfs
                     : first.Payment == PaymentType.DepositSlip || second.Payment == PaymentType.DepositSlip,
                 HasEmail = first.Email1 != null || second.Email1 != null
             };
+
             if (first.Nickname != null && second.Nickname != null)
             {
                 letterAddress.AddressName += $"{Environment.NewLine}{first.Nickname} & {second.Nickname}";
@@ -84,6 +89,18 @@ namespace Apv.MemberExcel.Pdfs
             {
                 letterAddress.AddressName += $" / {second.Nickname}";
             }
+
+            var mobiles = new List<string>();
+            if (first.Mobile != null)
+            {
+                mobiles.Add(first.Mobile);
+            }
+            if (second.Mobile != null)
+            {
+                mobiles.Add(second.Mobile);
+            }
+            letterAddress.Mobiles = mobiles;
+
             return letterAddress;
         }
     }

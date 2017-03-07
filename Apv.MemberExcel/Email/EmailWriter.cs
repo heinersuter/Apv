@@ -38,23 +38,23 @@ namespace Apv.MemberExcel.Email
             body.AppendLine();
 
             // Jahresprogramm
-            body.AppendLine("Wir haben wieder ein Jahresprogramm zusammengestellt. Du findes es als PDF im Anhang.");
+            body.AppendLine("Wir haben wieder ein Jahresprogramm zusammengestellt. Du findest es als PDF im Anhang.");
             body.AppendLine("Falls du mit dem APV lieber etwas anderes machen möchtest, schicke mir deinen Vorschlag. Oder noch besser: stelle deine Idee an der GV vor.");
             body.AppendLine();
 
             // Mitgliederbeitrag
+            body.AppendLine("Im Anhang findest du auch die Zahlungsinformationen für den Mitgliederbeitrag.");
             if (addressDto.Payment == PaymentType.Email)
             {
-                body.AppendLine("Im Anhang findest du auch die Zahlungsinformationen für den Mitgliederbeitrag.");
                 body.AppendLine("Danke, dass du auf die Post-Zustellung verzichtet hast.");
             }
             else if (addressDto.Payment == PaymentType.DepositSlip)
             {
-                body.AppendLine("Für den Mitgliederbeitrag wirst du wie abgemacht per Post einen Einzahlungsschein erhalten.");
+                body.AppendLine("Du wirst wie abgemacht per Post einen Einzahlungsschein erhalten.");
             }
             else
             {
-                body.AppendLine("Den Einzahlungsschein für den Mitgliederbeitrag erhälst du auch noch per Post.");
+                body.AppendLine("Den Einzahlungsschein erhältst du auch noch per Post.");
                 body.AppendLine("Bitte teile mir mit, falls du keinen papierenen Einzahlungsschein braucht. Dann kann ich mir den Versand sparen.");
             }
             body.AppendLine();
@@ -74,7 +74,7 @@ namespace Apv.MemberExcel.Email
             // Statuten
             body.AppendLine("Dieses Jahr versende ich auch einen Vorschlag für die Statuten, die wir an der GV im November annehmen wollen.");
             body.AppendLine("Weil keine bisherigen Statuten mehr auffindbar sind, haben wir beschlossen neue zu erstellen. Hier sind sie!");
-            body.AppendLine("Fallst du Änderungsvorschläge hast, melde die doch möglichst schon vor der GV mei mir.");
+            body.AppendLine("Falls du Änderungsvorschläge hast, melde die doch möglichst schon vor der GV bei mir.");
             body.AppendLine();
 
             // Whatsapp
@@ -85,7 +85,7 @@ namespace Apv.MemberExcel.Email
             }
             else
             {
-                body.AppendLine($"Ich werde dich mit der Nummer {addressDto.Mobile} aufnehmen. Wenn du nicht dabei sein willst, kannst du gleich wieder austrerten.");
+                body.AppendLine($"Ich werde dich mit der Nummer {addressDto.Mobile} aufnehmen. Wenn du nicht dabei sein willst, kannst du gleich wieder austreten.");
             }
             body.AppendLine();
 
@@ -95,8 +95,8 @@ namespace Apv.MemberExcel.Email
             body.AppendLine();
 
             // Kalender
-            body.AppendLine("Und hier nochmals der Link auf unseren Kalender. Damit kannst du die die APV-Termine direkt auf deinem Smartphone oder in Outlook anzeoigen lassen.");
-            body.AppendLine("https://calendar.google.com/calendar/ical/fjt6cci1dlg0mfsv26ck3oguuo%40group.calendar.google.com/public/basic.ics.");
+            body.AppendLine("Und hier nochmals der Link auf unseren Kalender. Damit kannst du die die APV-Termine direkt auf deinem Smartphone oder in Outlook anzeigen lassen.");
+            body.AppendLine("https://calendar.google.com/calendar/ical/fjt6cci1dlg0mfsv26ck3oguuo%40group.calendar.google.com/public/basic.ics");
             body.AppendLine();
 
             // Gruss

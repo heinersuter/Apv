@@ -6,7 +6,7 @@ using System.Windows;
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyCompany("APV Gränichen")]
 [assembly: AssemblyProduct("Apv.MemberExcel")]
-[assembly: AssemblyCopyright("Copyright © APV Gränichen 2016")]
+[assembly: AssemblyCopyright("Copyright © APV Gränichen 2017")]
 [assembly: ComVisible(false)]
 [assembly: ThemeInfo(ResourceDictionaryLocation.None, ResourceDictionaryLocation.SourceAssembly)]
 [assembly: AssemblyVersion("1.1.0.0")]

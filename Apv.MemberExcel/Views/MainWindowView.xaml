@@ -5,7 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         mc:Ignorable="d"
-        Title="A³ — APV Adress Acrobat" Height="350" Width="525" d:DataContext="{d:DesignInstance views:MainWindowViewModel}">
+        Title="A³ — APV Adress Acrobat" Height="512" Width="798" d:DataContext="{d:DesignInstance views:MainWindowViewModel}">
 
     <TabControl>
         <TabItem Header="Brief">

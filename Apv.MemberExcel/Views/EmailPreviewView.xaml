@@ -7,38 +7,33 @@
              mc:Ignorable="d" d:DataContext="{d:DesignInstance views:EmailPreviewViewModel}">
     <DockPanel Background="BurlyWood">
 
-        <UniformGrid DockPanel.Dock="Top" Columns="2" Margin="12">
-            <Button Content="&lt;" Command="{Binding ShowPreviousCommand}" Height="24"/>
-            <Button Content="&gt;" Command="{Binding ShowNextCommand}" Height="24"/>
+        <UniformGrid DockPanel.Dock="Top" Columns="2" Margin="8 8 8 4">
+            <Button Content="&lt;" Command="{Binding ShowPreviousCommand}"/>
+            <Button Content="&gt;" Command="{Binding ShowNextCommand}" />
         </UniformGrid>
+
+        <TextBlock DockPanel.Dock="Top" Margin="8 0 8 8" HorizontalAlignment="Center">
+            <Run Text="E-Mail "/>
+            <Run Text="{Binding Index}"/>
+            <Run Text=" von "/>
+            <Run Text="{Binding Count}"/>
+        </TextBlock>
         
-        <HeaderedContentControl DockPanel.Dock="Top" Header="An" Margin="12">
-            <TextBox Text="{Binding To}" IsReadOnly="True" Height="24" Padding="0 2 0 0"/>
+        <HeaderedContentControl DockPanel.Dock="Top" Header="An" Margin="8">
+            <TextBox Text="{Binding To}" IsReadOnly="True" IsTabStop="False"/>
         </HeaderedContentControl>
         
-        <HeaderedContentControl DockPanel.Dock="Top" Header="Betreff" Margin="12">
-            <TextBox Text="{Binding Subject}" IsReadOnly="True" Height="24" Padding="0 2 0 0"/>
+        <HeaderedContentControl DockPanel.Dock="Top" Header="Betreff" Margin="8">
+            <TextBox Text="{Binding Subject}" IsReadOnly="True" IsTabStop="False"/>
         </HeaderedContentControl>
         
         
-        <HeaderedContentControl DockPanel.Dock="Top" Header="Anhänge" Margin="12">
-            <TextBox Text="{Binding Attachements}" IsReadOnly="True" MinLines="4" MaxLines="4" Padding="0 2 0 0"/>
+        <HeaderedContentControl DockPanel.Dock="Top" Header="Anhänge" Margin="8">
+            <TextBox Text="{Binding Attachements}" IsReadOnly="True" IsTabStop="False" MinLines="4" MaxLines="4" Height="NaN"/>
         </HeaderedContentControl>
         
-        <HeaderedContentControl Header="Text" Margin="12" VerticalAlignment="Stretch">
-            <HeaderedContentControl.Template>
-                <ControlTemplate TargetType="HeaderedContentControl">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        <ContentPresenter ContentSource="Header"/>
-                        <ContentPresenter Grid.Row="1"/>
-                    </Grid>
-                </ControlTemplate>
-            </HeaderedContentControl.Template>
-            <TextBox Text="{Binding Body}" IsReadOnly="True" AcceptsReturn="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Padding="0 2 0 0"/>
+        <HeaderedContentControl Header="Text" Margin="8" VerticalAlignment="Stretch">
+            <TextBox Text="{Binding Body}" IsReadOnly="True" IsTabStop="False" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Height="NaN" TextWrapping="Wrap"/>
         </HeaderedContentControl>
     
     </DockPanel>

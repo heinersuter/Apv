@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Globalization;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
-using System.Globalization;
 
 namespace Apv.MemberExcel.Pdfs
 {
@@ -9,7 +9,7 @@ namespace Apv.MemberExcel.Pdfs
     {
         protected static void AddLogo(Document document, PdfWriter writer)
         {
-            var paragraph = new Paragraph { Font = Font24 };
+            var paragraph = new Paragraph { Font = FontBig };
 
             paragraph.Add("APV Gränichen");
 
@@ -19,7 +19,7 @@ namespace Apv.MemberExcel.Pdfs
 
         protected static void AddAddress(LetterAddress address, Document document)
         {
-            var paragraph = new Paragraph { Font = Font11 };
+            var paragraph = new Paragraph { Font = FontNormal };
             SetLeading(paragraph);
             SetIndentation(paragraph);
             paragraph.SpacingBefore = Mm(20);
@@ -38,10 +38,10 @@ namespace Apv.MemberExcel.Pdfs
 
         protected static void AddDate(Document document)
         {
-            var paragraph = new Paragraph { Font = Font11 };
+            var paragraph = new Paragraph { Font = FontNormal };
             SetLeading(paragraph);
             SetIndentation(paragraph);
-            paragraph.SpacingBefore = Mm(20);
+            paragraph.SpacingBefore = Mm(15);
 
             paragraph.Add(string.Format(CultureInfo.GetCultureInfo("de-CH"), "Zürich, {0:d}", DateTime.Now));
 
@@ -51,9 +51,9 @@ namespace Apv.MemberExcel.Pdfs
 
         protected static void AddSalutation(LetterGender gender, string name, Document document)
         {
-            var paragraph = new Paragraph { Font = Font11 };
+            var paragraph = new Paragraph { Font = FontNormal };
             SetLeading(paragraph);
-            paragraph.SpacingBefore = Mm(20);
+            paragraph.SpacingBefore = Mm(15);
 
             switch (gender)
             {
@@ -77,7 +77,7 @@ namespace Apv.MemberExcel.Pdfs
 
         protected static void AddGreetings(Document document)
         {
-            var paragraph = new Paragraph { Font = Font11 };
+            var paragraph = new Paragraph { Font = FontNormal };
             SetLeading(paragraph);
 
             paragraph.Add("Herzliche Grüsse");
@@ -89,11 +89,11 @@ namespace Apv.MemberExcel.Pdfs
 
         protected static void AddPostscriptum(Document document)
         {
-            var paragraph = new Paragraph { Font = Font11 };
+            var paragraph = new Paragraph { Font = FontNormal };
             SetLeading(paragraph);
-            paragraph.SpacingBefore = Mm(20);
+            paragraph.SpacingBefore = Mm(15);
 
-            paragraph.Add("PS: Am 20. Mai ist schon der Gamblerabend.");
+            paragraph.Add("PS: Am 12. Mai ist schon der Gamblerabend.");
 
             document.Add(paragraph);
         }
@@ -101,7 +101,7 @@ namespace Apv.MemberExcel.Pdfs
         protected static void AddSender(Document document, PdfWriter writer)
         {
             var contentByte = writer.DirectContent;
-            var footer = new Phrase("Hirsch | Heiner Suter | Ackersteinstrasse 207 | 8049 Zürich | 079 609 42 82 | hirsch@blaustein.ch", Font8);
+            var footer = new Phrase("Hirsch | Heiner Suter | Ackersteinstrasse 207 | 8049 Zürich | 079 609 42 82 | hirsch@blaustein.ch", FontSmall);
             ColumnText.ShowTextAligned(
                 contentByte,
                 Element.ALIGN_LEFT,
