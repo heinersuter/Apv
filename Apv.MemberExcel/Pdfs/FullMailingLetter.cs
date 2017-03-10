@@ -58,7 +58,7 @@ namespace Apv.MemberExcel.Pdfs
             paragraph.Add(Environment.NewLine);
 
             // Protokoll GV
-            paragraph.Add("Was an der letzten GV alles besprochen wurde, kannst im Protokoll nachlesen.");
+            paragraph.Add($"Was an der letzten GV alles besprochen wurde, {(plural ? "könnt ihr" : "kannst du")} im Protokoll nachlesen.");
             paragraph.Add(Environment.NewLine);
             paragraph.Add("Danke an Atreju fürs protokollieren.");
             paragraph.Add(Environment.NewLine);
@@ -69,12 +69,12 @@ namespace Apv.MemberExcel.Pdfs
             paragraph.Add(Environment.NewLine);
             paragraph.Add("Weil keine bisherigen Statuten mehr auffindbar sind, haben wir beschlossen neue zu erstellen. Hier sind sie!");
             paragraph.Add(Environment.NewLine);
-            paragraph.Add("Falls du Änderungsvorschläge hast, melde die doch möglichst schon vor der GV bei mir.");
+            paragraph.Add($"Falls {(plural ? "ihr" : "du")} Änderungsvorschläge {(plural ? "habt, meldet" : "hast, melde")} die doch möglichst schon vor der GV bei mir.");
             paragraph.Add(Environment.NewLine);
             paragraph.Add(Environment.NewLine);
 
-            // Whatsapp
-            paragraph.Add("Als weitere Neuerung wird es dieses Jahr einen APV-Chat auf Whatsapp geben.");
+            // WhatsApp
+            paragraph.Add("Als weitere Neuerung wird es dieses Jahr einen APV-Chat auf WhatsApp geben.");
             paragraph.Add(Environment.NewLine);
             if (!mobiles.Any())
             {
@@ -99,7 +99,7 @@ namespace Apv.MemberExcel.Pdfs
             paragraph.Add($"Da ich {(plural ? "eure" : "deine")} E-Mail-Adresse nicht habe, schicke ich alles per Post. ");
             paragraph.Add($"Falls {(plural ? "ihr" : "du")} eine E-Mail-Adresse {(plural ? "habt" : "hast")} und mir diese mitteilen {(plural ? "wollt" : "willst")}, schicke ich nächstes Jahr das Jahresprogramm und das Protokoll per E-Mail. ");
             paragraph.Add(Environment.NewLine);
-            paragraph.Add($"Details zu den einzelnen Anlässen werden sowieso nur noch per E-Mail verschickt. Ich hoffe {(plural ? "ihr versteht" : "du verstehst")} das. ");
+            paragraph.Add($"Details zu den einzelnen Anlässen werden nur noch per E-Mail verschickt. Ich hoffe {(plural ? "ihr versteht" : "du verstehst")} das. ");
 
             document.Add(paragraph);
             document.Add(Chunk.NEWLINE);

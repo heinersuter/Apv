@@ -55,8 +55,9 @@ namespace Apv.MemberExcel.Views
 
         private void SendTestEmail(PasswordBox passwordBox)
         {
-            var emailDto = _emailDtos[EmailPreviewViewModel.Index];
+            var emailDto = _emailDtos[EmailPreviewViewModel.Index - 1];
             emailDto.To = TestEmailAddress;
+            emailDto.Subject += " (Test)";
 
             var emailService = new EmailService(SmtpHost, SmtpUsername, passwordBox.Password);
             emailService.SendEmail(emailDto);

@@ -55,12 +55,12 @@ namespace Apv.MemberExcel.Email
             else
             {
                 body.AppendLine("Den Einzahlungsschein erhältst du auch noch per Post.");
-                body.AppendLine("Bitte teile mir mit, falls du keinen papierenen Einzahlungsschein braucht. Dann kann ich mir den Versand sparen.");
+                body.AppendLine("Bitte teile mir mit, falls du keinen papierenen Einzahlungsschein brauchst. Dann kann ich mir den Versand sparen.");
             }
             body.AppendLine();
 
             // Protokoll GV
-            body.AppendLine("Was an der letzten GV alles besprochen wurde, kannst im Protokoll nachlesen.");
+            body.AppendLine("Was an der letzten GV alles besprochen wurde, kannst du im Protokoll nachlesen.");
             if (addressDto.Nickname == "Atreju")
             {
                 body.AppendLine("Danke dir vielmals fürs protokollieren.");
@@ -77,8 +77,8 @@ namespace Apv.MemberExcel.Email
             body.AppendLine("Falls du Änderungsvorschläge hast, melde die doch möglichst schon vor der GV bei mir.");
             body.AppendLine();
 
-            // Whatsapp
-            body.AppendLine("Als weitere Neuerung wird es dieses Jahr einen APV-Chat auf Whatsapp geben.");
+            // WhatsApp
+            body.AppendLine("Als weitere Neuerung wird es dieses Jahr einen APV-Chat auf WhatsApp geben.");
             if (string.IsNullOrEmpty(addressDto.Mobile))
             {
                 body.AppendLine("Wenn du da auch dabei sein willst, teile mir doch deine Handy-Nummer mit.");
@@ -90,7 +90,7 @@ namespace Apv.MemberExcel.Email
             body.AppendLine();
 
             // Adressen intern weitergeben
-            body.AppendLine("Damit du dich mit anderen absprechen kannst wer an welchen Anlass kommt, oder damit du aus einem anderen Grund mit jemandem Kontakt aufnehmen kannst, werde ich die Mitgliederliste mit Adresse, Telefon, E-Mail an alle verschicken.");
+            body.AppendLine("Damit du dich mit anderen absprechen kannst wer an welchen Anlass kommt, oder damit du aus einem anderen Grund mit jemandem Kontakt aufnehmen kannst, werde ich die Mitgliederliste mit Adresse, Telefon und E-Mail an alle verschicken.");
             body.AppendLine("Wenn du damit nicht einverstanden bist, melde dich bitte bis Ende März bei mir.");
             body.AppendLine();
 
