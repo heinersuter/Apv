@@ -48,7 +48,7 @@ namespace Apv.MemberExcel.Services
             {
                 throw new ArgumentException("The value must not be null", nameof(value));
             }
-            if (value.Count(c => c == '.') == 2)
+            if (value.Count(c => c == '.') == 1)
             {
                 var numbers = value.Split('.');
                 return new Date(int.Parse(numbers[1]), int.Parse(numbers[0]));
