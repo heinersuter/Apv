@@ -14,11 +14,6 @@
         "bin/Debug/Apv.Data.dll": {}
       },
       "contentFiles": {
-        "bin/Debug/Apv.Data.pdb": {
-          "buildAction": "None",
-          "codeLanguage": "any",
-          "copyToOutput": true
-        },
         "bin/Debug/members.json": {
           "buildAction": "None",
           "codeLanguage": "any",

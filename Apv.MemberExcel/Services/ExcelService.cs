@@ -13,29 +13,48 @@ namespace Apv.MemberExcel.Services
             var addresses = new List<AddressDto>();
             using (var package = new ExcelPackage(new FileInfo(filePath)))
             {
-                var workBook = package.Workbook;
-                if (workBook?.Worksheets.Count > 0)
+                var workbook = package.Workbook;
+                if (!(workbook?.Worksheets.Count > 0))
                 {
-                    var worksheet = workBook.Worksheets.First();
+                    return addresses;
+                }
 
-                    var rowIndex = 2;
-                    AddressDto dto;
-                    while ((dto = ReadLine(rowIndex, worksheet)) != null)
-                    {
-                        addresses.Add(dto);
-                        rowIndex++;
-                    }
+                var worksheet = workbook.Worksheets.First();
 
+                var rowIndex = 2;
+                AddressDto dto;
+                while ((dto = ReadLine(rowIndex, worksheet)) != null)
+                {
+                    dto.RowIndex = rowIndex;
+                    addresses.Add(dto);
+                    rowIndex++;
                 }
             }
             return addresses;
+        }
+
+        public static void UpdateGeoCodes(string filePath, IEnumerable<AddressDto> addresses)
+        {
+            using (var package = new ExcelPackage(new FileInfo(filePath)))
+            {
+                var worksheet = package.Workbook.Worksheets.First();
+
+                foreach (var addressDto in addresses)
+                {
+                    if (worksheet.Cells[addressDto.RowIndex, 13].Text != addressDto.GeoCode?.ToString())
+                    {
+                        worksheet.Cells[addressDto.RowIndex, 13].Value = addressDto.GeoCode?.ToString();
+                    }
+                }
+                package.Save();
+            }
         }
 
         private static AddressDto ReadLine(int rowIndex, ExcelWorksheet worksheet)
         {
             var hasAnyValue = false;
             var dto = new AddressDto();
-            for (var columnIndex = 1; columnIndex <= 19; columnIndex++)
+            for (var columnIndex = 1; columnIndex <= 20; columnIndex++)
             {
                 var value = worksheet.Cells[rowIndex, columnIndex].Text;
                 if (!string.IsNullOrWhiteSpace(value))
@@ -89,24 +108,27 @@ namespace Apv.MemberExcel.Services
                     dto.City = value;
                     break;
                 case 13:
-                    dto.Functions = value;
+                    dto.GeoCode = GeoCode.Parse(value);
                     break;
                 case 14:
-                    dto.FunctionsScouts = value;
+                    dto.Functions = value;
                     break;
                 case 15:
-                    dto.Gender = value == "m" ? Gender.Male : Gender.Female;
+                    dto.FunctionsScouts = value;
                     break;
                 case 16:
-                    dto.Birthdate = Date.Parse(value);
+                    dto.Gender = value == "m" ? Gender.Male : Gender.Female;
                     break;
                 case 17:
-                    dto.Payment = value == "Papier" ? PaymentType.DepositSlip : value == "E-Mail" ? PaymentType.Email : (PaymentType?)null;
+                    dto.Birthdate = Date.Parse(value);
                     break;
                 case 18:
-                    dto.ResignDate = Date.Parse(value);
+                    dto.Payment = value == "Papier" ? PaymentType.DepositSlip : value == "E-Mail" ? PaymentType.Email : (PaymentType?)null;
                     break;
                 case 19:
+                    dto.ResignDate = Date.Parse(value);
+                    break;
+                case 20:
                     dto.FamilyId = int.Parse(value);
                     break;
             }

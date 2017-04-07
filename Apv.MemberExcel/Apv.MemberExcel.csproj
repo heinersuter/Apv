@@ -80,6 +80,7 @@
     <Compile Include="Services\EmailService.cs" />
     <Compile Include="Services\ExcelService.cs" />
     <Compile Include="Services\Gender.cs" />
+    <Compile Include="Services\GeoCode.cs" />
     <Compile Include="Services\PaymentType.cs" />
     <Compile Include="Services\PdfService.cs" />
     <Compile Include="Services\SettingsService.cs" />

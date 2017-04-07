@@ -2,6 +2,8 @@
 {
     public class AddressDto
     {
+        public int RowIndex { get; set; }
+
         public Status Status { get; set; }
 
         public string Nickname { get; set; }
@@ -25,6 +27,8 @@
         public string ZipCode { get; set; }
 
         public string City { get; set; }
+
+        public GeoCode? GeoCode { get; set; }
 
         public string Functions { get; set; }
 
