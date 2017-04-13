@@ -98,7 +98,15 @@
       <DependentUpon>LetterView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LetterViewModel.cs" />
+    <Compile Include="Views\GeocodeView.xaml.cs">
+      <DependentUpon>GeocodeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GeocodeViewModel.cs" />
     <Compile Include="Views\MainWindowViewModel.cs" />
+    <Page Include="Views\GeocodeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainWindowView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

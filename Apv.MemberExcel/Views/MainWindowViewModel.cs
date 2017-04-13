@@ -4,14 +4,10 @@ namespace Apv.MemberExcel.Views
 {
     public class MainWindowViewModel : ViewModel
     {
-        public LetterViewModel LetterViewModel
-        {
-            get { return BackingFields.GetValue(() => new LetterViewModel()); }
-        }
+        public LetterViewModel LetterViewModel => BackingFields.GetValue(() => new LetterViewModel());
 
-        public EmailViewModel EmailViewModel
-        {
-            get { return BackingFields.GetValue(() => new EmailViewModel(LetterViewModel)); }
-        }
+        public EmailViewModel EmailViewModel => BackingFields.GetValue(() => new EmailViewModel(LetterViewModel));
+
+        public GeocodeViewModel GeocodeViewModel => BackingFields.GetValue(() => new GeocodeViewModel());
     }
 }
