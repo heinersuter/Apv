@@ -15,7 +15,10 @@
             <views:EmailView DataContext="{Binding EmailViewModel}"/>
         </TabItem>
         <TabItem Header="Geocding">
-            <views:GeocodeView DataContext="{Binding }"/>
+            <views:GeocodeView DataContext="{Binding GeocodeViewModel}"/>
+        </TabItem>
+        <TabItem Header="V-Card">
+            <views:VCardView DataContext="{Binding VCardViewModel}"/>
         </TabItem>
     </TabControl>
 

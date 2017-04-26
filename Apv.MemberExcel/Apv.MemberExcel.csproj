@@ -103,6 +103,10 @@
     </Compile>
     <Compile Include="Views\GeocodeViewModel.cs" />
     <Compile Include="Views\MainWindowViewModel.cs" />
+    <Compile Include="Views\VCardView.xaml.cs">
+      <DependentUpon>VCardView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VCardViewModel.cs" />
     <Page Include="Views\GeocodeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -128,6 +132,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\LetterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\VCardView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

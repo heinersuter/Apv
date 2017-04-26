@@ -9,5 +9,7 @@ namespace Apv.MemberExcel.Views
         public EmailViewModel EmailViewModel => BackingFields.GetValue(() => new EmailViewModel(LetterViewModel));
 
         public GeocodeViewModel GeocodeViewModel => BackingFields.GetValue(() => new GeocodeViewModel());
+
+        public VCardViewModel VCardViewModel => BackingFields.GetValue(() => new VCardViewModel(LetterViewModel));
     }
 }
