@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Apv.MemberExcel.Views
 {
     /// <summary>
-    /// Interaction logic for VCardView.xaml
+    /// Interaction logic for ExportView.xaml
     /// </summary>
-    public partial class VCardView : UserControl
+    public partial class ExportView : UserControl
     {
-        public VCardView()
+        public ExportView()
         {
             InitializeComponent();
         }

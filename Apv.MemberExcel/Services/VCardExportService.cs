@@ -2,30 +2,14 @@
 using System.IO;
 using System.Linq;
 using System.Text;
-using Alsolos.Commons.Wpf.Mvvm;
-using Apv.MemberExcel.Services;
 
-namespace Apv.MemberExcel.Views
+namespace Apv.MemberExcel.Services
 {
-    public class VCardViewModel : ViewModel
+    public static class VCardExportService
     {
-        private readonly LetterViewModel _letterViewModel;
-
-        public VCardViewModel(LetterViewModel letterViewModel)
+        public static void CreateVCardFile(string addressExcelFile)
         {
-            _letterViewModel = letterViewModel;
-        }
-
-        public DelegateCommand ExecuteCommand => BackingFields.GetCommand(Execute, CanExecute);
-
-        private bool CanExecute()
-        {
-            return true;
-        }
-
-        private void Execute()
-        {
-            var addressDtos = ExcelService.ReadAddresses(_letterViewModel.ExcelFilePath)
+            var addressDtos = ExcelService.ReadAddresses(addressExcelFile)
                 .Where(dto => dto.Status == Status.Active)
                 .ToList();
 
@@ -34,11 +18,12 @@ namespace Apv.MemberExcel.Views
             {
                 CreateVCard(stringBuilder, dto);
             }
-            var vCardFile = Path.Combine(Path.GetDirectoryName(this._letterViewModel.ExcelFilePath), "APV-V-Cards.vcf");
-            File.WriteAllText(vCardFile, stringBuilder.ToString());
+
+            var exportFile = Path.Combine(Path.GetDirectoryName(addressExcelFile), "APV-V-Cards.vcf");
+            File.WriteAllText(exportFile, stringBuilder.ToString());
         }
 
-        private void CreateVCard(StringBuilder stringBuilder, AddressDto dto)
+        private static void CreateVCard(StringBuilder stringBuilder, AddressDto dto)
         {
             stringBuilder.AppendLine("BEGIN:VCARD");
             stringBuilder.AppendLine("VERSION:3.0");

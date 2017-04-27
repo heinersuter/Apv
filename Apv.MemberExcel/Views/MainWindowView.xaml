@@ -14,11 +14,11 @@
         <TabItem Header="E-Mail">
             <views:EmailView DataContext="{Binding EmailViewModel}"/>
         </TabItem>
+        <TabItem Header="Export">
+            <views:ExportView DataContext="{Binding ExportViewModel}"/>
+        </TabItem>
         <TabItem Header="Geocding">
             <views:GeocodeView DataContext="{Binding GeocodeViewModel}"/>
-        </TabItem>
-        <TabItem Header="V-Card">
-            <views:VCardView DataContext="{Binding VCardViewModel}"/>
         </TabItem>
     </TabControl>
 

@@ -14,6 +14,7 @@
             <Style TargetType="{x:Type Button}">
                 <Setter Property="MinWidth" Value="128"/>
                 <Setter Property="Height" Value="24"/>
+                <Setter Property="Padding" Value="4 0 4 0"/>
             </Style>
             <Style TargetType="{x:Type HeaderedContentControl}">
                 <Setter Property="IsTabStop" Value="False"/>

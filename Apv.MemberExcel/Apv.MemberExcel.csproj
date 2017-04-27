@@ -76,7 +76,9 @@
     <Compile Include="Pdfs\Pdf.cs" />
     <Compile Include="Pdfs\Envelope.cs" />
     <Compile Include="Services\AddressDto.cs" />
+    <Compile Include="Services\AddressExportService.cs" />
     <Compile Include="Services\Date.cs" />
+    <Compile Include="Services\EmailExportService.cs" />
     <Compile Include="Services\EmailService.cs" />
     <Compile Include="Services\ExcelService.cs" />
     <Compile Include="Services\Gender.cs" />
@@ -85,6 +87,7 @@
     <Compile Include="Services\PdfService.cs" />
     <Compile Include="Services\SettingsService.cs" />
     <Compile Include="Services\Status.cs" />
+    <Compile Include="Services\VCardExportService.cs" />
     <Compile Include="Views\EmailPreviewView.xaml.cs">
       <DependentUpon>EmailPreviewView.xaml</DependentUpon>
     </Compile>
@@ -103,10 +106,10 @@
     </Compile>
     <Compile Include="Views\GeocodeViewModel.cs" />
     <Compile Include="Views\MainWindowViewModel.cs" />
-    <Compile Include="Views\VCardView.xaml.cs">
-      <DependentUpon>VCardView.xaml</DependentUpon>
+    <Compile Include="Views\ExportView.xaml.cs">
+      <DependentUpon>ExportView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\VCardViewModel.cs" />
+    <Compile Include="Views\ExportViewModel.cs" />
     <Page Include="Views\GeocodeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -135,7 +138,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\VCardView.xaml">
+    <Page Include="Views\ExportView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -10,6 +10,6 @@ namespace Apv.MemberExcel.Views
 
         public GeocodeViewModel GeocodeViewModel => BackingFields.GetValue(() => new GeocodeViewModel());
 
-        public VCardViewModel VCardViewModel => BackingFields.GetValue(() => new VCardViewModel(LetterViewModel));
+        public ExportViewModel ExportViewModel => BackingFields.GetValue(() => new ExportViewModel(LetterViewModel));
     }
 }
