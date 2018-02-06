@@ -14,10 +14,11 @@ namespace ApvLocationBuilder
     public class AddressImport
     {
         private static readonly Logger Logger = LogManager.GetLogger("Location");
+        private const string AddressExcelFile = @"C:\Users\hsu\Google Drive\Vorstand\Adressen\Adressen.xlsx";
 
         public static void GetLocations()
         {
-            var addresses = ExcelService.ReadAddresses(@"C:\Users\hsu\OneDrive\APV\Adressen.xlsx")
+            var addresses = ExcelService.ReadAddresses(AddressExcelFile)
                 .Where(dto => dto.Status == Status.Active
                     && dto.AddressLine1 != null
                     && dto.ZipCode != null
@@ -33,7 +34,7 @@ namespace ApvLocationBuilder
                 writer.Write(json);
             }
 
-            ExcelService.UpdateGeoCodes(@"C:\Users\hsu\OneDrive\APV\Adressen.xlsx", addresses);
+            ExcelService.UpdateGeoCodes(AddressExcelFile, addresses);
         }
 
         private static LocationDto ToLocation(AddressDto addressDto)

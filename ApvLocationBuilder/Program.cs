@@ -1,4 +1,5 @@
-﻿using NLog;
+﻿using System;
+using NLog;
 
 namespace ApvLocationBuilder
 {
@@ -11,6 +12,7 @@ namespace ApvLocationBuilder
             Logger.Info("Start");
             AddressImport.GetLocations();
             Logger.Info("End");
+            Console.Read();
         }
     }
 }
