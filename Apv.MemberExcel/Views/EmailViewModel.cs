@@ -85,12 +85,15 @@ namespace Apv.MemberExcel.Views
             Console.WriteLine($"Going to send {_emailDtos.Length} emails");
 
             var emailService = new EmailService(SmtpHost, SmtpUsername, passwordBox.Password);
+            var counter = 1;
             foreach (var emailDto in _emailDtos)
             {
                 emailService.SendEmail(emailDto);
-                Console.WriteLine($"Email sent to {emailDto.To}");
+                Console.WriteLine($"Email sent to {emailDto.To} ({counter++} of {_emailDtos.Length})");
                 Thread.Sleep(TimeSpan.FromSeconds(20));
             }
+
+            Console.WriteLine($"Sent {_emailDtos.Length} emails!");
         }
     }
 }
