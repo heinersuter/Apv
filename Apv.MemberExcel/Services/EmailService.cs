@@ -35,14 +35,20 @@ namespace Apv.MemberExcel.Services
                 {
                     Subject = email.Subject,
                     Body = email.Body,
-                    BodyEncoding = Encoding.UTF8,
+                    BodyEncoding = Encoding.UTF8
                 })
                 {
                     foreach (var attachement in email.Attachements)
                     {
                         mailMessage.Attachments.Add(new Attachment(attachement));
                     }
+
                     smtpClient.Send(mailMessage);
+
+                    foreach (var attachment in mailMessage.Attachments)
+                    {
+                        attachment.Dispose();
+                    }
                 }
             }
         }

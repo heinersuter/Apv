@@ -49,7 +49,16 @@ namespace Apv.MemberExcel.Views
 
         private bool CanSendTestEmail(PasswordBox passwordBox)
         {
-            passwordBox.Password = SettingsService.Settings.SmtpPassword;
+            if (string.IsNullOrEmpty(passwordBox.Password) && !string.IsNullOrEmpty(SettingsService.Settings.SmtpPassword))
+            {
+                passwordBox.Password = SettingsService.Settings.SmtpPassword;
+            }
+
+            if (!string.IsNullOrEmpty(passwordBox.Password))
+            {
+                SettingsService.Settings.SmtpPassword = passwordBox.Password;
+            }
+
             return _emailDtos != null;
         }
 
@@ -73,7 +82,7 @@ namespace Apv.MemberExcel.Views
 
         private void SendEmails(PasswordBox passwordBox)
         {
-            Console.WriteLine($"Going to send {_emailDtos.Count()} emails");
+            Console.WriteLine($"Going to send {_emailDtos.Length} emails");
 
             var emailService = new EmailService(SmtpHost, SmtpUsername, passwordBox.Password);
             foreach (var emailDto in _emailDtos)

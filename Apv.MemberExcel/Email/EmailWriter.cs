@@ -17,14 +17,14 @@ namespace Apv.MemberExcel.Email
             var email = new EmailDto
             {
                 To = addressDto.Email1,
-                Subject = "APV - Versand 2017"
+                Subject = "APV Versand 2018",
+                Body = CreateBody(addressDto)
             };
-            email.Attachements.Add(@"C:\Users\hsu\OneDrive\APV\pdfs\Jahresprogramm_2017.pdf");
-            email.Attachements.Add(@"C:\Users\hsu\OneDrive\APV\pdfs\Mitgliederbeitrag_2017.pdf");
-            email.Attachements.Add(@"C:\Users\hsu\OneDrive\APV\pdfs\GV_Protokoll_2016.pdf");
-            email.Attachements.Add(@"C:\Users\hsu\OneDrive\APV\pdfs\Statuten_Provisorisch.pdf");
+            email.Attachements.Add(@"C:\Users\hsu\Google Drive\Aktuelle-Dokumente\Jahresprogramm_2018.pdf");
+            email.Attachements.Add(@"C:\Users\hsu\Google Drive\Aktuelle-Dokumente\GV_Protokoll_2017.pdf");
+            email.Attachements.Add(@"C:\Users\hsu\Google Drive\Aktuelle-Dokumente\APV_Adressen_2018.xlsx");
+            email.Attachements.Add(@"C:\Users\hsu\Google Drive\Aktuelle-Dokumente\Mitgliederbeitrag_2018.pdf");
 
-            email.Body = CreateBody(addressDto);
             return email;
         }
 
@@ -33,13 +33,42 @@ namespace Apv.MemberExcel.Email
             var body = new StringBuilder();
 
             // Anrede
-            body.Append(addressDto.Gender == Gender.Male ? "Lieber " : "Liebe ");
-            body.AppendLine(addressDto.Nickname ?? addressDto.Firstname);
+            body.AppendLine($"{(addressDto.Gender == Gender.Male ? "Lieber" : "Liebe")} {addressDto.Nickname ?? addressDto.Firstname}");
             body.AppendLine();
 
             // Jahresprogramm
-            body.AppendLine("Wir haben wieder ein Jahresprogramm zusammengestellt. Du findest es als PDF im Anhang.");
-            body.AppendLine("Falls du mit dem APV lieber etwas anderes machen möchtest, schicke mir deinen Vorschlag. Oder noch besser: stelle deine Idee an der GV vor.");
+            body.AppendLine("Fürs 2018 schicke ich dir einige Dateien.");
+            body.AppendLine("Die wichtigste ist sicher das Jahresprogramm. Da findest du die aktuellen Anlässe.");
+            body.AppendLine();
+
+            // Protokoll GV + Digitales Archiv
+            body.AppendLine("Ausserdem hast du nun das Protokoll der letzten GV.");
+            body.AppendLine("Brandneu: Die Zugangsdaten fürs digitale Archiv findest du im PDF.");
+            body.AppendLine("Nach dem Einloggen findest du das Archiv unter \"Für mich freigegeben\".");
+            if (addressDto.Nickname == "Uranus")
+            {
+                body.AppendLine("Danke dir vielmals fürs protokollieren.");
+            }
+            body.AppendLine();
+
+            // Statuten
+            body.AppendLine("An der GV haben wir die neuen Statuten verabschiedet und unterschrieben.");
+            body.AppendLine("Hier der Link dazu:");
+            body.AppendLine("https://drive.google.com/open?id=1wGzh6baTCUDy_TVz1nGy4H49fbREdYdF");
+            body.AppendLine();
+
+            // Adressliste
+            body.AppendLine("Zudem gibt es die aktuelle Adressliste mit allen APV-lern als Excel.");
+            body.Append("Wenn du Änderungen oder Ergänzungen hast, melde das bitte bei mir.");
+            if (addressDto.AddressLine1 == null)
+            {
+                body.Append(" Deine Adresse???");
+            }
+            body.AppendLine();
+            if (addressDto.Birthdate == null)
+            {
+                body.AppendLine("Zum Beispiel fehlt dein Geburtsdatum.");
+            }
             body.AppendLine();
 
             // Mitgliederbeitrag
@@ -59,43 +88,16 @@ namespace Apv.MemberExcel.Email
             }
             body.AppendLine();
 
-            // Protokoll GV
-            body.AppendLine("Was an der letzten GV alles besprochen wurde, kannst du im Protokoll nachlesen.");
-            if (addressDto.Nickname == "Atreju")
-            {
-                body.AppendLine("Danke dir vielmals fürs protokollieren.");
-            }
-            else
-            {
-                body.AppendLine("Danke an Atreju fürs protokollieren.");
-            }
-            body.AppendLine();
-
-            // Statuten
-            body.AppendLine("Dieses Jahr versende ich auch einen Vorschlag für die Statuten, die wir an der GV im November annehmen wollen.");
-            body.AppendLine("Weil keine bisherigen Statuten mehr auffindbar sind, haben wir beschlossen neue zu erstellen. Hier sind sie!");
-            body.AppendLine("Falls du Änderungsvorschläge hast, melde die doch möglichst schon vor der GV bei mir.");
-            body.AppendLine();
-
             // WhatsApp
-            body.AppendLine("Als weitere Neuerung wird es dieses Jahr einen APV-Chat auf WhatsApp geben.");
             if (string.IsNullOrEmpty(addressDto.Mobile))
             {
+                body.AppendLine("Es existiert ein APV-Chat auf WhatsApp.");
                 body.AppendLine("Wenn du da auch dabei sein willst, teile mir doch deine Handy-Nummer mit.");
+                body.AppendLine();
             }
-            else
-            {
-                body.AppendLine($"Ich werde dich mit der Nummer {addressDto.Mobile} aufnehmen. Wenn du nicht dabei sein willst, kannst du gleich wieder austreten.");
-            }
-            body.AppendLine();
-
-            // Adressen intern weitergeben
-            body.AppendLine("Damit du dich mit anderen absprechen kannst wer an welchen Anlass kommt, oder damit du aus einem anderen Grund mit jemandem Kontakt aufnehmen kannst, werde ich die Mitgliederliste mit Adresse, Telefon und E-Mail an alle verschicken.");
-            body.AppendLine("Wenn du damit nicht einverstanden bist, melde dich bitte bis Ende März bei mir.");
-            body.AppendLine();
 
             // Kalender
-            body.AppendLine("Und hier nochmals der Link auf unseren Kalender. Damit kannst du die die APV-Termine direkt auf deinem Smartphone oder in Outlook anzeigen lassen.");
+            body.AppendLine("Und hier nochmals der Link auf unseren Kalender. Damit kannst du dir die APV-Termine direkt auf deinem Smartphone oder Computer anzeigen lassen.");
             body.AppendLine("https://calendar.google.com/calendar/ical/fjt6cci1dlg0mfsv26ck3oguuo%40group.calendar.google.com/public/basic.ics");
             body.AppendLine();
 

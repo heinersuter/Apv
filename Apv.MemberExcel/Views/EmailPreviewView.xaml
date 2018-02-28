@@ -27,7 +27,6 @@
             <TextBox Text="{Binding Subject}" IsReadOnly="True" IsTabStop="False"/>
         </HeaderedContentControl>
         
-        
         <HeaderedContentControl DockPanel.Dock="Top" Header="Anhänge" Margin="8">
             <TextBox Text="{Binding Attachements}" IsReadOnly="True" IsTabStop="False" MinLines="4" MaxLines="4" Height="NaN"/>
         </HeaderedContentControl>
