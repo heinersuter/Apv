@@ -93,7 +93,7 @@ namespace Apv.MemberExcel.Pdfs
             SetLeading(paragraph);
             paragraph.SpacingBefore = Mm(15);
 
-            paragraph.Add("PS: Am 12. Mai ist schon der Gamblerabend.");
+            paragraph.Add("PS: Am 25. Mai ist schon der Gamblerabend.");
 
             document.Add(paragraph);
         }
@@ -101,7 +101,7 @@ namespace Apv.MemberExcel.Pdfs
         protected static void AddSender(Document document, PdfWriter writer)
         {
             var contentByte = writer.DirectContent;
-            var footer = new Phrase("Hirsch | Heiner Suter | Ackersteinstrasse 207 | 8049 Zürich | 079 609 42 82 | hirsch@blaustein.ch", FontSmall);
+            var footer = new Phrase("Hirsch | Heiner Suter | Ackersteinstrasse 207 | 8049 Zürich | 079 609 42 82 | heiner.suter@gmx.ch", FontSmall);
             ColumnText.ShowTextAligned(
                 contentByte,
                 Element.ALIGN_LEFT,

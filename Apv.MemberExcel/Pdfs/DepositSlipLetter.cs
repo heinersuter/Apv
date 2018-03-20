@@ -47,15 +47,24 @@ namespace Apv.MemberExcel.Pdfs
             var plural = gender == LetterGender.Family;
             paragraph.Add($"In diesem Covert {(plural ? "findet ihr" : "findest du")} den Einzahlungsschein für den Mitgliederbeitrag.");
             paragraph.Add(Environment.NewLine);
+            paragraph.Add(Environment.NewLine);
             if (requiresDepositSlipUnknown)
             {
                 paragraph.Add($"{(plural ? "Ihr habt" : "Du hast")} mir noch nicht mitgeteilt, ob {(plural ? "ihr" : "du")} den Einzahlungsschein in Papierform {(plural ? "braucht" : "brauchst")}. ");
+                paragraph.Add(Environment.NewLine);
                 paragraph.Add($"{(plural ? "Könnt ihr" : "Kannst du")} das bitte noch melden? ");
+                paragraph.Add(Environment.NewLine);
+                paragraph.Add(Environment.NewLine);
                 paragraph.Add($"{(plural ? "Wenn ihr den Einzahlungsschein wollt" : "Wenn du den Einzahlungsschein willst")}, schicke ich den gerne, gar kein Problem. ");
                 paragraph.Add($"Aber wenn {(plural ? "ihr" : "du")} die Einzahlung sowieso per E-Banking {(plural ? "tätigt" : "tätigst")}, dann kann ich mir den Versand gerne auch sparen. ");
                 paragraph.Add(Environment.NewLine);
             }
-            paragraph.Add($"Der Rest des Jahresversandes und die Details zu den Anlässen werden {(requiresDepositSlipUnknown ? "sowieso " : string.Empty)}nur noch per E-Mail verschickt. Ich hoffe {(plural ? "ihr versteht" : "du verstehst")} das. ");
+            paragraph.Add($"Der Rest des Jahresversandes und die Details zu den Anlässen werden {(requiresDepositSlipUnknown ? "sowieso " : string.Empty)}nur noch per E-Mail verschickt. ");
+            if (requiresDepositSlipUnknown)
+            {
+                paragraph.Add(Environment.NewLine);
+                paragraph.Add($"Ich hoffe {(plural ? "ihr versteht" : "du verstehst")} das. ");
+            }
 
             document.Add(paragraph);
             document.Add(Chunk.NEWLINE);
