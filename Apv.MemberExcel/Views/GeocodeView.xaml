@@ -13,6 +13,8 @@
         </HeaderedContentControl>
 
         <Button Content="Re-Geocode" Command="{Binding GeocodeMissingAdressesCommand}" Margin="8 8 8 0" HorizontalAlignment="Center"/>
+
+        <Button Content="Generate Member Map" Command="{Binding GenerateMemberMapCommand}" Margin="8 8 8 0" HorizontalAlignment="Center"/>
         
     </StackPanel>
 </UserControl>

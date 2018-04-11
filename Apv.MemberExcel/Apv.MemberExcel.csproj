@@ -71,6 +71,7 @@
     </ApplicationDefinition>
     <Compile Include="Email\EmailDto.cs" />
     <Compile Include="Geocoding\Geocoder.cs" />
+    <Compile Include="Geocoding\MapGenerator.cs" />
     <Compile Include="Pdfs\DepositSlipLetter.cs" />
     <Compile Include="Pdfs\FullMailingLetter.cs" />
     <Compile Include="Pdfs\Letter.cs" />
@@ -164,6 +165,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Geocoding\index.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

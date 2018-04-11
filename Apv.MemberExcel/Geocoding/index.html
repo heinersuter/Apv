@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APV Mitglieder Standorte</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            background-color: #AA7733;
+            font-family: sans-serif;
+        }
+
+        header {
+            height: 64px;
+        }
+
+        main {
+            flex: auto;
+        }
+
+        h1 {
+            font-size: 16pt;
+            text-align: center;
+        }
+
+        #map {
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>APV Mitglieder Standorte</h1>
+    </header>
+
+    <main>
+        <div id="map"></div>
+    </main>
+
+    <script>
+        var min = { lat: undefined, lng: undefined };
+        var max = { lat: undefined, lng: undefined };
+        var center = { lat: undefined, lng: undefined };
+
+        function initMap() {
+            analyze(locations);
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 10,
+                center: center
+            });
+
+            var markers = locations.map(function (location) {
+                return new google.maps.Marker({
+                    position: { lat: location.Lat, lng: location.Lng },
+                    label: location.Nickname !== null ? location.Nickname : location.Firstname,
+                    title: location.Nickname !== null ? location.Nickname + ' (' + location.Firstname + ' ' + location.Lastname + ')' : location.Firstname + ' ' + location.Lastname
+                });
+            });
+
+            new MarkerClusterer(map, markers, { imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
+
+
+            ////for (var i = 0; i < locations.length; i++) {
+            ////    var location = locations[i];
+
+            ////    var marker = new google.maps.Marker({
+            ////        position: { lat: location.Lat, lng: location.Lng },
+            ////        title: location.Nickname !== null ? location.Nickname + ' (' + location.Firstname + ' ' + location.Lastname + ')' : location.Firstname + ' ' + location.Lastname,
+            ////        map: map
+            ////    });
+            ////}
+            map.fitBounds({ west: min.lng, east: max.lng, south: min.lat, north: max.lat });
+        }
+
+        function analyze(locations) {
+            for (var i = 0; i < locations.length; i++) {
+                var location = locations[i];
+                if (min.lat === undefined || location.Lat < min.lat) {
+                    min.lat = location.Lat;
+                }
+                if (min.lng === undefined || location.Lng < min.lng) {
+                    min.lng = location.Lng;
+                }
+                if (max.lat === undefined || location.Lat > max.lat) {
+                    max.lat = location.Lat;
+                }
+                if (max.lng === undefined || location.Lng > max.lng) {
+                    max.lng = location.Lng;
+                }
+            }
+            center = { lat: min.lat + (max.lat - min.lat) / 2, lng: min.lng + (max.lng - min.lng) / 2 };
+        }
+
+        var locations = ARRAY_OF_LOCATIONS;
+    </script>
+    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhKs5O-fCAjlOIZ9AoeTFUWe2CQ-iHDf4&callback=initMap"></script>
+</body>
+</html>

@@ -30,5 +30,17 @@ namespace Apv.MemberExcel.Views
         {
             Geocoder.LoadAdressesAndUpdateMissingGeoCodes(_letterViewModel.ExcelFilePath);
         }
+
+        public DelegateCommand GenerateMemberMapCommand => BackingFields.GetCommand(GenerateMemberMap, CanGenerateMemberMap);
+
+        private bool CanGenerateMemberMap()
+        {
+            return File.Exists(_letterViewModel.ExcelFilePath);
+        }
+
+        private void GenerateMemberMap()
+        {
+            MapGenerator.GenerateMemberMap(_letterViewModel.ExcelFilePath);
+        }
     }
 }
