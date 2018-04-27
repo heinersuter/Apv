@@ -8,7 +8,7 @@ namespace Apv.ArchiveApi.Api.Health
         [HttpGet("check")]
         public IActionResult Check()
         {
-            return Ok(new { Message = "Archive API is up and running." });
+            return Ok(new { Message = "The Archive API is up and running." });
         }
     }
 }
