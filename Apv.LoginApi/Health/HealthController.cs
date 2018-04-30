@@ -8,7 +8,7 @@ namespace Apv.LoginApi.Health
         [HttpGet("check")]
         public IActionResult Check()
         {
-            return Ok(new { Message = "Login API is up and running." });
+            return Ok(new { Message = "The Login API is up and running." });
         }
     }
 }

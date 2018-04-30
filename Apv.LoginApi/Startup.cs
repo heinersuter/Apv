@@ -52,10 +52,10 @@ namespace Apv.LoginApi
             using (var serviceScope = app.ApplicationServices.CreateScope())
             {
                 var context = serviceScope.ServiceProvider.GetService<ApplicationDbContext>();
-                if (!context.Database.EnsureCreated())
-                {
-                    context.Database.Migrate();
-                }
+                //if (!context.Database.EnsureCreated())
+                //{
+                //    context.Database.Migrate();
+                //}
             }
         }
     }
