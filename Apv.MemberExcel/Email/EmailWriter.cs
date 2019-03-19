@@ -100,7 +100,7 @@ namespace Apv.MemberExcel.Email
             }
 
             // Kalender
-            body.AppendLine("Und hier der Link auf unseren Kalender. Damit kannst du dir die APV-Termine direkt auf deinem Smartphone oder Computer anzeigen lassen.");
+            body.AppendLine("Und hier der Link auf unseren (neuen) Kalender. Damit kannst du dir die APV-Termine direkt auf deinem Smartphone oder Computer anzeigen lassen.");
             body.AppendLine("https://calendar.google.com/calendar/ical/apv.admin%40blaustein.ch/public/basic.ics");
             body.AppendLine();
 

@@ -46,6 +46,10 @@ namespace Apv.MemberExcel.Pdfs
             var plural = gender == LetterGender.Family;
             paragraph.Add($"In diesem Covert {(plural ? "findet ihr" : "findest du")} den Einzahlungsschein für den Mitgliederbeitrag.");
             paragraph.Add(Environment.NewLine);
+            paragraph.Add("Der Jahresbeitrag ist CHF 30.-, respektive CHF 50.- für Familien.");
+            paragraph.Add(Environment.NewLine);
+            paragraph.Add("Danke fürs Einzahlen.");
+            paragraph.Add(Environment.NewLine);
             paragraph.Add(Environment.NewLine);
             if (requiresDepositSlipUnknown)
             {

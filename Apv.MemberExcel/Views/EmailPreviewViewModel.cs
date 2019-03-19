@@ -67,10 +67,10 @@ namespace Apv.MemberExcel.Views
                 }
                 else
                 {
-                    To = _emailDtos[newIndex-1].To;
-                    Subject = _emailDtos[newIndex-1].Subject;
-                    Body = _emailDtos[newIndex-1].Body;
-                    Attachements = string.Join(Environment.NewLine, _emailDtos[newIndex].Attachements);
+                    To = _emailDtos[newIndex - 1].To;
+                    Subject = _emailDtos[newIndex - 1].Subject;
+                    Body = _emailDtos[newIndex - 1].Body;
+                    Attachements = string.Join(Environment.NewLine, _emailDtos[newIndex - 1].Attachements);
                     Index = newIndex;
                 }
             }

@@ -54,7 +54,7 @@ namespace Apv.MemberExcel.Services
         {
             var hasAnyValue = false;
             var dto = new AddressDto();
-            for (var columnIndex = 1; columnIndex <= 20; columnIndex++)
+            for (var columnIndex = 1; columnIndex <= 22; columnIndex++)
             {
                 var value = worksheet.Cells[rowIndex, columnIndex].Text;
                 if (!string.IsNullOrWhiteSpace(value))

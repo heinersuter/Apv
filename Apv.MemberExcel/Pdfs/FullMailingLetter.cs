@@ -29,7 +29,7 @@ namespace Apv.MemberExcel.Pdfs
                     AddAddress(address, document);
                     AddDate(document);
                     AddSalutation(address.Gender, address.CallingName, document);
-                    AddContent(address.Gender, document);
+                    AddContent(address.Gender, document, address.Mobiles.Any());
                     AddGreetings(document);
                     AddSender(document, writer);
 
@@ -38,7 +38,7 @@ namespace Apv.MemberExcel.Pdfs
             }
         }
 
-        private static void AddContent(LetterGender gender, Document document)
+        private static void AddContent(LetterGender gender, Document document, bool anyMobileNumber)
         {
             var paragraph = new Paragraph { Font = FontNormal };
             SetLeading(paragraph);
@@ -52,23 +52,23 @@ namespace Apv.MemberExcel.Pdfs
             // Mitgliederbeitrag
             paragraph.Add($"Zudem {(plural ? "findet ihr" : "findest du")} auch den Einzahlungsschein für den Mitgliederbeitrag im Couvert. ");
             paragraph.Add(Environment.NewLine);
+            paragraph.Add("Der Jahresbeitrag ist CHF 30.-, respektive CHF 50.- für Familien.");
+            paragraph.Add(Environment.NewLine);
             paragraph.Add("Danke fürs Einzahlen.");
             paragraph.Add(Environment.NewLine);
             paragraph.Add(Environment.NewLine);
 
-            // Protokoll GV
-            paragraph.Add($"Und was an der letzten GV alles besprochen wurde, {(plural ? "könnt ihr" : "kannst du")} im Protokoll nachlesen. ");
-            paragraph.Add(Environment.NewLine);
-            paragraph.Add(Environment.NewLine);
-
-            // Email
+            // Email / WhatsApp
             paragraph.Add($"Da ich {(plural ? "eure" : "deine")} E-Mail-Adresse nicht habe, schicke ich alles per Post. ");
             paragraph.Add(Environment.NewLine);
             paragraph.Add($"Bitte {(plural ? "teilt mir eure" : "teile mir deine")} E-mail-Adresse mit (falls vorhanden). ");
-            paragraph.Add(Environment.NewLine);
             paragraph.Add("Dann schicke ich nächstes Jahr das Jahresprogramm und das Protokoll per E-Mail. ");
             paragraph.Add(Environment.NewLine);
             paragraph.Add("Details zu den einzelnen Anlässen werden nur noch per E-Mail und WhatsApp verschickt. ");
+            if (!anyMobileNumber)
+            {
+                paragraph.Add($"Wenn {(plural ? "ihr mir eure" : "du mir deine")} Handy-Nummer {(plural ? "mitteilt" : "mitteilst")}, nehme ich {(plural ? "euch" : "dich")} gerne in die WhatsApp-Gruppe auf. ");
+            }
 
             document.Add(paragraph);
             document.Add(Chunk.NEWLINE);

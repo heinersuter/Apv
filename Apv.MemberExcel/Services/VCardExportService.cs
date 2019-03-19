@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -12,6 +14,8 @@ namespace Apv.MemberExcel.Services
     {
         public static void CreateVCardFile(string addressExcelFile)
         {
+            ResizeImages();
+
             var addressDtos = ExcelService.ReadAddresses(addressExcelFile)
                 .Where(dto => dto.Status == Status.Active)
                 .ToList();
@@ -82,7 +86,7 @@ namespace Apv.MemberExcel.Services
             {
                 stringBuilder.AppendLine($"EMAIL;TYPE=HOME;TYPE=pref;TYPE=INTERNET:{dto.Email1}");
             }
-            var photo = FindPhoto(dto);
+            var photo = FindPhotoAsBase64(dto);
             if (photo != null)
             {
                 stringBuilder.AppendLine($"PHOTO;TYPE=JPEG;ENCODING=b:{photo}");
@@ -93,7 +97,7 @@ namespace Apv.MemberExcel.Services
             return stringBuilder.ToString();
         }
 
-        private static string FindPhoto(AddressDto dto)
+        private static string FindPhotoAsBase64(AddressDto dto)
         {
             var expectedFile = Path.Combine(FileSystemService.ProfilePhotosDirectory, $"{dto.Firstname}-{dto.Lastname}-({dto.Nickname}).jpg");
 
@@ -101,10 +105,10 @@ namespace Apv.MemberExcel.Services
             {
                 using (var image = Image.FromFile(expectedFile))
                 {
-                    using (var m = new MemoryStream())
+                    using (var memoryStream = new MemoryStream())
                     {
-                        image.Save(m, image.RawFormat);
-                        byte[] imageBytes = m.ToArray();
+                        image.Save(memoryStream, image.RawFormat);
+                        var imageBytes = memoryStream.ToArray();
                         var base64String = Convert.ToBase64String(imageBytes);
                         return base64String;
                     }
@@ -123,6 +127,42 @@ namespace Apv.MemberExcel.Services
                 if (!dtos.Any(dto => dto.Firstname == firstname && dto.Lastname == lastname && dto.Nickname == nickname))
                 {
                     Console.WriteLine($"Photo '{firstname}-{lastname}-({nickname}).jpg' can not be assigned to an address.");
+                }
+            }
+        }
+
+        private static void ResizeImages()
+        {
+            var photoFiles = Directory.GetFiles(FileSystemService.ProfilePhotosDirectory, "*.jpg");
+            const int size = 128;
+            var destRect = new Rectangle(0, 0, size, size);
+
+            foreach (var file in photoFiles)
+            {
+                using (var destImage = new Bitmap(size, size))
+                {
+                    destImage.SetResolution(72.0f, 72.0f);
+
+                    using (var image = Image.FromFile(file))
+                    {
+                        using (var graphics = Graphics.FromImage(destImage))
+                        {
+                            graphics.CompositingMode = CompositingMode.SourceCopy;
+                            graphics.CompositingQuality = CompositingQuality.HighQuality;
+                            graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                            graphics.SmoothingMode = SmoothingMode.HighQuality;
+                            graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
+
+                            using (var wrapMode = new ImageAttributes())
+                            {
+                                wrapMode.SetWrapMode(WrapMode.TileFlipXY);
+                                graphics.DrawImage(image, destRect, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel,
+                                    wrapMode);
+                            }
+                        }
+                    }
+
+                    destImage.Save(file, ImageFormat.Jpeg);
                 }
             }
         }

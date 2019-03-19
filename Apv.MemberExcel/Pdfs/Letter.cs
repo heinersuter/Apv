@@ -41,7 +41,7 @@ namespace Apv.MemberExcel.Pdfs
             SetIndentation(paragraph);
             paragraph.SpacingBefore = Mm(15);
 
-            paragraph.Add(string.Format(CultureInfo.GetCultureInfo("de-CH"), "Zürich, {0:d}", DateTime.Now));
+            paragraph.Add(string.Format(CultureInfo.GetCultureInfo("de-CH"), "Lenzburg, {0:d}", DateTime.Now));
 
             document.Add(paragraph);
             document.Add(Chunk.NEWLINE);
