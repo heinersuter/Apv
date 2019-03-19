@@ -60,16 +60,28 @@
                 center: center
             });
 
-            var markers = locations.map(function (location) {
-                return new google.maps.Marker({
+            ////var markers = locations.map(function (location) {
+            ////    return new google.maps.Marker({
+            ////        position: { lat: location.Lat, lng: location.Lng },
+            ////        label: location.Nickname !== null ? location.Nickname : location.Firstname,
+            ////        title: location.Nickname !== null ? location.Nickname + ' (' + location.Firstname + ' ' + location.Lastname + ')' : location.Firstname + ' ' + location.Lastname
+            ////    });
+            ////});
+
+            ////new MarkerClusterer(map, markers, { imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
+
+            var oms = new OverlappingMarkerSpiderfier(map, { markersWontMove: true, markersWontHide: true });
+            for (var i = 0; i < locations.length; i++) {
+                var location = locations[i];
+
+                var marker = new google.maps.Marker({
                     position: { lat: location.Lat, lng: location.Lng },
-                    label: location.Nickname !== null ? location.Nickname : location.Firstname,
-                    title: location.Nickname !== null ? location.Nickname + ' (' + location.Firstname + ' ' + location.Lastname + ')' : location.Firstname + ' ' + location.Lastname
+                    title: location.Nickname !== null ? location.Nickname + ' (' + location.Firstname + ' ' + location.Lastname + ')' : location.Firstname + ' ' + location.Lastname,
+                    map: map
                 });
-            });
-
-            new MarkerClusterer(map, markers, { imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
-
+                oms.addMarker(marker, function(e) {
+                });
+            }
 
             ////for (var i = 0; i < locations.length; i++) {
             ////    var location = locations[i];
@@ -104,7 +116,8 @@
 
         var locations = ARRAY_OF_LOCATIONS;
     </script>
-    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhKs5O-fCAjlOIZ9AoeTFUWe2CQ-iHDf4&callback=initMap"></script>
+    <!--<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OverlappingMarkerSpiderfier/1.0.3/oms.min.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2lwQuNzUsRTH-49FA7od4dB_Xvu5DCvg&callback=initMap"></script>
 </body>
 </html>

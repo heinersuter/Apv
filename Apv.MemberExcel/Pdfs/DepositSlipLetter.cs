@@ -31,7 +31,6 @@ namespace Apv.MemberExcel.Pdfs
                     AddSalutation(address.Gender, address.CallingName, document);
                     AddContent(address.Gender, document, requiresDepositSlipUnknown);
                     AddGreetings(document);
-                    AddPostscriptum(document);
                     AddSender(document, writer);
 
                     document.NewPage();
@@ -59,12 +58,7 @@ namespace Apv.MemberExcel.Pdfs
                 paragraph.Add($"Aber wenn {(plural ? "ihr" : "du")} die Einzahlung sowieso per E-Banking {(plural ? "tätigt" : "tätigst")}, dann kann ich mir den Versand gerne auch sparen. ");
                 paragraph.Add(Environment.NewLine);
             }
-            paragraph.Add($"Der Rest des Jahresversandes und die Details zu den Anlässen werden {(requiresDepositSlipUnknown ? "sowieso " : string.Empty)}nur noch per E-Mail verschickt. ");
-            if (requiresDepositSlipUnknown)
-            {
-                paragraph.Add(Environment.NewLine);
-                paragraph.Add($"Ich hoffe {(plural ? "ihr versteht" : "du verstehst")} das. ");
-            }
+            paragraph.Add($"Der Rest des Jahresversandes und die Details zu den Anlässen werden {(requiresDepositSlipUnknown ? "sowieso " : string.Empty)}nur noch per E-Mail und WhatsApp verschickt. ");
 
             document.Add(paragraph);
             document.Add(Chunk.NEWLINE);

@@ -131,6 +131,12 @@ namespace Apv.MemberExcel.Services
                 case 20:
                     dto.FamilyId = int.Parse(value);
                     break;
+                case 21:
+                    dto.WhatsApp = value;
+                    break;
+                case 22:
+                    dto.GoogleAccount = value;
+                    break;
             }
         }
     }

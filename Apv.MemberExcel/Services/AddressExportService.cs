@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Linq;
 using OfficeOpenXml;
 
@@ -14,7 +15,7 @@ namespace Apv.MemberExcel.Services
                 .ThenBy(dto => dto.Firstname)
                 .ToList();
 
-            var exportFile = Path.Combine(Path.GetDirectoryName(mainAddressExcelFilePath), "APV-Adressen.xlsx");
+            var exportFile = Path.Combine(FileSystemService.CurrentDocsDirectory, $"Adressen_{DateTime.Now:yyyy}.xlsx");
             if (File.Exists(exportFile))
             {
                 File.Delete(exportFile);

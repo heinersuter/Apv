@@ -43,5 +43,9 @@
         public Date? ResignDate { get; set; }
 
         public int? FamilyId { get; set; }
+
+        public string WhatsApp { get; set; }
+
+        public string GoogleAccount { get; set; }
     }
 }

@@ -31,7 +31,6 @@ namespace Apv.MemberExcel.Pdfs
                     AddSalutation(address.Gender, address.CallingName, document);
                     AddContent(address.Gender, document);
                     AddGreetings(document);
-                    AddPostscriptum(document);
                     AddSender(document, writer);
 
                     document.NewPage();
@@ -46,7 +45,7 @@ namespace Apv.MemberExcel.Pdfs
             var plural = gender == LetterGender.Family;
 
             // Jahresprogramm
-            paragraph.Add($"Das Jahresprogramm 2018 ist fertig! Ich hoffe, da ist was für {(plural ? "euch" : "dich")} dabei. ");
+            paragraph.Add($"Das Jahresprogramm {DateTime.Now:yyyy} ist fertig! Ich hoffe, da ist was für {(plural ? "euch" : "dich")} dabei. ");
             paragraph.Add(Environment.NewLine);
             paragraph.Add(Environment.NewLine);
 
@@ -69,7 +68,7 @@ namespace Apv.MemberExcel.Pdfs
             paragraph.Add(Environment.NewLine);
             paragraph.Add("Dann schicke ich nächstes Jahr das Jahresprogramm und das Protokoll per E-Mail. ");
             paragraph.Add(Environment.NewLine);
-            paragraph.Add($"Details zu den einzelnen Anlässen werden nur noch per E-Mail verschickt. Ich hoffe {(plural ? "ihr versteht" : "du verstehst")} das. ");
+            paragraph.Add("Details zu den einzelnen Anlässen werden nur noch per E-Mail und WhatsApp verschickt. ");
 
             document.Add(paragraph);
             document.Add(Chunk.NEWLINE);

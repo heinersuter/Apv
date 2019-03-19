@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -19,7 +20,7 @@ namespace Apv.MemberExcel.Services
                 stringBuilder.AppendLine(dto.Email1);
             }
 
-            var exportFile = Path.Combine(Path.GetDirectoryName(addressExcelFile), "APV-Emails.txt");
+            var exportFile = Path.Combine(FileSystemService.AddressDirectory, $"Emails_{DateTime.Now:yyyy}.txt");
             File.WriteAllText(exportFile, stringBuilder.ToString());
         }
     }

@@ -24,8 +24,6 @@ namespace Apv.MemberExcel.Pdfs
             SetIndentation(paragraph);
             paragraph.SpacingBefore = Mm(20);
 
-            paragraph.Add(GetTitle(address.Gender));
-            paragraph.Add(Environment.NewLine);
             paragraph.Add(address.AddressName);
             paragraph.Add(Environment.NewLine);
             paragraph.Add(address.AddressLine1);
@@ -101,7 +99,7 @@ namespace Apv.MemberExcel.Pdfs
         protected static void AddSender(Document document, PdfWriter writer)
         {
             var contentByte = writer.DirectContent;
-            var footer = new Phrase("Hirsch | Heiner Suter | Ackersteinstrasse 207 | 8049 Zürich | 079 609 42 82 | heiner.suter@gmx.ch", FontSmall);
+            var footer = new Phrase("Hirsch | Heiner Suter | Zelglistrasse 12 | 5600 Lenzburg | 079 609 42 82 | hirsch@blaustein.ch", FontSmall);
             ColumnText.ShowTextAligned(
                 contentByte,
                 Element.ALIGN_LEFT,
