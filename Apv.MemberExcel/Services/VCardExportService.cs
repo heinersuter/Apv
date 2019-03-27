@@ -24,7 +24,7 @@ namespace Apv.MemberExcel.Services
             SaveToSingleFile(vCards);
             SaveToManyFiles(vCards);
 
-            CheckForUnusedPhotos(addressDtos);
+            UpdatePhotoInExcel(addressExcelFile, addressDtos);
         }
 
         private static void SaveToSingleFile(IEnumerable<string> vCards)
@@ -118,17 +118,25 @@ namespace Apv.MemberExcel.Services
             return null;
         }
 
-        private static void CheckForUnusedPhotos(IList<AddressDto> dtos)
+        private static void UpdatePhotoInExcel(string addressExcelFile, IList<AddressDto> dtos)
         {
             var photoFiles = Directory.GetFiles(FileSystemService.ProfilePhotosDirectory, "*.jpg");
-            var photos = photoFiles.Select(ParsePhotoFileName);
-            foreach (var (firstname, lastname, nickname) in photos)
+            foreach (var photoFile in photoFiles)
             {
-                if (!dtos.Any(dto => dto.Firstname == firstname && dto.Lastname == lastname && dto.Nickname == nickname))
+                var (firstname, lastname, nickname) = ParsePhotoFileName(photoFile);
+                var dto = dtos.FirstOrDefault(inner => inner.Firstname == firstname && inner.Lastname == lastname && inner.Nickname == nickname);
+
+                if (dto == null)
                 {
                     Console.WriteLine($"Photo '{firstname}-{lastname}-({nickname}).jpg' can not be assigned to an address.");
                 }
+                else
+                {
+                    dto.ProfilePhoto = Path.GetFileName(photoFile);
+                }
             }
+
+            ExcelService.UpdateProfilePhoto(addressExcelFile, dtos);
         }
 
         private static void ResizeImages()

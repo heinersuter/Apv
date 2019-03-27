@@ -50,11 +50,28 @@ namespace Apv.MemberExcel.Services
             }
         }
 
+        public static void UpdateProfilePhoto(string filePath, IEnumerable<AddressDto> addresses)
+        {
+            using (var package = new ExcelPackage(new FileInfo(filePath)))
+            {
+                var worksheet = package.Workbook.Worksheets.First();
+
+                foreach (var addressDto in addresses)
+                {
+                    if (worksheet.Cells[addressDto.RowIndex, 24].Text != addressDto.ProfilePhoto)
+                    {
+                        worksheet.Cells[addressDto.RowIndex, 24].Value = addressDto.ProfilePhoto;
+                    }
+                }
+                package.Save();
+            }
+        }
+
         private static AddressDto ReadLine(int rowIndex, ExcelWorksheet worksheet)
         {
             var hasAnyValue = false;
             var dto = new AddressDto();
-            for (var columnIndex = 1; columnIndex <= 22; columnIndex++)
+            for (var columnIndex = 1; columnIndex <= 24; columnIndex++)
             {
                 var value = worksheet.Cells[rowIndex, columnIndex].Text;
                 if (!string.IsNullOrWhiteSpace(value))
@@ -136,6 +153,12 @@ namespace Apv.MemberExcel.Services
                     break;
                 case 22:
                     dto.GoogleAccount = value;
+                    break;
+                case 23:
+                    dto.JoinDate = Date.Parse(value);
+                    break;
+                case 24:
+                    dto.ProfilePhoto = value;
                     break;
             }
         }

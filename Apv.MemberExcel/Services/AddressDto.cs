@@ -47,5 +47,9 @@
         public string WhatsApp { get; set; }
 
         public string GoogleAccount { get; set; }
+
+        public Date? JoinDate { get; set; }
+
+        public string ProfilePhoto { get; set; }
     }
 }
