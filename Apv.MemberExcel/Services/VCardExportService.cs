@@ -6,7 +6,6 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 
 namespace Apv.MemberExcel.Services
 {
@@ -50,9 +49,13 @@ namespace Apv.MemberExcel.Services
             Directory.CreateDirectory(exportDirectory);
             foreach (var vCard in vCards)
             {
-                var filename = vCard.Split(new[] { Environment.NewLine }, StringSplitOptions.None)[3].Substring(3);
-                filename = $"{filename.Replace(' ', '-')}_{DateTime.Now:yyyy}";
-                File.WriteAllText(Path.Combine(exportDirectory, $"{filename}.vcf"), vCard);
+                var fn = vCard
+                    .Split(new[] { Environment.NewLine }, StringSplitOptions.None)
+                    .First(s => s.StartsWith("FN:", StringComparison.Ordinal))
+                    .Substring(3);
+                var name = Name.FromVCardFn(fn);
+                var filename = $"{name.ToFilename()}_{DateTime.Now:yyyy}.vcf";
+                File.WriteAllText(Path.Combine(exportDirectory, filename), vCard);
             }
         }
 
@@ -99,7 +102,7 @@ namespace Apv.MemberExcel.Services
 
         private static string FindPhotoAsBase64(AddressDto dto)
         {
-            var expectedFile = Path.Combine(FileSystemService.ProfilePhotosDirectory, $"{dto.Firstname}-{dto.Lastname}-({dto.Nickname}).jpg");
+            var expectedFile = Path.Combine(FileSystemService.ProfilePhotosDirectory, $"{Name.FromDto(dto).ToFilename()}.jpg");
 
             if (File.Exists(expectedFile))
             {
@@ -123,16 +126,23 @@ namespace Apv.MemberExcel.Services
             var photoFiles = Directory.GetFiles(FileSystemService.ProfilePhotosDirectory, "*.jpg");
             foreach (var photoFile in photoFiles)
             {
-                var (firstname, lastname, nickname) = ParsePhotoFileName(photoFile);
-                var dto = dtos.FirstOrDefault(inner => inner.Firstname == firstname && inner.Lastname == lastname && inner.Nickname == nickname);
-
-                if (dto == null)
+                var name = Name.FromProfilePhotoFile(photoFile);
+                if (name != null)
                 {
-                    Console.WriteLine($"Photo '{firstname}-{lastname}-({nickname}).jpg' can not be assigned to an address.");
+                    var dto = dtos.FirstOrDefault(name.IsMatch);
+
+                    if (dto != null)
+                    {
+                        dto.ProfilePhoto = Path.GetFileName(photoFile);
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Profile Photo '{Path.GetFileName(photoFile)}' can not be assigned to an address.");
+                    }
                 }
                 else
                 {
-                    dto.ProfilePhoto = Path.GetFileName(photoFile);
+                    Console.WriteLine($"Profile photo filename does not match the expected naming pattern: {Path.GetFileName(photoFile)}");
                 }
             }
 
@@ -173,17 +183,6 @@ namespace Apv.MemberExcel.Services
                     destImage.Save(file, ImageFormat.Jpeg);
                 }
             }
-        }
-
-        private static (string Firstname, string Lastname, string Nickname) ParsePhotoFileName(string filename)
-        {
-            var regex = new Regex(@"\\(\w+)-(\w+)-\((\w+)\)");
-            var match = regex.Match(filename);
-            if (match.Success)
-            {
-                return (match.Groups[1].Value, match.Groups[2].Value, match.Groups[3].Value);
-            }
-            return (null, null, null);
         }
     }
 }

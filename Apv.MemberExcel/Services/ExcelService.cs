@@ -41,9 +41,9 @@ namespace Apv.MemberExcel.Services
 
                 foreach (var addressDto in addresses)
                 {
-                    if (worksheet.Cells[addressDto.RowIndex, 13].Text != addressDto.GeoCode?.ToString())
+                    if (worksheet.Cells[addressDto.RowIndex, ExcelColumn.GeoCode.Index()].Text != addressDto.GeoCode?.ToString())
                     {
-                        worksheet.Cells[addressDto.RowIndex, 13].Value = addressDto.GeoCode?.ToString();
+                        worksheet.Cells[addressDto.RowIndex, ExcelColumn.GeoCode.Index()].Value = addressDto.GeoCode?.ToString();
                     }
                 }
                 package.Save();
@@ -58,9 +58,9 @@ namespace Apv.MemberExcel.Services
 
                 foreach (var addressDto in addresses)
                 {
-                    if (worksheet.Cells[addressDto.RowIndex, 24].Text != addressDto.ProfilePhoto)
+                    if (worksheet.Cells[addressDto.RowIndex, ExcelColumn.ProfilePhoto.Index()].Text != addressDto.ProfilePhoto)
                     {
-                        worksheet.Cells[addressDto.RowIndex, 24].Value = addressDto.ProfilePhoto;
+                        worksheet.Cells[addressDto.RowIndex, ExcelColumn.ProfilePhoto.Index()].Value = addressDto.ProfilePhoto;
                     }
                 }
                 package.Save();
@@ -71,94 +71,97 @@ namespace Apv.MemberExcel.Services
         {
             var hasAnyValue = false;
             var dto = new AddressDto();
-            for (var columnIndex = 1; columnIndex <= 24; columnIndex++)
+            foreach (var excelColumn in ExcelColumnExtensions.All())
             {
-                var value = worksheet.Cells[rowIndex, columnIndex].Text;
+                var value = worksheet.Cells[rowIndex, excelColumn.Index()].Text;
                 if (!string.IsNullOrWhiteSpace(value))
                 {
                     hasAnyValue = true;
-                    MapClumnToProperty(dto, columnIndex, value);
+                    MapClumnToProperty(dto, excelColumn, value);
                 }
             }
 
             return hasAnyValue ? dto : null;
         }
 
-        private static void MapClumnToProperty(AddressDto dto, int columnIndex, string value)
+        private static void MapClumnToProperty(AddressDto dto, ExcelColumn excelColumn, string value)
         {
-            switch (columnIndex)
+            switch (excelColumn)
             {
-                case 1:
+                case ExcelColumn.Status:
                     dto.Status = value == "Aktiv" ? Status.Active : Status.Inactive;
                     break;
-                case 2:
+                case ExcelColumn.Nickname:
                     dto.Nickname = value;
                     break;
-                case 3:
+                case ExcelColumn.Lastname:
                     dto.Lastname = value;
                     break;
-                case 4:
+                case ExcelColumn.Firstname:
                     dto.Firstname = value;
                     break;
-                case 5:
+                case ExcelColumn.Phone:
                     dto.Phone = value;
                     break;
-                case 6:
+                case ExcelColumn.Mobile:
                     dto.Mobile = value;
                     break;
-                case 7:
+                case ExcelColumn.Comment:
                     dto.Comment = value;
                     break;
-                case 8:
+                case ExcelColumn.Email1:
                     dto.Email1 = value;
                     break;
-                case 9:
+                case ExcelColumn.Email2:
                     dto.Email2 = value;
                     break;
-                case 10:
+                case ExcelColumn.AddressLine1:
                     dto.AddressLine1 = value;
                     break;
-                case 11:
+                case ExcelColumn.ZipCode:
                     dto.ZipCode = value;
                     break;
-                case 12:
+                case ExcelColumn.City:
                     dto.City = value;
                     break;
-                case 13:
+                case ExcelColumn.GeoCode:
                     dto.GeoCode = GeoCode.Parse(value);
                     break;
-                case 14:
+                case ExcelColumn.Functions:
                     dto.Functions = value;
                     break;
-                case 15:
+                case ExcelColumn.ScoutFunctions:
                     dto.FunctionsScouts = value;
                     break;
-                case 16:
+                case ExcelColumn.Gender:
                     dto.Gender = value == "m" ? Gender.Male : Gender.Female;
                     break;
-                case 17:
+                case ExcelColumn.Birthdate:
                     dto.Birthdate = Date.Parse(value);
                     break;
-                case 18:
+                case ExcelColumn.Payment:
                     dto.Payment = value == "Papier" ? PaymentType.DepositSlip : value == "E-Mail" ? PaymentType.Email : (PaymentType?)null;
                     break;
-                case 19:
+                case ExcelColumn.ResignDate:
                     dto.ResignDate = Date.Parse(value);
                     break;
-                case 20:
+                case ExcelColumn.FamilyId:
                     dto.FamilyId = int.Parse(value);
                     break;
-                case 21:
+                case ExcelColumn.WhatsApp:
                     dto.WhatsApp = value;
                     break;
-                case 22:
+                case ExcelColumn.GoogleAccount:
                     dto.GoogleAccount = value;
                     break;
-                case 23:
+                case ExcelColumn.JoinDate:
                     dto.JoinDate = Date.Parse(value);
                     break;
-                case 24:
+                case ExcelColumn.ProfilePhoto:
                     dto.ProfilePhoto = value;
+                    break;
+                case ExcelColumn.OldLastname:
+                    dto.OldLastname = value;
                     break;
             }
         }

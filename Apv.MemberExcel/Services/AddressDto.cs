@@ -51,5 +51,7 @@
         public Date? JoinDate { get; set; }
 
         public string ProfilePhoto { get; set; }
+
+        public string OldLastname { get; set; }
     }
 }

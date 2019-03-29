@@ -81,10 +81,13 @@
     <Compile Include="Pdfs\Pdf.cs" />
     <Compile Include="Pdfs\Envelope.cs" />
     <Compile Include="Services\AddressDto.cs" />
+    <Compile Include="Services\Name.cs" />
     <Compile Include="Services\AddressExportService.cs" />
     <Compile Include="Services\Date.cs" />
     <Compile Include="Services\EmailExportService.cs" />
     <Compile Include="Services\EmailService.cs" />
+    <Compile Include="Services\ExcelColumn.cs" />
+    <Compile Include="Services\ExcelColumnExtensions.cs" />
     <Compile Include="Services\ExcelService.cs" />
     <Compile Include="Services\FileSystemService.cs" />
     <Compile Include="Services\Gender.cs" />
