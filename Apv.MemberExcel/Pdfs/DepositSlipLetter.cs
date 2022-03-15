@@ -50,6 +50,8 @@ namespace Apv.MemberExcel.Pdfs
             paragraph.Add(Environment.NewLine);
             paragraph.Add("Danke fürs Einzahlen.");
             paragraph.Add(Environment.NewLine);
+            paragraph.Add("(Für aktive Leiter der Abteilung ist der Mitgliederbeitrag freiwillig.)");
+            paragraph.Add(Environment.NewLine);
             paragraph.Add(Environment.NewLine);
             if (requiresDepositSlipUnknown)
             {
