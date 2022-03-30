@@ -4,7 +4,7 @@ namespace Apv.MemberExcel.Services
 {
     public static class FileSystemService
     {
-        public const string GoogleDirveDirectory = @"C:\Users\hsu\Google Drive";
+        public const string GoogleDirveDirectory = @"C:\Users\hsu\My Drive";
 
         public static readonly string CurrentDocsDirectory = Path.Combine(GoogleDirveDirectory, "Aktuelle-Dokumente");
 

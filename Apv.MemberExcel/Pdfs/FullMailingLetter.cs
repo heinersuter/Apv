@@ -64,7 +64,7 @@ namespace Apv.MemberExcel.Pdfs
             paragraph.Add($"Da ich {(plural ? "eure" : "deine")} E-Mail-Adresse nicht habe, schicke ich alles per Post. ");
             paragraph.Add(Environment.NewLine);
             paragraph.Add($"Bitte {(plural ? "teilt mir eure" : "teile mir deine")} E-mail-Adresse mit (falls vorhanden). ");
-            paragraph.Add("Dann schicke ich nächstes Jahr das Jahresprogramm und das Protokoll per E-Mail. ");
+            paragraph.Add("Dann schicke ich nächstes Jahr das Jahresprogramm per E-Mail. ");
             paragraph.Add(Environment.NewLine);
             paragraph.Add("Details zu den einzelnen Anlässen werden nur noch per E-Mail und WhatsApp verschickt. ");
             if (!anyMobileNumber)

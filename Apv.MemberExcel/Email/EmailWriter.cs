@@ -39,7 +39,7 @@ namespace Apv.MemberExcel.Email
             body.AppendLine();
 
             // Jahresprogramm
-            body.AppendLine($"Fürs {DateTime.Now:yyyy} schicke ich dir das Jahresprogramm, Infos zum Mitgliederbeitrag und die aktuelle Adressliste.");
+            body.AppendLine($"Fürs {DateTime.Now:yyyy} schicke ich dir das Jahresprogramm mit Online-Kalender-Link, Infos zum Mitgliederbeitrag und die aktuelle Adressliste.");
 
             //// Protokoll GV
             //if (addressDto.Nickname == "Uranus") body.AppendLine("Danke dir vielmals fürs protokollieren.");
@@ -58,20 +58,29 @@ namespace Apv.MemberExcel.Email
                 body.AppendLine("Du wirst wie abgemacht per Post einen Einzahlungsschein für den Mitgliederbeitrag erhalten. Du kannst mir melden, falls du den nicht mehr brauchst.");
                 body.AppendLine();
             }
-            else if (addressDto.Payment == null)
-            {
-                body.AppendLine("Den Einzahlungsschein erhältst du auch noch per Post.");
-                body.AppendLine("WICHTIG: Bitte teile mir mit, ob du keinen papierenen Einzahlungsschein brauchst! Dann kann ich mir den Versand sparen.");
-                body.AppendLine();
-            }
+            //else if (addressDto.Payment == null)
+            //{
+            //    body.AppendLine("Den Einzahlungsschein erhältst du auch noch per Post.");
+            //    body.AppendLine("WICHTIG: Bitte teile mir mit, ob du keinen papierenen Einzahlungsschein brauchst! Dann kann ich mir den Versand sparen.");
+            //    body.AppendLine();
+            //}
 
-            // WhatsApp
-            if (addressDto.Mobile == null)
-            {
-                body.Append("Es existiert ein APV-Chat auf WhatsApp. ");
-                body.AppendLine("Teile mir doch deine Mobile-Nummer mit, wenn du da auch dabei sein willst.");
-                body.AppendLine();
-            }
+            //// WhatsApp
+            //if (addressDto.Mobile == null)
+            //{
+            //    body.Append("Es existiert ein APV-Chat auf WhatsApp. ");
+            //    body.AppendLine("Teile mir doch deine Mobile-Nummer mit, wenn du da auch dabei sein willst.");
+            //    body.AppendLine();
+            //}
+
+            //// Kalender
+            //body.Append("Und hier der Link auf unseren Kalender: ");
+            //body.AppendLine("https://calendar.google.com/calendar/ical/apv.admin%40blaustein.ch/public/basic.ics");
+            //body.AppendLine();
+
+            body.AppendLine("An der GV im Herbst werde ich mein Amt als APV-Präsident abgeben. Der Vorstand ist etwas am Überaltern.");
+            body.AppendLine("Wenn du im Vorstand mitmachen möchtest, kannst du mir auch schon vor der GV Bescheid geben.");
+            body.AppendLine();
 
             // Digitales Archiv
             if (addressDto.GoogleAccount == null)
@@ -80,14 +89,6 @@ namespace Apv.MemberExcel.Email
                 body.AppendLine("Wenn du mir deinen Google-Account mitteilst, erteile ich dir gerne die Zugriffsberechtigung.");
                 body.AppendLine();
             }
-
-            // Kalender
-            body.Append("Und hier der Link auf unseren Kalender: ");
-            body.AppendLine("https://calendar.google.com/calendar/ical/apv.admin%40blaustein.ch/public/basic.ics");
-            body.AppendLine();
-
-            body.AppendLine("An der GV im Herbst werde ich mein Amt als APV-Präsident abgeben. Es ist wieder mal Zeit, den Vorstand und den APV zu verjüngen.");
-            body.AppendLine();
 
             // Gruss
             body.AppendLine("Herzliche Grüsse");

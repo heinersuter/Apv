@@ -22,12 +22,12 @@ namespace Apv.MemberExcel.Services
         {
             using (var smtpClient = new SmtpClient
             {
+                UseDefaultCredentials = false,
                 Port = 587,
-                DeliveryMethod = SmtpDeliveryMethod.Network,
                 Host = _smtpHost,
                 EnableSsl = true,
-                UseDefaultCredentials = false,
                 Credentials = new NetworkCredential(_smtpUsername, _smtpPassword),
+                DeliveryMethod = SmtpDeliveryMethod.Network,
                 DeliveryFormat = SmtpDeliveryFormat.International
             })
             {

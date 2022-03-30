@@ -47,8 +47,8 @@ namespace Apv.MemberExcel.Views
             var requiresDepositSlipAddresses = mailingAddresses.Where(dto => dto.HasEmail && dto.RequiresDepositSlip == true).ToArray();
             pdfService.WriteDepositSlipLetter(requiresDepositSlipAddresses, "Brief_Nur_EZ.pdf", false);
 
-            var requiresDepositSlipUnknownAddresses = mailingAddresses.Where(dto => dto.HasEmail && dto.RequiresDepositSlip == null).ToArray();
-            pdfService.WriteDepositSlipLetter(requiresDepositSlipUnknownAddresses, "Brief_EZ_Unbekannt.pdf", true);
+            //var requiresDepositSlipUnknownAddresses = mailingAddresses.Where(dto => dto.HasEmail && dto.RequiresDepositSlip == null).ToArray();
+            //pdfService.WriteDepositSlipLetter(requiresDepositSlipUnknownAddresses, "Brief_EZ_Unbekannt.pdf", true);
 
             Console.WriteLine("Keine Post-Adresse: " + string.Join(", ", addressDtos.Where(dto => dto.AddressLine1 == null).Select(dto => $"{dto.Nickname}: {dto.Email1}")));
 
